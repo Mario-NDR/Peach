@@ -1,0 +1,49 @@
+body,
+ul,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+pre {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'PingFangSC-Light';
+}
+
+li {
+  list-style: none;
+}
+
+:global(.clearfix:after) {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+:global(#root) {
+  height: 100vh;
+}
+
+// ::-webkit-scrollbar {
+//   background: rgba(0, 0, 0, 0);
+//   width: 6px;
+//   height: 6px;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//   background: rgba(37, 36, 36, 0.57);
+// }
+
+// ::-webkit-scrollbar-track {
+//   -webkit-border-radius: 0 !important;
+//   border-radius: 0 !important;
+//   background: rgba(51, 51, 51, 0.3);
+//   opacity: 0.8;
+//   width: 5px;
+// }

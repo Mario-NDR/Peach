@@ -1,0 +1,38 @@
+@import 'Styles/vars.scss';
+
+.logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 255px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 20px;
+  background: $dark;
+  color: #fff;
+}
+
+.wrapperNav {
+  width: 255px;
+  height: calc(100% - 60px);
+  margin-top: 60px !important;
+  min-height: 400px;
+
+  :global(.ant-menu) {
+    height: 100%;
+  }
+
+  :global(.ant-menu-dark) {
+    background: $dark !important;
+  }
+
+  :global(.ant-menu-sub) {
+    background: $gray !important;
+  }
+
+  :global(.ant-menu-dark .ant-menu-item > a) {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+}
