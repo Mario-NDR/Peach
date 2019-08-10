@@ -4,32 +4,30 @@
 }
 
 .layoutHeader {
-  height: 60px !important;
-  padding: 0 !important;
+  height: 60px;
+  padding: 0;
+}
+
+.body {
+  height: calc(100vh - 60px);
 }
 
 .sider {
-  width: 255px !important;
-  max-width: 255px !important;
-  min-width: 255px !important;
-  height: 100vh !important;
-  overflow: auto !important;
-  left: 0 !important;
-  background: #fff !important;
+  height: 100% !important;
+  overflow: auto;
+  left: 0;
+  background: #fff;
 
   :global(.ant-layout-sider-children) {
     overflow-x: hidden;
   }
+
+  :global(.ant-layout-sider-trigger) {
+    background: #5a97f4;
+  }
 }
 
 .content {
-  // width: calc(100% - 30px);
-  height: calc(100vh - 80px);
-  padding: 15px;
-  // overflow: initial !important;
-}
-
-.body {
-  min-height: 100vh !important;
-  // margin-left: 255px !important;
+  height: 100% !important;
+  padding: 16px;
 }

@@ -1,3 +1,1 @@
-import Model from './Model'
-
-export default Model
+export { default } from './Model'

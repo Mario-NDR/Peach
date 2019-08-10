@@ -17,6 +17,16 @@ export default {
   confirmDelete: '确定删除吗',
   modifyPassword: '修改密码',
 
+  // nav
+  home: '首页',
+  activityManage: '活动管理',
+  overview: '概况',
+  antivityCreate: '活动创建',
+  myActivity: '我的活动',
+  prizeLibraryMange: '奖品库管理',
+  activityApprove: '活动审批',
+  activitySettings: '活动通用设置',
+
   // login
   login: '登录',
   userName: '用户名',
@@ -26,25 +36,7 @@ export default {
   passwordRequired: '请输入密码',
 
   // overview
-  home: '首页',
-  overview: '概览',
   helloworld: '你好，世界！',
-
-  // task
-  taskManage: '任务管理',
-  createTask: '创建任务',
-  taskList: '任务列表',
-  completeTaskInfo: '填写任务信息',
-  taskName: '任务名称',
-  taskNameRequired: '填写任务名称',
-
-  // log
-  logManage: '日志管理',
-
-  // user
-  admin: '管理员',
-  user: '操作员',
-  userManage: '用户管理',
 
   // system config
   systemConfig: '系统配置',

@@ -5,7 +5,8 @@ import { Layout } from 'antd'
 
 import Header from 'Components/Header'
 import Nav from 'Components/Nav'
-import Overview from 'Containers/Overview'
+import Home from 'Containers/Home'
+import Activity from 'Containers/Activity'
 import Error from 'Containers/Error'
 
 import style from './style.scss'
@@ -36,19 +37,20 @@ class App extends React.PureComponent {
   render() {
     return (
       <Layout className={style.layoutWrapper}>
-        <LayoutSider
-          className={style.sider}
-          collapsible
-          collapsed={this.state.collapsed}
-          onCollapse={this.onCollapse}
-        >
-          <Nav />
-        </LayoutSider>
+        <AppHeader />
         <Layout className={style.body}>
-          <AppHeader />
+          <LayoutSider
+            className={style.sider}
+            collapsible
+            collapsed={this.state.collapsed}
+            onCollapse={this.onCollapse}
+          >
+            <Nav collapsed={this.state.collapsed} />
+          </LayoutSider>
           <LayoutContent className={style.content}>
             <Switch>
-              <Route path="/app/overview" component={Overview} />
+              <Route path="/app/home" component={Home} exact />
+              <Route path="/app/activity" component={Activity} />
               <Route component={Error} />
             </Switch>
           </LayoutContent>

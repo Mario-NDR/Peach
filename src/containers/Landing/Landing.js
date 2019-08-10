@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 
 export default class Landing extends React.PureComponent {
   render() {
-    const pathname = '/app'
+    const pathname = '/app/home'
     return <Redirect to={{ pathname }} />
   }
 }

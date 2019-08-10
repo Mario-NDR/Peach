@@ -1,5 +1,5 @@
 <h1 align="center">
-  webpack4 seed project
+  lvdh web
 </h1>
 
 <p align="center">

@@ -4,63 +4,31 @@ import { FormattedMessage } from 'react-intl'
 
 export default [
   {
-    name: 'overview',
+    name: 'home',
     title: (
       <span>
         <Icon type="home" />
-        <FormattedMessage id="overview" />
+        <FormattedMessage id="home" />
       </span>
     ),
-    linkTo: '/app/overview',
+    linkTo: '/app/home',
     permissions: [ 'admin', 'user' ],
   },
   {
-    name: 'taskManage',
+    name: 'activityManage',
     title: (
       <span>
         <Icon type="appstore-o" />
-        <FormattedMessage id="taskManage" />
+        <FormattedMessage id="activityManage" />
       </span>
     ),
     menus: [
-      { title: 'createTask', linkTo: '/app/task/create', permissions: [ 'admin', 'user' ] },
-      { title: 'taskList', linkTo: '/app/task/list', permissions: [ 'admin', 'user' ] },
-    ],
-    permissions: [ 'admin', 'user' ],
-  },
-  {
-    name: 'user',
-    title: (
-      <span>
-        <Icon type="user" />
-        <FormattedMessage id="userManage" />
-      </span>
-    ),
-    linkTo: '/app/user',
-    permissions: [ 'admin' ],
-  },
-  {
-    name: 'logManage',
-    title: (
-      <span>
-        <Icon type="file" />
-        <FormattedMessage id="logManage" />
-      </span>
-    ),
-    linkTo: '/app/log',
-    permissions: [ 'admin' ],
-  },
-  {
-    name: 'systemConfig',
-    title: (
-      <span>
-        <Icon type="setting" />
-        <FormattedMessage id="systemConfig" />
-      </span>
-    ),
-    menus: [
-      { title: 'systemUpgrade', linkTo: '/app/system/upgrade', permissions: [ 'admin', 'user' ] },
-      { title: 'authorizationManage', linkTo: '/app/system/authorization', permissions: [ 'admin' ] },
+      { title: 'overview', linkTo: '/app/activity/overview', permissions: [ 'admin', 'user' ] },
+      { title: 'antivityCreate', linkTo: '/app/activity/create', permissions: [ 'admin', 'user' ] },
+      { title: 'myActivity', linkTo: '/app/activity/mime', permissions: [ 'admin', 'user' ] },
+      { title: 'prizeLibraryMange', linkTo: '/app/activity/prizeLibrary', permissions: [ 'admin', 'user' ] },
+      { title: 'activityApprove', linkTo: '/app/activity/approve', permissions: [ 'admin', 'user' ] },
+      { title: 'activitySettings', linkTo: '/app/activity/settings', permissions: [ 'admin', 'user' ] },
     ],
     permissions: [ 'admin', 'user' ],
   },

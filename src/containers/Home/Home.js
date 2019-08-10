@@ -1,10 +1,14 @@
 /**
- * @summary 概览
+ * @summary 首页
  */
 import React from 'react'
+// import PropTypes from 'prop-types'
+
 import { IntlComponent } from 'Components/Common'
 
-class Overview extends IntlComponent {
+import style from './style.scss'
+
+class Home extends IntlComponent {
 
   static propTypes = {}
 
@@ -16,11 +20,11 @@ class Overview extends IntlComponent {
 
   render() {
     return (
-      <section>
-        { this.localeMessage('helloworld') }
+      <section className={style.wrapper}>
+        Home
       </section>
     )
   }
 }
 
-export default Overview
+export default Home

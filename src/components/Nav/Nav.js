@@ -13,15 +13,16 @@ import navNodes from './navConfig'
 import style from './style.scss'
 
 const { SubMenu } = Menu
-// const defaultOpenKeys = navNodes.map(navNode => navNode.name)
+const defaultOpenKeys = navNodes.map(navNode => navNode.name)
 
-const Logo = () => <div className={style.logo} />
+// const Logo = () => <div className={style.logo} />
 
 class Nav extends React.Component {
   static propTypes = {
     // role: PropTypes.any,
     // roleResources: PropTypes.object,
     // loadRoleResources: PropTypes.func,
+    collapsed: PropTypes.bool.isRequired,
     location: PropTypes.object,
   }
 
@@ -104,12 +105,12 @@ class Nav extends React.Component {
     const { current } = this.state
     return (
       <div className={style.wrapperNav}>
-        <Logo />
+        {/* <Logo /> */}
         <Menu
           mode="inline"
           selectedKeys={[ current ]}
-          // defaultOpenKeys={defaultOpenKeys}
-          defaultOpenKeys={[]}
+          defaultOpenKeys={defaultOpenKeys}
+          inlineCollapsed={this.props.collapsed}
         >
           { navNodes.map(this.renderNavNode) }
         </Menu>
