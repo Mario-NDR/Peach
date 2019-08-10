@@ -107,7 +107,6 @@ class Nav extends React.Component {
         <Logo />
         <Menu
           mode="inline"
-          theme="dark"
           selectedKeys={[ current ]}
           // defaultOpenKeys={defaultOpenKeys}
           defaultOpenKeys={[]}

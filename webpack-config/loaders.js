@@ -83,7 +83,7 @@ const lessLoader = {
           // antd theme
           // 'primary-color': '#f93',
           'border-radius-base': '0',
-          'primary-color': '#ff8005',
+          'primary-color': '#5a97f4',
           'link-color': '#ff8005',
         },
         javascriptEnabled: true,

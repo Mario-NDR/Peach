@@ -17,11 +17,6 @@ const AppHeader = () => (
     <Header />
   </LayoutHeader>
 )
-const AppNav = () => (
-  <LayoutSider className={style.sider}>
-    <Nav />
-  </LayoutSider>
-)
 
 class App extends React.PureComponent {
 
@@ -31,12 +26,24 @@ class App extends React.PureComponent {
 
   constructor(props, context) {
     super(props, context)
+    this.state = {
+      collapsed: false,
+    }
   }
+
+  onCollapse = collapsed => this.setState({ collapsed })
 
   render() {
     return (
       <Layout className={style.layoutWrapper}>
-        <AppNav />
+        <LayoutSider
+          className={style.sider}
+          collapsible
+          collapsed={this.state.collapsed}
+          onCollapse={this.onCollapse}
+        >
+          <Nav />
+        </LayoutSider>
         <Layout className={style.body}>
           <AppHeader />
           <LayoutContent className={style.content}>
