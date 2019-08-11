@@ -1,5 +1,12 @@
+@import './vars.scss';
+
 :global(.flex) {
   display: flex;
+}
+
+:global(.flexEnd) {
+  display: flex;
+  justify-content: flex-end;
 }
 
 :global(.spaceBetween) {
@@ -42,4 +49,14 @@
 
 :global(.mr16) {
   margin-right: 16px;
+}
+
+////////////////////////////////////////////////////////////
+
+// 三级标题
+:global(.subtitle) {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color: $primary;
 }
