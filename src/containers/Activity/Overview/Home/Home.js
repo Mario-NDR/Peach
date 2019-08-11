@@ -8,8 +8,46 @@ import { Icon, Button } from 'antd'
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
 import Subheader from 'Components/Subheader'
+import { MutiLine } from 'Components/Charts'
+import { genRandomNum } from 'Utils/number'
 
 import style from './style.scss'
+
+const xAxisData = [ '2019-02-01', '2019-02-02', '2019-02-03', '2019-02-04', '2019-02-05', '2019-02-06', '2019-02-07', '2019-02-08', '2019-02-09', '2019-02-10' ]
+
+const mockValues1 = []
+const mockValues2 = []
+const mockValues3 = []
+const mockValues4 = []
+for (let i = 0; i < 10; ++i) {
+  mockValues1.push(genRandomNum(1, 30))
+  mockValues2.push(genRandomNum(1, 40))
+  mockValues3.push(genRandomNum(1, 50))
+  mockValues4.push(genRandomNum(1, 35))
+}
+
+const series = [
+  {
+    name: '报名活动',
+    type: 'line',
+    data: mockValues1,
+  },
+  {
+    name: '投票活动',
+    type: 'line',
+    data: mockValues2,
+  },
+  {
+    name: '抽奖活动',
+    type: 'line',
+    data: mockValues3,
+  },
+  {
+    name: '竞猜活动',
+    type: 'line',
+    data: mockValues4,
+  },
+]
 
 const OverviewItem = ({ title, number }) => (
   <div className={style.toSignUp}>
@@ -43,7 +81,9 @@ class Home extends IntlComponent {
           <OverviewItem title="抽奖活动" number={10} />
         </div>
         <Subheader>趋势图</Subheader>
-        <div className={style.bottomDetail}>趋势图</div>
+        <div className={style.bottomDetail}>
+          <MutiLine xAxisData={xAxisData} series={series} />
+        </div>
       </ContentBox>
     )
   }
