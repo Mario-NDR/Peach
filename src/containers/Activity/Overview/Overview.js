@@ -4,6 +4,7 @@
 import React from 'react'
 
 import { IntlComponent } from 'Components/Common'
+import Bread from 'Components/Bread'
 
 import style from './style.scss'
 
@@ -19,6 +20,12 @@ class Overview extends IntlComponent {
   render() {
     return (
       <div className={style.overview}>
+        <Bread
+          items={[
+            { content: '活动' },
+            { content: '概况' },
+          ]}
+        />
         <Home />
       </div>
     )

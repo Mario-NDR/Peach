@@ -2,11 +2,28 @@
  * @jinghh 活动管理 概况
  */
 import React from 'react'
-
-import { IntlComponent } from 'Components/Common'
+import PropTypes from 'prop-types'
 import { Icon, Button } from 'antd'
 
+import { IntlComponent } from 'Components/Common'
+import ContentBox from 'Components/ContentBox'
+import Subheader from 'Components/Subheader'
+
 import style from './style.scss'
+
+const OverviewItem = ({ title, number }) => (
+  <div className={style.toSignUp}>
+    <div className={style.icon}><Icon type="form" /> { title }</div>
+    <div className={style.number}>{ number }个</div>
+    <div style={{ marginTop: 10 }} align="center">
+      <Button type="primary">立即创建</Button>
+    </div>
+  </div>
+)
+OverviewItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
+}
 
 class Home extends IntlComponent {
 
@@ -17,47 +34,17 @@ class Home extends IntlComponent {
 
   render() {
     return (
-      <div className={style.overview}>
-        <div className={style.top}>
-          <div className={style.dv} />
-          <div className={style.title}>概况</div>
-        </div>
+      <ContentBox>
+        <Subheader>概况</Subheader>
         <div className={style.topDetail}>
-          <div className={style.toSignUp}>
-            <div className={style.icon}><Icon type="form" /> 报名活动</div>
-            <div className={style.number}>10个</div>
-            <div style={{ marginTop: 10 }} align="center">
-              <Button type="primary">立即创建</Button>
-            </div>
-          </div>
-          <div className={style.vote}>
-            <div className={style.icon}><Icon type="form" /> 投票活动</div>
-            <div className={style.number}>10个</div>
-            <div style={{ marginTop: 10 }} align="center">
-              <Button type="primary">立即创建</Button>
-            </div>
-          </div>
-          <div className={style.guess}>
-            <div className={style.icon}><Icon type="form" /> 竞猜活动</div>
-            <div className={style.number}>10个</div>
-            <div style={{ marginTop: 10 }} align="center">
-              <Button type="primary">立即创建</Button>
-            </div>
-          </div>
-          <div className={style.luckyDraw}>
-            <div className={style.icon}><Icon type="form" /> 抽奖活动</div>
-            <div className={style.number}>10个</div>
-            <div style={{ marginTop: 10 }} align="center">
-              <Button type="primary">立即创建</Button>
-            </div>
-          </div>
+          <OverviewItem title="报名活动" number={10} />
+          <OverviewItem title="投票活动" number={10} />
+          <OverviewItem title="竞猜活动" number={10} />
+          <OverviewItem title="抽奖活动" number={10} />
         </div>
-        <div className={style.bottom}>
-          <div className={style.dv} />
-          <div className={style.title}>趋势图</div>
-        </div>
-        <div className={style.bottomDetail}>123</div>
-      </div>
+        <Subheader>趋势图</Subheader>
+        <div className={style.bottomDetail}>趋势图</div>
+      </ContentBox>
     )
   }
 }

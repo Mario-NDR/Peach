@@ -1,61 +1,37 @@
-.overview {
+.topDetail {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 32px;
 
-  .top,
-  .bottom {
+  .toSignUp,
+  .vote,
+  .guess,
+  .luckyDraw {
 
-    margin: 15px 0;
-
-    .dv {
-      display: inline-block;
-      width: 4px;
-      height: 16px;
-      background-color: rgb(73, 129, 241);
-      border-radius: 40%;
+    .icon {
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 16px;
+      margin-left: 16px;
     }
 
-    .title {
-      display: inline-block;
-      font-size: 16px;
-      height: 20px;
-      margin-left: 10px;
-      margin-left: 10px;
+    .number {
+      font-size: 40px;
+      font-weight: 600;
+      margin-top: 16px;
+      margin-left: 70px;
+      color: rgb(242, 157, 56);
     }
   }
 
-  .topDetail {
-    display: flex;
-    justify-content: left;
-
-    .toSignUp,
-    .vote,
-    .guess,
-    .luckyDraw {
-
-      .icon {
-        font-size: 16px;
-        font-weight: 700;
-        margin-top: 30px;
-        margin-left: 30px;
-      }
-
-      .number {
-        font-size: 30px;
-        font-weight: 700;
-        margin-top: 40px;
-        margin-left: 100px;
-        color: rgb(242, 157, 56);
-      }
-    }
-
-    .toSignUp,
-    .vote,
-    .guess,
-    .luckyDraw {
-      width: 200px;
-      height: 200px;
-      margin-left: 30px;
-      // background-color: pink;
-      border: 1px solid rgb(233, 233, 233);
-    }
+  .toSignUp,
+  .vote,
+  .guess,
+  .luckyDraw {
+    width: 200px;
+    height: 180px;
+    margin-left: 30px;
+    // background-color: pink;
+    border: 1px solid rgb(233, 233, 233);
   }
 }

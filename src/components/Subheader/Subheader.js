@@ -16,7 +16,7 @@ class Subheader extends IntlComponent {
 
   render() {
     return (
-      <div className={style.subheader}>
+      <div className={style.subheader} style={this.props.style}>
         { this.props.children }
       </div>
     )
