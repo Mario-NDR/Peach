@@ -75,10 +75,10 @@ class Home extends IntlComponent {
       <ContentBox>
         <Subheader>概况</Subheader>
         <div className={style.topDetail}>
-          <OverviewItem title="报名活动" number={10} />
-          <OverviewItem title="投票活动" number={10} />
-          <OverviewItem title="竞猜活动" number={10} />
-          <OverviewItem title="抽奖活动" number={10} />
+          <OverviewItem title="报名活动" number={32} />
+          <OverviewItem title="投票活动" number={15} />
+          <OverviewItem title="竞猜活动" number={23} />
+          <OverviewItem title="抽奖活动" number={17} />
         </div>
         <Subheader>趋势图</Subheader>
         <div className={style.bottomDetail}>
