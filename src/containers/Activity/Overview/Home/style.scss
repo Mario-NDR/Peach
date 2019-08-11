@@ -1,0 +1,38 @@
+.overview {
+
+  .top,
+  .bottom {
+
+    margin: 15px 0;
+
+    .dv {
+      display: inline-block;
+      width: 4px;
+      height: 16px;
+      background-color: rgb(73, 129, 241);
+      border-radius: 40%;
+    }
+
+    .title {
+      display: inline-block;
+      font-size: 16px;
+      height: 20px;
+      margin-left: 10px;
+      margin-left: 10px;
+    }
+  }
+
+  .topDetail {
+    display: flex;
+    justify-content: space-between;
+
+    .toSignUp,
+    .vote,
+    .guess,
+    .luckyDraw {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+    }
+  }
+}

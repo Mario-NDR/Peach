@@ -2,7 +2,7 @@ import App from 'Containers/App'
 import Error, { Forbidden } from 'Containers/Error'
 import Landing from 'Containers/Landing'
 import Login from 'Containers/Login'
-import Overview from 'Containers/Overview'
+import Overview from 'Containers/Activity/Overview'
 
 export default function createRoutes() {
   return [

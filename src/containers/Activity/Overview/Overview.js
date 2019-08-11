@@ -7,6 +7,8 @@ import { IntlComponent } from 'Components/Common'
 
 import style from './style.scss'
 
+import Home from './Home'
+
 class Overview extends IntlComponent {
 
   constructor(props) {
@@ -17,7 +19,7 @@ class Overview extends IntlComponent {
   render() {
     return (
       <div className={style.overview}>
-        Overview
+        <Home />
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 
-import overview from 'Containers/Overview/reducer'
+import overview from 'Containers/Activity/reducer'
 
 const createReducer = (asyncReducers) => {
   return combineReducers({
