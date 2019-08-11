@@ -2,10 +2,17 @@
  * @summary 我的活动
  */
 import React from 'react'
+import { Tabs } from 'antd'
 
 import { IntlComponent } from 'Components/Common'
+import Bread from 'Components/Bread'
+import ContentBox from 'Components/ContentBox'
+import Subheader from 'Components/Subheader'
 
+import SignUp from './SignUp'
 import style from './style.scss'
+
+const { TabPane } = Tabs
 
 class Mine extends IntlComponent {
 
@@ -17,7 +24,29 @@ class Mine extends IntlComponent {
   render() {
     return (
       <div className={style.mine}>
-        Mine
+        <Bread
+          items={[
+            { content: '活动' },
+            { content: '我的活动' },
+          ]}
+        />
+        <ContentBox>
+          <Subheader>我的活动</Subheader>
+          <Tabs defaultActiveKey="1">
+            <TabPane tab="报名活动" key="1">
+              <SignUp />
+            </TabPane>
+            <TabPane tab="投票活动" key="2">
+              投票活动
+            </TabPane>
+            <TabPane tab="竞猜活动" key="3">
+              竞猜活动
+            </TabPane>
+            <TabPane tab="抽奖活动" key="4">
+              抽奖活动
+            </TabPane>
+          </Tabs>
+        </ContentBox>
       </div>
     )
   }
