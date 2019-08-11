@@ -27,28 +27,28 @@ class Home extends IntlComponent {
             <div className={style.icon}><Icon type="form" /> 报名活动</div>
             <div className={style.number}>10个</div>
             <div style={{ marginTop: 10 }} align="center">
-              <Button type="primary" shape="round">立即创建</Button>
+              <Button type="primary">立即创建</Button>
             </div>
           </div>
           <div className={style.vote}>
             <div className={style.icon}><Icon type="form" /> 投票活动</div>
             <div className={style.number}>10个</div>
             <div style={{ marginTop: 10 }} align="center">
-              <Button type="primary" shape="round">立即创建</Button>
+              <Button type="primary">立即创建</Button>
             </div>
           </div>
           <div className={style.guess}>
             <div className={style.icon}><Icon type="form" /> 竞猜活动</div>
             <div className={style.number}>10个</div>
             <div style={{ marginTop: 10 }} align="center">
-              <Button type="primary" shape="round">立即创建</Button>
+              <Button type="primary">立即创建</Button>
             </div>
           </div>
           <div className={style.luckyDraw}>
             <div className={style.icon}><Icon type="form" /> 抽奖活动</div>
             <div className={style.number}>10个</div>
             <div style={{ marginTop: 10 }} align="center">
-              <Button type="primary" shape="round">立即创建</Button>
+              <Button type="primary">立即创建</Button>
             </div>
           </div>
         </div>
