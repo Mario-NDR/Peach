@@ -10,6 +10,7 @@ import Overview from './Overview'
 import Create from './Create'
 import Mine from './Mine'
 import PrizeLibrary from './PrizeLibrary'
+import CheckRecord from './PrizeLibrary/CheckRecord'
 import Approve from './Approve'
 import Settings from './Settings'
 
@@ -30,6 +31,7 @@ class Activity extends IntlComponent {
         <Route path="/app/activity/create" component={Create} exact />
         <Route path="/app/activity/mime" component={Mine} exact />
         <Route path="/app/activity/prizeLibrary" component={PrizeLibrary} exact />
+        <Route path="/app/activity/prizeLibrary/prizeRecord" component={CheckRecord} exact />
         <Route path="/app/activity/approve" component={Approve} exact />
         <Route path="/app/activity/settings" component={Settings} exact />
         <Route component={Error} />

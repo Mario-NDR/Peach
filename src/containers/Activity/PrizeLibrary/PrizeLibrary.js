@@ -53,13 +53,7 @@ class PrizeLibrary extends IntlComponent {
           </div>
         </ContentBox>
         <ContentBox>
-          <div className={style.operation} align="right">
-            <Button size="large">返回</Button>
-            <Button size="large">查看发奖记录</Button>
-            <Button size="large" type="primary">添加奖品</Button>
-          </div>
-        </ContentBox>
-        <ContentBox>
+          {/* {this.props.children} */}
           <PrizeTable />
         </ContentBox>
       </div>
