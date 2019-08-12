@@ -1,0 +1,23 @@
+@import 'Styles/vars.scss';
+
+.tagTitle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.corner {
+  display: inline-block;
+  border-right: 12px solid $primary;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 16px;
+  background: $primary;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
