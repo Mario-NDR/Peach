@@ -4,7 +4,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import { Table, Pagination, Button } from 'antd'
+import { Table, Button } from 'antd'
 
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
