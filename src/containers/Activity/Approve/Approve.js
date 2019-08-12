@@ -2,10 +2,21 @@
  * @summary 活动管理/审批
  */
 import React from 'react'
+import { Tabs } from 'antd'
 
 import { IntlComponent } from 'Components/Common'
+import Bread from 'Components/Bread'
+import ContentBox from 'Components/ContentBox'
+import Subheader from 'Components/Subheader'
+
+import SignUp from './SignUp'
+import Voting from './Voting'
+import QuizActivities from './QuizActivities'
+import LuckyDraw from './LuckyDraw'
 
 import style from './style.scss'
+
+const { TabPane } = Tabs
 
 class Approve extends IntlComponent {
 
@@ -17,7 +28,29 @@ class Approve extends IntlComponent {
   render() {
     return (
       <div className={style.approve}>
-        Approve
+        <Bread
+          items={[
+            { content: '活动' },
+            { content: '活动审批' },
+          ]}
+        />
+        <ContentBox>
+          <Subheader>活动审批</Subheader>
+          <Tabs defaultActiveKey="1">
+            <TabPane tab="报名活动" key="1">
+              <SignUp />
+            </TabPane>
+            <TabPane tab="投票活动" key="2">
+              <Voting />
+            </TabPane>
+            <TabPane tab="竞猜活动" key="3">
+              <QuizActivities />
+            </TabPane>
+            <TabPane tab="抽奖活动" key="4">
+              <LuckyDraw />
+            </TabPane>
+          </Tabs>
+        </ContentBox>
       </div>
     )
   }

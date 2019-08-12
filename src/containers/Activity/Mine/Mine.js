@@ -13,6 +13,7 @@ import SignUp from './SignUp'
 import Voting from './Voting'
 import QuizActivities from './QuizActivities'
 import LuckyDraw from './LuckyDraw'
+
 import style from './style.scss'
 
 const { TabPane } = Tabs
