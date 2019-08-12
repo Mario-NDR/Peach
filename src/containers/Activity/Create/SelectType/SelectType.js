@@ -13,7 +13,7 @@ import TagTitle from 'Components/TagTitle'
 
 import style from './style.scss'
 
-class Create extends IntlComponent {
+class SelectType extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -69,4 +69,4 @@ class Create extends IntlComponent {
   }
 }
 
-export default Create
+export default SelectType
