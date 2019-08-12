@@ -1,5 +1,5 @@
 /**
- * @summary 报名活动
+ * @summary 投票活动
  */
 import React from 'react'
 import { Radio, Input, Button, Icon, Pagination } from 'antd'
