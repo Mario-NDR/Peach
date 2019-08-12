@@ -3,8 +3,8 @@
  */
 import React from 'react'
 
-import { NavLink } from 'react-router-dom'
-import { Table, Pagination, Button } from 'antd'
+import { Link } from 'react-router-dom'
+import { Table, Button } from 'antd'
 
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
@@ -120,16 +120,13 @@ class PrizeTable extends IntlComponent {
         <ContentBox>
           <div className={style.operation} align="right">
             <Button size="large">返回</Button>
-            <NavLink to="/app/activity/prizeLibrary/prizeRecord">
-              <Button size="large">查看发奖记录</Button>
-            </NavLink>
+            <Link to="/app/activity/prizeLibrary/prizeRecord">
+              <Button type="primary" size="large" ghost>查看发奖记录</Button>
+            </Link>
             <Button size="large" type="primary">添加奖品</Button>
           </div>
           <div className={style.prizeTable}>
-            <Table columns={this.columns} dataSource={this.dataSource} size="small" pagination={false} />
-            <div align="right">
-              <Pagination size="small" style={{ marginTop: 15 }} total={50} showSizeChanger showQuickJumper />
-            </div>
+            <Table columns={this.columns} dataSource={this.dataSource} size="middle" />
           </div>
         </ContentBox>
       </div>

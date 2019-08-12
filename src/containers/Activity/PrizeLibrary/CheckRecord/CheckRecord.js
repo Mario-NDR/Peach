@@ -4,7 +4,7 @@
 import React from 'react'
 
 import { NavLink } from 'react-router-dom'
-import { Table, Pagination, Button, Input, Select, DatePicker } from 'antd'
+import { Table, Button, Input, Select, DatePicker } from 'antd'
 
 import Bread from 'Components/Bread'
 import Subheader from 'Components/Subheader'
@@ -248,10 +248,7 @@ class CheckRecord extends IntlComponent {
             <Button size="large" type="primary">导出当前发奖记录</Button>
           </div>
           <div className={style.prizeTable}>
-            <Table columns={this.columns} dataSource={this.dataSource} size="small" pagination={false} />
-            <div align="right">
-              <Pagination size="small" style={{ marginTop: 15 }} total={50} showSizeChanger showQuickJumper />
-            </div>
+            <Table columns={this.columns} dataSource={this.dataSource} size="middle" />
           </div>
         </ContentBox>
       </div>
