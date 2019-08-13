@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Input, Select, DatePicker } from 'antd'
+import { Form, Input, Select, DatePicker, Radio } from 'antd'
 
 import { flexLayout as formItemLayout } from 'Constants/layout'
 import { IntlComponent } from 'Components/Common'
@@ -11,6 +11,7 @@ import { IntlComponent } from 'Components/Common'
 const { Item } = Form
 const { Option } = Select
 const { TextArea } = Input
+const { Group } = Radio
 
 class FormItem extends IntlComponent {
 
@@ -26,6 +27,14 @@ class FormItem extends IntlComponent {
     return options && options.map(option => <Option key={option.key}>{option.value}</Option>)
   }
 
+  renderRadios = () => {
+    const { radios } = this.props.conf
+    if (!_.isArray || _.isEmpty(radios)) {
+      return null
+    }
+    return radios && radios.map(option => <Radio key={option.key} value={option.key}>{option.value}</Radio>)
+  }
+
   renderElem = () => {
     const {
       type,
@@ -39,12 +48,13 @@ class FormItem extends IntlComponent {
       htmlType,
       disabled,
       prefix,
+      dropdownRender,
     } = this.props.conf
 
     const elems = {
       Input: (
         <Input
-          placeholder={this.localeMessage(placeholder)}
+          placeholder={placeholder}
           maxLength={maxLength || 30}
           autoFocus={autoFocus}
           type={htmlType}
@@ -59,12 +69,15 @@ class FormItem extends IntlComponent {
           maxLength={maxLength || 50}
           style={{ resize: 'none' }}
           rows={rows || 3}
+          disabled={disabled}
         />
       ),
       Select: (
         <Select
           mode={mode}
           onChange={onChange}
+          dropdownRender={dropdownRender}
+          placeholder={this.localeMessage(placeholder)}
         >
           { this.renderOptions() }
         </Select>
@@ -75,6 +88,11 @@ class FormItem extends IntlComponent {
           placeholder={this.localeMessage(placeholder)}
         />
       ),
+      Radio: (
+        <Group onChange={onChange}>
+          { this.renderRadios() }
+        </Group>
+      )
     }
 
     return elems[type]
@@ -85,6 +103,7 @@ class FormItem extends IntlComponent {
       layout,
       dataIndex,
       rules,
+      colon,
       initialValue,
       getFieldDecorator,
     } = this.props.conf
@@ -104,13 +123,17 @@ class FormItem extends IntlComponent {
     if (initialValue) {
       extra.initialValue = initialValue
     }
-    if (label && _.isString(label)) {
-      label = this.localeMessage(label)
+    // if (label && _.isString(label)) {
+    //   label = this.localeMessage(label)
+    // }
+    if (label === null) {
+      label = ' '
     }
 
     return (
       <Item
         label={label}
+        colon={colon}
         {...layout || formItemLayout}
       >
         {getFieldDecorator(dataIndex, extra)(
