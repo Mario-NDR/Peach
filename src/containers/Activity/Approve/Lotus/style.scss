@@ -1,12 +1,32 @@
 .lotus {
 
   .operation {
-    border-top: 1px solid rgb(204, 204, 204);
 
     Button {
-      margin: 10px 15px;
+      margin-left: 10px;
     }
   }
 
-  .title {}
+  .heading {
+
+    display: flex;
+    justify-content: left;
+
+    .imgBox {
+      width: 250px;
+      height: 140px;
+      overflow: hidden;
+      margin-right: 16px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-left: 20px;
+    }
+  }
 }

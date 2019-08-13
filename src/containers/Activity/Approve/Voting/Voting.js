@@ -2,6 +2,8 @@
  * @summary 投票活动
  */
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+
 import { Radio, Input, Button, Icon, Pagination } from 'antd'
 import classnames from 'classnames'
 
@@ -28,7 +30,9 @@ class Voting extends IntlComponent {
             <Radio.Button value="b">未开始</Radio.Button>
             <Radio.Button value="c">进行中</Radio.Button>
             <Radio.Button value="d">已暂停</Radio.Button>
-            <Radio.Button value="e">待审批</Radio.Button>
+            <NavLink to="/app/activity/approve/lotus">
+              <Radio.Button value="e">待审批</Radio.Button>
+            </NavLink>
             <Radio.Button value="f">已结束</Radio.Button>
           </Radio.Group>
           <div>
