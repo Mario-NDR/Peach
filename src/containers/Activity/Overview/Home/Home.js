@@ -1,5 +1,5 @@
 /**
- * @jinghh 活动管理 概况
+ * @sumary 活动管理 概况
  */
 import React from 'react'
 import PropTypes from 'prop-types'

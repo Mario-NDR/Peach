@@ -7,6 +7,8 @@ import classnames from 'classnames'
 
 import { IntlComponent } from 'Components/Common'
 
+import { NavLink } from 'react-router-dom'
+
 import Item from './Item'
 import style from './style.scss'
 
@@ -28,7 +30,9 @@ class SignUp extends IntlComponent {
             <Radio.Button value="b">未开始</Radio.Button>
             <Radio.Button value="c">进行中</Radio.Button>
             <Radio.Button value="d">已暂停</Radio.Button>
-            <Radio.Button value="e">待审批</Radio.Button>
+            <NavLink to="/app/activity/approve/lotus">
+              <Radio.Button value="e">待审批</Radio.Button>
+            </NavLink>
             <Radio.Button value="f">已结束</Radio.Button>
           </Radio.Group>
           <div>

@@ -1,5 +1,5 @@
 /**
- * @jinghh 奖品库管理--查看发奖记录
+ * @summary 奖品库管理--查看发奖记录
  */
 import React from 'react'
 

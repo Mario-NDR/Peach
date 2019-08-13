@@ -1,5 +1,5 @@
 /**
- * @jinghh 奖品库管理
+ * @summary 奖品库管理
  */
 import React from 'react'
 
