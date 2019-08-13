@@ -1,5 +1,5 @@
 /**
- * @summary 精彩活动
+ * @summary 竞猜活动
  */
 import React from 'react'
 
@@ -7,7 +7,7 @@ import { IntlComponent } from 'Components/Common'
 
 import style from './style.scss'
 
-class Model extends IntlComponent {
+class Quiz extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -16,11 +16,11 @@ class Model extends IntlComponent {
 
   render() {
     return (
-      <div className={style.model}>
-        Model
+      <div className={style.quiz}>
+        Quiz
       </div>
     )
   }
 }
 
-export default Model
+export default Quiz

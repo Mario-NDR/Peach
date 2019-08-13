@@ -3,6 +3,7 @@
  */
 import React from 'react'
 import { Radio, Button, Divider } from 'antd'
+import { Link } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
 import Bread from 'Components/Bread'
@@ -18,18 +19,19 @@ class SelectType extends IntlComponent {
   constructor(props) {
     super(props)
     this.state = {
-      value: 1,
+      type: 'apply',
     }
   }
 
   onTypeChange = e => {
-    console.log('radio checked', e.target.value)
+    // console.log('radio checked', e.target.value)
     this.setState({
-      value: e.target.value,
+      type: e.target.value,
     })
   }
 
   render() {
+    const { type } = this.state
     return (
       <div className={style.create}>
         <Bread
@@ -50,17 +52,17 @@ class SelectType extends IntlComponent {
             ]}
           />
           <div className="flexEnd mt16">
-            <Button type="primary" size="large">下一步：活动内容配置</Button>
+            <Link to={`/app/activity/create/${type}`}><Button type="primary" size="large">下一步：活动内容配置</Button></Link>
           </div>
           <Divider />
           <TagTitle>活动类型</TagTitle>
           <div>
             <span className={style.label}>选择活动类型：</span>
-            <Radio.Group onChange={this.onTypeChange} value={this.state.value}>
-              <Radio value={1}>报名活动</Radio>
-              <Radio value={2}>投票活动</Radio>
-              <Radio value={3}>竞猜活动</Radio>
-              <Radio value={4}>抽奖活动</Radio>
+            <Radio.Group onChange={this.onTypeChange} value={type}>
+              <Radio value="apply">报名活动</Radio>
+              <Radio value="vote">投票活动</Radio>
+              <Radio value="quiz">竞猜活动</Radio>
+              <Radio value="prize">抽奖活动</Radio>
             </Radio.Group>
           </div>
         </ContentBox>

@@ -7,7 +7,7 @@ import { IntlComponent } from 'Components/Common'
 
 import style from './style.scss'
 
-class Model extends IntlComponent {
+class Prize extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -16,11 +16,11 @@ class Model extends IntlComponent {
 
   render() {
     return (
-      <div className={style.model}>
-        Model
+      <div className={style.prize}>
+        Prize
       </div>
     )
   }
 }
 
-export default Model
+export default Prize
