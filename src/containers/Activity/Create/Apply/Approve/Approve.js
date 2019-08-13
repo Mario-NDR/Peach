@@ -1,8 +1,8 @@
 /**
- * @summary 选择活动类型
+ * @summary 提交审批
  */
 import React from 'react'
-import { Radio, Button, Divider } from 'antd'
+import { Button, Divider } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
@@ -14,37 +14,27 @@ import TagTitle from 'Components/TagTitle'
 
 import style from './style.scss'
 
-class SelectType extends IntlComponent {
+class Approve extends IntlComponent {
 
   constructor(props) {
     super(props)
-    this.state = {
-      type: 'apply',
-    }
-  }
-
-  onTypeChange = e => {
-    // console.log('radio checked', e.target.value)
-    this.setState({
-      type: e.target.value,
-    })
+    this.state = {}
   }
 
   render() {
-    const { type } = this.state
     return (
-      <div className={style.create}>
+      <div className={style.approve}>
         <Bread
           items={[
             { content: '活动' },
             { content: '活动创建' },
-            { content: '活动类型选择' },
+            { content: '提交审批：报名活动' },
           ]}
         />
         <ContentBox>
           <Subheader>活动创建</Subheader>
           <Step
-            current={0}
+            current={3}
             items={[
               { title: '活动类型选择' },
               { title: '活动内容配置' },
@@ -53,18 +43,14 @@ class SelectType extends IntlComponent {
             ]}
           />
           <div className="flexEnd mt16">
-            <Link to={`/app/activity/create/${type}`}><Button type="primary" size="large">下一步：活动内容配置</Button></Link>
+            <Button className="mr16" size="large" onClick={() => window.history.go(-1)}>上一步</Button>
+            <Button className="mr16" size="large" type="primary" ghost>保存草稿</Button>
+            <Link to="/app/activity/create"><Button type="primary" size="large">提交审批</Button></Link>
           </div>
           <Divider />
-          <TagTitle>活动类型</TagTitle>
+          <TagTitle>1、报名活动：信息确认</TagTitle>
           <div>
-            <span className={style.label}>选择活动类型：</span>
-            <Radio.Group onChange={this.onTypeChange} value={type}>
-              <Radio value="apply">报名活动</Radio>
-              <Radio value="vote">投票活动</Radio>
-              <Radio value="quiz">竞猜活动</Radio>
-              <Radio value="prize">抽奖活动</Radio>
-            </Radio.Group>
+            我是表单
           </div>
         </ContentBox>
       </div>
@@ -72,4 +58,4 @@ class SelectType extends IntlComponent {
   }
 }
 
-export default SelectType
+export default Approve
