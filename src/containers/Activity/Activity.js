@@ -5,6 +5,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
+import Error from 'Containers/Error'
 
 import Overview from './Overview'
 import Create from './Create'
@@ -29,7 +30,7 @@ class Activity extends IntlComponent {
     return (
       <Switch>
         <Route path="/app/activity/overview" component={Overview} exact />
-        <Route path="/app/activity/create" component={Create} exact />
+        <Route path="/app/activity/create" component={Create} />
         <Route path="/app/activity/mime" component={Mine} exact />
         <Route path="/app/activity/prizeLibrary" component={PrizeLibrary} exact />
         <Route path="/app/activity/prizeLibrary/prizeRecord" component={CheckRecord} exact />

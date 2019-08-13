@@ -4,6 +4,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon, Button } from 'antd'
+import { Link } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
@@ -49,18 +50,19 @@ const series = [
   },
 ]
 
-const OverviewItem = ({ title, number }) => (
+const OverviewItem = ({ title, number, type }) => (
   <div className={style.toSignUp}>
     <div className={style.icon}><Icon type="form" /> { title }</div>
     <div className={style.number}>{ number }个</div>
     <div style={{ marginTop: 10 }} align="center">
-      <Button type="primary">立即创建</Button>
+      <Link to={`/app/activity/create/${type}`}><Button type="primary">立即创建</Button></Link>
     </div>
   </div>
 )
 OverviewItem.propTypes = {
   title: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
 }
 
 class Home extends IntlComponent {
@@ -75,10 +77,10 @@ class Home extends IntlComponent {
       <ContentBox>
         <Subheader>概况</Subheader>
         <div className={style.topDetail}>
-          <OverviewItem title="报名活动" number={32} />
-          <OverviewItem title="投票活动" number={15} />
-          <OverviewItem title="竞猜活动" number={23} />
-          <OverviewItem title="抽奖活动" number={17} />
+          <OverviewItem title="报名活动" number={32} type="apply" />
+          <OverviewItem title="投票活动" number={15} type="vote" />
+          <OverviewItem title="竞猜活动" number={23} type="quiz" />
+          <OverviewItem title="抽奖活动" number={17} type="prize" />
         </div>
         <Subheader>趋势图</Subheader>
         <div className={style.bottomDetail}>
