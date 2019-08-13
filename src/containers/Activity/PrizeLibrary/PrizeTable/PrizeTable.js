@@ -4,10 +4,12 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import { Table, Button } from 'antd'
+import { Table, Button, Input } from 'antd'
 
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
+import Bread from 'Components/Bread'
+import Subheader from 'Components/Subheader'
 
 import style from './style.scss'
 
@@ -15,7 +17,9 @@ class PrizeTable extends IntlComponent {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      type: 'prizeRecord',
+    }
   }
 
   columns = [
@@ -115,12 +119,44 @@ class PrizeTable extends IntlComponent {
   ]
 
   render() {
+
+    const { type } = this.state
+
     return (
       <div className={style.prizeTable}>
+        <Bread
+          items={[
+            { content: '活动' },
+            { content: '奖品库管理' },
+          ]}
+        />
+        <ContentBox>
+          <Subheader>奖品库管理</Subheader>
+          <div className={style.search}>
+            <div>
+              奖品编号：
+            <Input
+              style={{ width: 250 }}
+              placeholder="输入奖品编号"
+            />
+            </div>
+            <div>
+              奖品名称：
+            <Input
+              style={{ width: 250 }}
+              placeholder="输入奖品名称，支持模糊搜索"
+            />
+            </div>
+            <div>
+              <Button type="primary">查询</Button>
+              <Button style={{ marginLeft: 15 }}>重置</Button>
+            </div>
+          </div>
+        </ContentBox>
         <ContentBox>
           <div className={style.operation} align="right">
-            <Button size="large">返回</Button>
-            <Link to="/app/activity/prizeLibrary/prizeRecord">
+            <Button size="large" onClick={() => window.history.go(-1)}>返回</Button>
+            <Link to={`/app/activity/prizeLibrary/${type}`}>
               <Button type="primary" size="large" ghost>查看发奖记录</Button>
             </Link>
             <Button size="large" type="primary">添加奖品</Button>

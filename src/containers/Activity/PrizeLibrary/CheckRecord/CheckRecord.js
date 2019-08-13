@@ -242,9 +242,7 @@ class CheckRecord extends IntlComponent {
         </div>
         <ContentBox>
           <div className={style.operation} align="right">
-            <NavLink to="/app/activity/prizeLibrary">
-              <Button size="large">返回</Button>
-            </NavLink>
+            <Button size="large" onClick={() => { window.history.go(-1) }}>返回</Button>
             <Button size="large" type="primary">导出当前发奖记录</Button>
           </div>
           <div className={style.prizeTable}>
