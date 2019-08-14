@@ -20,6 +20,10 @@ li {
   list-style: none;
 }
 
+textarea {
+  resize: none;
+}
+
 :global(.clearfix:after) {
   display: block;
   content: '';

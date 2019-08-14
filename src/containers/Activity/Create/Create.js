@@ -26,9 +26,9 @@ class Create extends IntlComponent {
       <Switch>
         <Route path="/app/activity/create" component={SelectType} exact />
         <Route path="/app/activity/create/apply" component={Apply} />
-        <Route path="/app/activity/create/prize" component={Prize} exact />
-        <Route path="/app/activity/create/quiz" component={Quiz} exact />
-        <Route path="/app/activity/create/vote" component={Vote} exact />
+        <Route path="/app/activity/create/prize" component={Prize} />
+        <Route path="/app/activity/create/quiz" component={Quiz} />
+        <Route path="/app/activity/create/vote" component={Vote} />
         <Route component={Error} />
       </Switch>
     )

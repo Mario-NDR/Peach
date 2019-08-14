@@ -4,7 +4,7 @@
 import React from 'react'
 
 import { IntlComponent } from 'Components/Common'
-import { Button, Divider, Tabs, Descriptions, Table, Icon, Checkbox, Modal, textarea } from 'antd'
+import { Button, Divider, Tabs, Descriptions, Table, Icon, Checkbox, Modal, Input } from 'antd'
 
 import Bread from 'Components/Bread'
 import Step from 'Components/Step'
@@ -16,6 +16,7 @@ import img from './images/img.jpg'
 import style from './style.scss'
 
 const { TabPane } = Tabs
+const { TextArea } = Input
 // const { Item } = Descriptions
 
 class Lotus extends IntlComponent {
@@ -182,7 +183,7 @@ class Lotus extends IntlComponent {
               onCancel={this.handleCancel}
             >
               <span>请确认活动内容与活动内容信息均已审核完毕。</span>
-              <textarea name="" id="" cols="64" rows="10" placeholder="请输入审批意见，140字以内" />
+              <TextArea cols="64" rows="10" placeholder="请输入审批意见，140字以内" />
             </Modal>
             <Button size="large" type="primary" onClick={this.showModal}>审批通过</Button>
             <Modal
@@ -192,7 +193,7 @@ class Lotus extends IntlComponent {
               onCancel={this.handleCancel}
             >
               <span>请确认活动内容与活动内容信息均已审核完毕。</span>
-              <textarea name="" id="" cols="64" rows="10" placeholder="请输入审批意见，140字以内" />
+              <TextArea cols="64" rows="10" placeholder="请输入审批意见，140字以内" />
             </Modal>
           </div>
         </ContentBox>
@@ -209,7 +210,7 @@ class Lotus extends IntlComponent {
           <Tabs defaultActiveKey="1">
             <TabPane tab="活动详情" key="1">
               <div>
-                <Descriptions title="">
+                <Descriptions title="" column={1}>
                   <Descriptions.Item label="活动时间">2019-03-15 00：00 ~ 2019-03-16 00：00</Descriptions.Item>
                   <Descriptions.Item label="活动详情">这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，</Descriptions.Item>
                   <Descriptions.Item label="用户抽奖总次数">不限制</Descriptions.Item>
@@ -230,26 +231,27 @@ class Lotus extends IntlComponent {
           <div style={{ marginTop: 20 }}>
             <TagTitle>活动审批：预算审核</TagTitle>
             <div>
-              <Descriptions title="">
+              <Descriptions title="" column={1}>
                 <Descriptions.Item label="活动预算">10000</Descriptions.Item>
                 <Descriptions.Item label="奖品成本">9800</Descriptions.Item>
                 <Descriptions.Item label="奖品库奖品成本">7600</Descriptions.Item>
-                <Descriptions.Item label="预算审批文件下载">
-                  <Checkbox>文件名称1.rar</Checkbox>
-                  <a href="#">
-                    <Icon type="download" /> 下载文件
-                  </a>
-                  <br />
-                  <Checkbox>文件名称2.rar</Checkbox>
-                  <a href="#">
-                    <Icon type="download" /> 下载文件
-                  </a>
-                  <br />
-                  <Checkbox>文件名称3.rar</Checkbox>
-                  <a href="#">
-                    <Icon type="download" /> 下载文件
-                  </a>
-                  <br />
+                <Descriptions.Item label={(<span>预算审批文件下载</span>)}>
+                  <div>
+                    <Checkbox>文件名称1.rar</Checkbox>
+                    <a href="#">
+                      <Icon type="download" /> 下载文件
+                    </a>
+                    <br />
+                    <Checkbox>文件名称2.rar</Checkbox>
+                    <a href="#">
+                      <Icon type="download" /> 下载文件
+                    </a>
+                    <br />
+                    <Checkbox>文件名称3.rar</Checkbox>
+                    <a href="#">
+                      <Icon type="download" /> 下载文件
+                    </a>
+                  </div>
                 </Descriptions.Item>
               </Descriptions>
             </div>
