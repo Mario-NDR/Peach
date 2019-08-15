@@ -49,6 +49,7 @@ class FormItem extends IntlComponent {
       disabled,
       prefix,
       dropdownRender,
+      text,
     } = this.props.conf
 
     const elems = {
@@ -92,7 +93,10 @@ class FormItem extends IntlComponent {
         <Group onChange={onChange}>
           { this.renderRadios() }
         </Group>
-      )
+      ),
+      Text: (
+        <span>{ text }</span>
+      ),
     }
 
     return elems[type]
@@ -106,6 +110,8 @@ class FormItem extends IntlComponent {
       colon,
       initialValue,
       getFieldDecorator,
+      type,
+      style,
     } = this.props.conf
 
     let { label } = this.props.conf
@@ -130,10 +136,24 @@ class FormItem extends IntlComponent {
       label = ' '
     }
 
+    if (type === 'Text') {
+      return (
+        <Item
+          label={label}
+          colon={colon}
+          style={style}
+          {...layout || formItemLayout}
+        >
+          { this.renderElem() }
+        </Item>
+      )
+    }
+
     return (
       <Item
         label={label}
         colon={colon}
+        style={style}
         {...layout || formItemLayout}
       >
         {getFieldDecorator(dataIndex, extra)(

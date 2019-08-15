@@ -75,7 +75,7 @@ class Prize extends IntlComponent {
     },
     {
       title: '奖品图片',
-      key: 'description',
+      key: 'img',
       render: () => {
         return (
           <a href="#">点击上传图片</a>
@@ -98,6 +98,7 @@ class Prize extends IntlComponent {
 
   dataSource = [
     {
+      key: 1,
       link: '分享',
       res: 'gt203 威尼斯小熊+礼品盒',
       amount: 1,
@@ -109,6 +110,7 @@ class Prize extends IntlComponent {
       description: '凭兑奖券系现场工作人员兑奖',
     },
     {
+      key: 2,
       res: '积分',
       amount: 500,
       prizeAmount: 200000,

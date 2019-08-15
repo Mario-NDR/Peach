@@ -118,7 +118,7 @@ class Content extends IntlComponent {
                   maxLength: 80,
                 }}
               />
-              <Form.Item label="允许单日同一项重复投票：" style={{ marginLeft: 128, display: 'flex', justifyContent: 'space-betwoon' }}>
+              {/* <Form.Item label="允许单日同一项重复投票：" style={{ marginLeft: 128, display: 'flex', justifyContent: 'space-betwoon' }}>
                 {getFieldDecorator('repeat')(
                   <Radio.Group>
                     <Radio value="yes">允许</Radio>
@@ -126,25 +126,82 @@ class Content extends IntlComponent {
                     <span style={{ fontSize: 12 }}>允许：单个用户可给单个选项重复投票；不允许：单个用户一天之内，不可给单个用户重复投票</span>
                   </Radio.Group>,
                 )}
-              </Form.Item>
-              <Form.Item label="票数显示：" style={{ marginLeft: 225, display: 'flex', justifyContent: 'space-betwoon' }}>
-                {getFieldDecorator('show')(
-                  <Radio.Group>
-                    <Radio value="yes">显示</Radio>
-                    <Radio value="no">不显示</Radio><br />
-                    <span style={{ fontSize: 12 }}>显示：可以看见所有项目的投票数；不显示：全部不可见</span>
-                  </Radio.Group>
-                )}
-              </Form.Item>
-              <Form.Item label="投票结果：" style={{ marginLeft: 225, display: 'flex', justifyContent: 'space-betwoon' }}>
-                {getFieldDecorator('res')(
-                  <Radio.Group>
-                    <Radio value="yes">开启</Radio>
-                    <Radio value="no">关闭</Radio><br />
-                    <span style={{ fontSize: 12 }}>开启：投票排行榜所有人可见；关闭：所有人不可见</span>
-                  </Radio.Group>
-                )}
-              </Form.Item>
+              </Form.Item> */}
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  style: { marginBottom: 0 },
+                  label: '允许单日同一项重复投票',
+                  type: 'Radio',
+                  dataIndex: 'repeat',
+                  initialValue: 'yes',
+                  maxLength: 80,
+                  radios: [
+                    { key: 'yes', value: '允许' },
+                    { key: 'no', value: '不允许' },
+                  ]
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: ' ',
+                  colon: false,
+                  type: 'Text',
+                  style: { fontSize: 12 },
+                  text: '允许：单个用户可给单个选项重复投票；不允许：单个用户一天之内，不可给单个用户重复投票',
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  style: { marginBottom: 0 },
+                  label: '票数显示',
+                  type: 'Radio',
+                  dataIndex: 'repeat',
+                  initialValue: 'yes',
+                  maxLength: 80,
+                  radios: [
+                    { key: 'display', value: '显示' },
+                    { key: 'noDisplay', value: '不显示' },
+                  ]
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: ' ',
+                  colon: false,
+                  type: 'Text',
+                  style: { fontSize: 12 },
+                  text: '显示：可以看见所有项目的投票数；不显示：全部不可见',
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  style: { marginBottom: 0 },
+                  label: '投票结果',
+                  type: 'Radio',
+                  dataIndex: 'repeat',
+                  initialValue: 'yes',
+                  maxLength: 80,
+                  radios: [
+                    { key: 'open', value: '开启' },
+                    { key: 'close', value: '关闭' },
+                  ]
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: ' ',
+                  colon: false,
+                  type: 'Text',
+                  style: { fontSize: 12 },
+                  text: '开启：投票排行榜所有人可见；关闭：所有人不可见',
+                }}
+              />
               {/* 添加投票项TODO */}
               <div>添加投票项TODO</div>
             </Form>
