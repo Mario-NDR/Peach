@@ -148,7 +148,7 @@ class Approve extends IntlComponent {
           <Divider />
           <Tabs>
             <TabPane tab="活动详情" key="1">
-              <Descriptions title="" column={1}>
+              <Descriptions title="" column={1} style={{ marginLeft: 80, marginRight: 80 }}>
                 <Descriptions.Item label="活动时间">2019-03-15 00：00 ~ 2019-03-16 00：00</Descriptions.Item>
                 <Descriptions.Item label="活动详情">这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，</Descriptions.Item>
                 <Descriptions.Item label="用户投票总次数">不限制</Descriptions.Item>
