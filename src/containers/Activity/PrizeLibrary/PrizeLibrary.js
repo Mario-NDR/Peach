@@ -28,7 +28,6 @@ class PrizeLibrary extends IntlComponent {
             <Route path="/app/activity/prizeLibrary/prizeRecord" component={CheckRecord} exact />
             <Route component={Error} />
           </Switch>
-          <PrizeTable />
         </ContentBox>
       </div>
     )

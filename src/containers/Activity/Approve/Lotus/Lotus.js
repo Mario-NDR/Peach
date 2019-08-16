@@ -210,7 +210,7 @@ class Lotus extends IntlComponent {
           <Tabs defaultActiveKey="1">
             <TabPane tab="活动详情" key="1">
               <div>
-                <Descriptions title="" column={1}>
+                <Descriptions title="" column={1} style={{ marginLeft: 80, marginRight: 80 }}>
                   <Descriptions.Item label="活动时间">2019-03-15 00：00 ~ 2019-03-16 00：00</Descriptions.Item>
                   <Descriptions.Item label="活动详情">这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，</Descriptions.Item>
                   <Descriptions.Item label="用户抽奖总次数">不限制</Descriptions.Item>
@@ -231,7 +231,7 @@ class Lotus extends IntlComponent {
           <div style={{ marginTop: 20 }}>
             <TagTitle>活动审批：预算审核</TagTitle>
             <div>
-              <Descriptions title="" column={1}>
+              <Descriptions title="" column={1} style={{ marginLeft: 80, marginRight: 80 }}>
                 <Descriptions.Item label="活动预算">10000</Descriptions.Item>
                 <Descriptions.Item label="奖品成本">9800</Descriptions.Item>
                 <Descriptions.Item label="奖品库奖品成本">7600</Descriptions.Item>

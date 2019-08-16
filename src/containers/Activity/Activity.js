@@ -31,7 +31,7 @@ class Activity extends IntlComponent {
         <Route path="/app/activity/overview" component={Overview} exact />
         <Route path="/app/activity/create" component={Create} />
         <Route path="/app/activity/mime" component={Mine} exact />
-        <Route path="/app/activity/prizeLibrary" component={PrizeLibrary} exact />
+        <Route path="/app/activity/prizeLibrary" component={PrizeLibrary} />
         <Route path="/app/activity/approve" component={Approve} exact />
         <Route path="/app/activity/approve/lotus" component={Lotus} exact />
         <Route path="/app/activity/settings" component={Settings} exact />
