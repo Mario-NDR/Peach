@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Divider, Form } from 'antd'
+import { Button, Divider, Form, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
@@ -74,8 +74,24 @@ class Content extends IntlComponent {
               <FormItem
                 conf={{
                   getFieldDecorator,
+                  label: '活动封面',
+                  type: 'Upload',
+                  dataIndex: 'cover',
+                  draggerNode: (
+                    <div align="center">
+                      <div className={style.cameraIcon}><Icon type="camera" /></div>
+                      <div className={style.addCover}>添加海报</div>
+                      <div>一张漂亮的活动海报可以吸引更多用户报名，同时可以增加传播效果</div>
+                      <div className={style.suggest}>（建议尺寸：900*525，图片小于4M）</div>
+                    </div>
+                  ),
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
                   label: '活动时间',
-                  type: 'DatePicker',
+                  type: 'RangePicker',
                   dataIndex: 'date',
                 }}
               />
@@ -105,7 +121,7 @@ class Content extends IntlComponent {
                 conf={{
                   getFieldDecorator,
                   label: '活动报名截止时间',
-                  type: 'DatePicker',
+                  type: 'RangePicker',
                   dataIndex: 'deadline',
                 }}
               />

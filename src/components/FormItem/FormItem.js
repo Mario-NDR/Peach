@@ -3,8 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Input, Select, DatePicker, Radio, Switch } from 'antd'
-
+import { Form, Input, Select, DatePicker, Radio, Upload, } from 'antd'
 import { flexLayout as formItemLayout } from 'Constants/layout'
 import { IntlComponent } from 'Components/Common'
 
@@ -12,6 +11,8 @@ const { Item } = Form
 const { Option } = Select
 const { TextArea } = Input
 const { Group } = Radio
+const { Dragger } = Upload
+const { RangePicker } = DatePicker
 
 class FormItem extends IntlComponent {
 
@@ -50,8 +51,8 @@ class FormItem extends IntlComponent {
       prefix,
       dropdownRender,
       text,
-      checkedChildren,
-      unCheckedChildren,
+      draggerNode,
+      uploadProps,
     } = this.props.conf
 
     const elems = {
@@ -69,7 +70,7 @@ class FormItem extends IntlComponent {
       TextArea: (
         <TextArea
           placeholder={this.localeMessage(placeholder)}
-          maxLength={maxLength || 50}
+          maxLength={maxLength || 150}
           style={{ resize: 'none' }}
           rows={rows || 3}
           disabled={disabled}
@@ -88,7 +89,13 @@ class FormItem extends IntlComponent {
       DatePicker: (
         <DatePicker
           style={{ width }}
-          placeholder={this.localeMessage(placeholder)}
+          // placeholder={this.localeMessage(placeholder)}
+        />
+      ),
+      RangePicker: (
+        <RangePicker
+          style={{ width }}
+          // placeholder={this.localeMessage(placeholder)}
         />
       ),
       Radio: (
@@ -99,11 +106,10 @@ class FormItem extends IntlComponent {
       Text: (
         <span>{ text }</span>
       ),
-      Switch: (
-        <Switch
-          checkedChildren={checkedChildren}
-          unCheckedChildren={unCheckedChildren}
-        />
+      Upload: (
+        <Dragger {...uploadProps}>
+          { draggerNode }
+        </Dragger>
       ),
     }
 
