@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Input, Select, DatePicker, Radio } from 'antd'
+import { Form, Input, Select, DatePicker, Radio, Switch } from 'antd'
 
 import { flexLayout as formItemLayout } from 'Constants/layout'
 import { IntlComponent } from 'Components/Common'
@@ -50,6 +50,8 @@ class FormItem extends IntlComponent {
       prefix,
       dropdownRender,
       text,
+      checkedChildren,
+      unCheckedChildren,
     } = this.props.conf
 
     const elems = {
@@ -96,6 +98,12 @@ class FormItem extends IntlComponent {
       ),
       Text: (
         <span>{ text }</span>
+      ),
+      Switch: (
+        <Switch
+          checkedChildren={checkedChildren}
+          unCheckedChildren={unCheckedChildren}
+        />
       ),
     }
 
