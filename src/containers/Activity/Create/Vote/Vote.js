@@ -5,6 +5,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
+
 import Error from 'Containers/Error'
 
 import Content from './Content'

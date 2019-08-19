@@ -24,13 +24,20 @@ class Lotus extends IntlComponent {
   constructor(props) {
     super(props)
     this.state = {
-      visible: false,
+      visible1: false,
+      visible2: false,
     }
   }
 
-  showModal = () => {
+  showModal1 = () => {
     this.setState({
-      visible: true,
+      visible1: true,
+    })
+  }
+
+  showModal2 = () => {
+    this.setState({
+      visible2: true,
     })
   }
 
@@ -38,7 +45,8 @@ class Lotus extends IntlComponent {
   handleOk = (e) => {
     console.log(e)
     this.setState({
-      visible: false,
+      visible1: false,
+      visible2: false,
     })
   }
 
@@ -46,7 +54,8 @@ class Lotus extends IntlComponent {
   handleCancel = (e) => {
     console.log(e)
     this.setState({
-      visible: false,
+      visible1: false,
+      visible2: false,
     })
   }
 
@@ -175,24 +184,25 @@ class Lotus extends IntlComponent {
           <Divider />
           <div className={style.operation} align="right">
             <Button size="large" onClick={() => { window.history.go(-1) }}>返回</Button>
-            <Button size="large" onClick={this.showModal}>审批不通过</Button>
+            <Button size="large" onClick={this.showModal1}>审批不通过</Button>
             <Modal
               title="活动审批 - 审批不通过"
-              visible={this.state.visible}
+              visible={this.state.visible1}
               onOk={this.handleOk}
               onCancel={this.handleCancel}
             >
-              <span>请确认活动内容与活动内容信息均已审核完毕。</span>
+              <div>请确认活动内容与活动内容信息均已审核完毕。</div>
               <TextArea cols="64" rows="10" placeholder="请输入审批意见，140字以内" />
             </Modal>
-            <Button size="large" type="primary" onClick={this.showModal}>审批通过</Button>
+            <Button size="large" type="primary" onClick={this.showModal2}>审批通过</Button>
             <Modal
               title="活动审批 - 审批通过"
-              visible={this.state.visible}
+              visible={this.state.visible2}
               onOk={this.handleOk}
               onCancel={this.handleCancel}
             >
-              <span>请确认活动内容与活动内容信息均已审核完毕。</span>
+              <div>请确认活动内容与活动内容信息均已审核完毕。</div>
+              <div style={{ color: 'red' }}>注意：审批通过后将无法撤销！</div>
               <TextArea cols="64" rows="10" placeholder="请输入审批意见，140字以内" />
             </Modal>
           </div>

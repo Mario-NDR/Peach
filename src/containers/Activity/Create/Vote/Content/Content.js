@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Divider, Form, Radio, } from 'antd'
+import { Button, Divider, Form, Table, Modal, Upload, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
@@ -13,6 +13,8 @@ import ContentBox from 'Components/ContentBox'
 import Subheader from 'Components/Subheader'
 import TagTitle from 'Components/TagTitle'
 import FormItem from 'Components/FormItem'
+
+import img1 from './images/img1.png'
 
 import style from './style.scss'
 
@@ -24,13 +26,201 @@ class Content extends IntlComponent {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      selectedRowKeys: [],
+      visibleEdit: false,
+      visibleView: false,
+    }
+  }
+
+  showModalEdit = () => {
+    this.setState({
+      visibleEdit: true,
+    })
+  }
+
+  showModalView = () => {
+    this.setState({
+      visibleView: true,
+    })
+  }
+
+  // 确认
+  handleOk = (e) => {
+    console.log(e)
+    this.setState({
+      visibleEdit: false,
+      visibleView: false,
+    })
+  }
+
+  // 取消
+  handleCancel = (e) => {
+    console.log(e)
+    this.setState({
+      visibleEdit: false,
+      visibleView: false,
+    })
+  }
+
+  columns = [
+    {
+      title: '信息',
+      dataIndex: 'information',
+      key: 'information',
+      render: () => {
+        return (
+          <div style={{ display: 'flex', justifyContent: 'left' }}>
+            <div>
+              <img src={img1} alt="" />
+            </div>
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'left' }}>
+                <div style={{ margin: 30 }}>1号选手</div>
+                <div style={{ marginTop: 30 }}>票数0</div>
+              </div>
+              <div style={{ marginLeft: 20 }}>感谢为我投上您珍贵的一票</div>
+            </div>
+          </div>
+        )
+      }
+    },
+    {
+      title: '操作',
+      dataIndex: 'operation',
+      key: 'operation',
+      render: () => {
+        return (
+          <div>
+            <Button shape="round" onClick={this.showModalEdit}>编辑</Button>
+            <Button shape="round" onClick={this.showModalView} style={{ marginLeft: 10 }}>查看</Button>
+            <Button shape="round" style={{ marginLeft: 10 }}>删除</Button>
+          </div>
+        )
+      }
+    },
+  ]
+
+  dataSource = [ { key: 1 }, ]
+
+  onSelectChange = selectedRowKeys => {
+    this.setState({ selectedRowKeys })
   }
 
   render() {
     const { getFieldDecorator } = this.props.form
+
+    const { selectedRowKeys } = this.state
+
+    const rowSelection = {
+      selectedRowKeys,
+      onChange: this.onSelectChange,
+    }
     return (
       <div className={style.content}>
+      {/* 编辑 */}
+        <Modal
+          title="编辑投票项"
+          visible={this.state.visibleEdit}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <div>
+            <Form>
+              {/* <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: '图片',
+                  type: 'Input',
+                  dataIndex: 'title',
+                  initialValue: '',
+                  placeholder: '上传图片TODO',
+                  maxLength: 80,
+                }}
+              /> */}
+              <Form.Item label="上传图片">
+                <div>
+                  {getFieldDecorator('dragger', {
+                    valuePropName: 'fileList',
+                    getValueFromEvent: this.normFile,
+                  })(
+                    <Upload.Dragger name="files">
+                      <p className="ant-upload-drag-icon">
+                        <Icon type="inbox" />
+                      </p>
+                      <p className="ant-upload-text">点击上传图片！</p>
+                      <p className="ant-upload-hint">支持jpg、jpeg、png、bmp格式的图片，大小4Mb</p>
+                    </Upload.Dragger>,
+                  )}
+                </div>
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary">
+                  确定上传
+                  </Button>
+              </Form.Item>
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: '编号',
+                  type: 'Input',
+                  dataIndex: 'ID',
+                  initialValue: '',
+                  placeholder: '',
+                  maxLength: 80,
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: '名称',
+                  type: 'Input',
+                  dataIndex: 'name',
+                  initialValue: '',
+                  placeholder: '',
+                  maxLength: 80,
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: '票数',
+                  type: 'Input',
+                  dataIndex: 'votes',
+                  initialValue: '',
+                  placeholder: '',
+                  maxLength: 80,
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: '说明',
+                  type: 'TextArea',
+                  dataIndex: 'description',
+                  initialValue: '',
+                  maxLength: 60,
+                }}
+              />
+            </Form>
+          </div>
+        </Modal>
+        {/* 查看 */}
+        <Modal
+          title="详细信息"
+          visible={this.state.visibleView}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <img src={img1} alt="" />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
+            <div>03号选手</div>
+            <div style={{ marginLeft: 40 }}>票数：0</div>
+          </div>
+          <div className={style.detail}>感谢您为我投上珍贵的一票</div>
+        </Modal>
         <Bread
           items={[
             { content: '活动' },
@@ -118,15 +308,6 @@ class Content extends IntlComponent {
                   maxLength: 80,
                 }}
               />
-              {/* <Form.Item label="允许单日同一项重复投票：" style={{ marginLeft: 128, display: 'flex', justifyContent: 'space-betwoon' }}>
-                {getFieldDecorator('repeat')(
-                  <Radio.Group>
-                    <Radio value="yes">允许</Radio>
-                    <Radio value="no">不允许</Radio><br />
-                    <span style={{ fontSize: 12 }}>允许：单个用户可给单个选项重复投票；不允许：单个用户一天之内，不可给单个用户重复投票</span>
-                  </Radio.Group>,
-                )}
-              </Form.Item> */}
               <FormItem
                 conf={{
                   getFieldDecorator,
@@ -202,8 +383,13 @@ class Content extends IntlComponent {
                   text: '开启：投票排行榜所有人可见；关闭：所有人不可见',
                 }}
               />
-              {/* 添加投票项TODO */}
-              <div>添加投票项TODO</div>
+              <Table
+                columns={this.columns}
+                dataSource={this.dataSource}
+                size="size"
+                pagination={false}
+                rowSelection={rowSelection}
+              />
             </Form>
           </div>
         </ContentBox>

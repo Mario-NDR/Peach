@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Divider, Form, Upload, Icon, Table } from 'antd'
+import { Button, Divider, Form, Upload, Icon, Table, Modal, Select } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
@@ -24,7 +24,55 @@ class Prize extends IntlComponent {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      visibleUpload: false,
+      visibleEdit: false,
+      visibleOpen: false,
+    }
+  }
+
+  renderUpload = () => {
+    this.setState({
+      visibleUpload: true,
+      visibleEdit: false,
+      visibleOpen: false,
+    })
+  }
+
+  renderEdit = () => {
+    this.setState({
+      visibleUpload: false,
+      visibleEdit: true,
+      visibleOpen: false,
+    })
+  }
+
+  renderOpen = () => {
+    this.setState({
+      visibleUpload: false,
+      visibleEdit: false,
+      visibleOpen: true,
+    })
+  }
+
+  // 确认
+  handleOk = (e) => {
+    console.log(e)
+    this.setState({
+      visibleUpload: false,
+      visibleEdit: false,
+      visibleOpen: false,
+    })
+  }
+
+  // 取消
+  handleCancel = (e) => {
+    console.log(e)
+    this.setState({
+      visibleUpload: false,
+      visibleEdit: false,
+      visibleOpen: false,
+    })
   }
 
   columns = [
@@ -77,8 +125,42 @@ class Prize extends IntlComponent {
       title: '奖品图片',
       key: 'img',
       render: () => {
+        const { getFieldDecorator } = this.props.form
         return (
-          <a href="#">点击上传图片</a>
+          <div>
+            <a href="#" onClick={this.renderUpload}>点击上传图片</a>
+            <Modal
+              title=""
+              visible={this.state.visibleUpload}
+              onOk={this.handleOk}
+              onCancel={this.handleCancel}
+            >
+              <Form>
+                <Form.Item label="上传图片">
+                  <div>
+                    {getFieldDecorator('dragger', {
+                      valuePropName: 'fileList',
+                      getValueFromEvent: this.normFile,
+                    })(
+                      <Upload.Dragger name="files">
+                        <p className="ant-upload-drag-icon">
+                          <Icon type="inbox" />
+                        </p>
+                        <p className="ant-upload-text">点击上传图片！</p>
+                        <p className="ant-upload-hint">支持jpg、jpeg、png、bmp格式的图片，大小4Mb</p>
+                      </Upload.Dragger>,
+                    )}
+                  </div>
+                </Form.Item>
+
+                <Form.Item>
+                  <Button type="primary">
+                    确定上传
+                  </Button>
+                </Form.Item>
+              </Form>
+            </Modal>
+          </div>
         )
       },
     },
@@ -86,10 +168,125 @@ class Prize extends IntlComponent {
       title: '操作',
       key: 'operation',
       render: () => {
+        const { getFieldDecorator } = this.props.form
+        const { Option } = Select
         return (
           <div>
-            <a href="#" style={{ marginRight: 10 }}>编辑</a>
-            <a href="#">开启</a>
+            <a href="#" style={{ marginRight: 10 }} onClick={this.renderEdit}>编辑</a>
+            <Modal
+              title="编辑奖品信息"
+              visible={this.state.visibleEdit}
+              onOk={this.handleOk}
+              onCancel={this.handleCancel}
+            >
+              <Form>
+                <FormItem
+                  conf={{
+                    getFieldDecorator,
+                    label: '发奖环节',
+                    type: 'Input',
+                    dataIndex: 'link',
+                    initialValue: '',
+                    placeholder: '分享',
+                    maxLength: 80,
+                  }}
+                />
+                <FormItem
+                  conf={{
+                    getFieldDecorator,
+                    label: '选择奖品来源',
+                    type: 'Select',
+                    dataIndex: 'source',
+                    initialValue: '',
+                    placeholder: '奖品库',
+                    maxLength: 80,
+                  }}
+                >
+                  {this.renderOptions = () => {
+                    return (
+                      <div>
+                        <Option value="library">奖品库</Option>
+                        <Option value="custom">自定义</Option>
+                      </div>
+                    )
+                  }}
+                </FormItem>
+                <FormItem
+                  conf={{
+                    getFieldDecorator,
+                    label: '选择奖品',
+                    type: 'Select',
+                    dataIndex: 'selectPrize',
+                    initialValue: '',
+                    placeholder: 'gt302 小熊礼盒，单价：100，库存：20000',
+                    maxLength: 80,
+                  }}
+                >
+                  {this.renderOptions = () => {
+                    return (
+                      <div>
+                        <Option value="library">奖品库</Option>
+                        <Option value="custom">自定义</Option>
+                      </div>
+                    )
+                  }}
+                </FormItem>
+                <FormItem
+                  conf={{
+                    getFieldDecorator,
+                    label: '奖品数量',
+                    type: 'Input',
+                    dataIndex: 'quantity',
+                    initialValue: '1000',
+                    placeholder: '',
+                    maxLength: 80,
+                  }}
+                />
+                <FormItem
+                  conf={{
+                    getFieldDecorator,
+                    label: '每人发放数量',
+                    type: 'Input',
+                    dataIndex: 'everyoneQuantity',
+                    initialValue: '',
+                    placeholder: '默认为1',
+                    maxLength: 80,
+                  }}
+                />
+                <FormItem
+                  conf={{
+                    getFieldDecorator,
+                    label: '发奖方式',
+                    type: 'Select',
+                    dataIndex: 'type',
+                    initialValue: '',
+                    placeholder: '现场发奖',
+                    maxLength: 80,
+                  }}
+                >
+                  {this.renderOptions = () => {
+                    return (
+                      <div>
+                        <Option value="library">奖品库</Option>
+                        <Option value="custom">自定义</Option>
+                      </div>
+                    )
+                  }}
+                </FormItem>
+                <FormItem
+                  conf={{
+                    getFieldDecorator,
+                    label: '兑奖说明文字',
+                    type: 'Input',
+                    dataIndex: 'description',
+                    initialValue: '',
+                    placeholder: '请输入兑奖说明文字',
+                    maxLength: 80,
+                  }}
+                />
+              </Form>
+            </Modal>
+            <a href="#" onClick={this.renderOpen}>开启</a>
           </div>
         )
       },
@@ -151,8 +348,6 @@ class Prize extends IntlComponent {
             <Link to="/app/activity/create/vote/approve"><Button type="primary" size="large">下一步：提交审批</Button></Link>
           </div>
           <Divider />
-          {/* TODO */}
-          <div>点击上传图片，编辑，开启，强退弹框TODO</div>
           <TagTitle>1、投票活动：预算设置</TagTitle>
           <div>
             <Form>
@@ -168,7 +363,6 @@ class Prize extends IntlComponent {
                 }}
               />
               <Form.Item
-                // {...layout}
                 label="上传预算审批文件："
                 extra="支持文件格式：.rar .zip .doc .docx .pdf .png .jpg，单个文件不能超过2M"
                 style={{ marginLeft: 170, display: 'flex', justifyContent: 'space-betwoon' }}
@@ -182,9 +376,6 @@ class Prize extends IntlComponent {
                 )}
                 <Button
                   type="primary"
-                  // onClick={this.handleStart}
-                  // disabled={fileList.length === 0}
-                  // loading={uploading}
                   style={{ marginTop: 10 }}
                 >
                   开始上传

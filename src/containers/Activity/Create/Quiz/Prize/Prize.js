@@ -328,7 +328,7 @@ class Prize extends IntlComponent {
           items={[
             { content: '活动' },
             { content: '活动创建' },
-            { content: '奖品配置：报名活动' },
+            { content: '奖品配置：竞猜活动' },
           ]}
         />
         <ContentBox>
@@ -345,10 +345,10 @@ class Prize extends IntlComponent {
           <div className="flexEnd mt16">
             <Button className="mr16" size="large" onClick={() => window.history.go(-1)}>上一步</Button>
             <Button className="mr16" size="large" type="primary" ghost>保存草稿</Button>
-            <Link to="/app/activity/create/apply/approve"><Button type="primary" size="large">下一步：提交审批</Button></Link>
+            <Link to="/app/activity/create/quiz/approve"><Button type="primary" size="large">下一步：提交审批</Button></Link>
           </div>
           <Divider />
-          <TagTitle>1、报名活动：预算设置</TagTitle>
+          <TagTitle>1、竞猜活动：预算设置</TagTitle>
           <div>
             <Form>
               <FormItem
@@ -383,7 +383,7 @@ class Prize extends IntlComponent {
               </Form.Item>
             </Form>
           </div>
-          <TagTitle>2、报名活动：奖品设置</TagTitle>
+          <TagTitle>2、竞猜活动：奖品设置</TagTitle>
           <Table columns={this.columns} dataSource={this.dataSource} size="small" pagination={false} />
         </ContentBox>
       </div>
