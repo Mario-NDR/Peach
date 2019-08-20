@@ -91,7 +91,7 @@ class Content extends IntlComponent {
                 conf={{
                   getFieldDecorator,
                   label: '活动时间',
-                  type: 'DatePicker',
+                  type: 'RangePicker',
                   dataIndex: 'date',
                 }}
               />

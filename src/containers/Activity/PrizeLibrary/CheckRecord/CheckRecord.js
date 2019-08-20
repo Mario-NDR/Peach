@@ -2,14 +2,16 @@
  * @summary 奖品库管理
  */
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import { Table, Button, Input, Select, DatePicker } from 'antd'
+import { Table, Button, Input, Select, DatePicker, Modal, Form } from 'antd'
 
 import Bread from 'Components/Bread'
 import Subheader from 'Components/Subheader'
 import ContentBox from 'Components/ContentBox'
 
 import { IntlComponent } from 'Components/Common'
+import FormItem from 'Components/FormItem'
 
 import style from './style.scss'
 
@@ -17,9 +19,33 @@ const { Option } = Select
 
 class CheckRecord extends IntlComponent {
 
+  static propTypes = {
+    form: PropTypes.object.isRequired,
+  }
+
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      visible: false,
+    }
+  }
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    })
+  }
+
+  handleOk = () => {
+    this.setState({
+      visible: false,
+    })
+  }
+
+  handleCancel = () => {
+    this.setState({
+      visible: false,
+    })
   }
 
   columns = [
@@ -199,6 +225,8 @@ class CheckRecord extends IntlComponent {
   ]
 
   render() {
+    const { getFieldDecorator } = this.props.form
+    
     return (
       <div className={style.CheckRecord}>
         <div className={style.viewRecord}>
@@ -242,7 +270,48 @@ class CheckRecord extends IntlComponent {
         <ContentBox>
           <div className={style.operation} align="right">
             <Button size="large" onClick={() => { window.history.go(-1) }}>返回</Button>
-            <Button size="large" type="primary">导出当前发奖记录</Button>
+            <Button size="large" type="primary" onClick={this.showModal}>导出当前发奖记录</Button>
+            <Modal
+              title="下载发奖记录"
+              visible={this.state.visible}
+              onOk={this.handleOk}
+              onCancel={this.handleCancel}
+            >
+              <Form>
+                <FormItem
+                  conf={{
+                    getFieldDecorator,
+                    label: '奖品编号(自动)',
+                    type: 'Input',
+                    dataIndex: 'serialNumber',
+                    initialValue: 'gt205',
+                    placeholder: '',
+                    maxLength: 80,
+                    disabled: 'disabled',
+                  }}
+                />
+                <FormItem
+                  conf={{
+                    getFieldDecorator,
+                    label: '发奖活动',
+                    type: 'Select',
+                    dataIndex: 'awardActivity',
+                    initialValue: '',
+                    placeholder: '报名活动-社区垃圾分类评选',
+                    maxLength: 80,
+                  }}
+                >
+                  {this.renderOptions = () => {
+                    return (
+                      <div>
+                        <Option value="activityOne">报名活动-社区垃圾分类评选1</Option>
+                        <Option value="activityTwo">报名活动-社区垃圾分类评选2</Option>
+                      </div>
+                    )
+                  }}
+                </FormItem>
+              </Form>
+            </Modal>
           </div>
           <div className={style.prizeTable}>
             <Table columns={this.columns} dataSource={this.dataSource} size="middle" />
@@ -253,4 +322,4 @@ class CheckRecord extends IntlComponent {
   }
 }
 
-export default CheckRecord
+export default Form.create()(CheckRecord)
