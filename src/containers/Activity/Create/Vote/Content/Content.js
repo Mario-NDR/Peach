@@ -127,17 +127,6 @@ class Content extends IntlComponent {
         >
           <div>
             <Form>
-              {/* <FormItem
-                conf={{
-                  getFieldDecorator,
-                  label: '图片',
-                  type: 'Input',
-                  dataIndex: 'title',
-                  initialValue: '',
-                  placeholder: '上传图片TODO',
-                  maxLength: 80,
-                }}
-              /> */}
               <Form.Item label="上传图片">
                 <div>
                   {getFieldDecorator('dragger', {
