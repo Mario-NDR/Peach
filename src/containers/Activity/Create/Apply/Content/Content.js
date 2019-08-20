@@ -150,11 +150,11 @@ class Content extends IntlComponent {
           </div>
           <TagTitle>2、报名表单</TagTitle>
           <Form>
-            报名表单
+            报名表单TODO
           </Form>
           <TagTitle>3、发奖环节</TagTitle>
           <Form>
-            发奖环节
+            发奖环节TODO
           </Form>
         </ContentBox>
       </div>
