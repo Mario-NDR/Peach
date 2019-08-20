@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Divider, Form, Switch, Radio, Icon } from 'antd'
+import { Button, Divider, Form, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
@@ -29,14 +29,13 @@ class Content extends IntlComponent {
 
   render() {
     const { getFieldDecorator } = this.props.form
-
     return (
       <div className={style.content}>
         <Bread
           items={[
             { content: '活动' },
             { content: '活动创建' },
-            { content: '活动内容配置：竞猜活动' },
+            { content: '活动内容配置：抽奖活动' },
           ]}
         />
         <ContentBox>
@@ -54,10 +53,10 @@ class Content extends IntlComponent {
             <Button className="mr16" size="large" onClick={() => window.history.go(-1)}>上一步</Button>
             <Button className="mr16" size="large" type="primary" ghost>预览</Button>
             <Button className="mr16" size="large" type="primary" ghost>保存草稿</Button>
-            <Link to="/app/activity/create/quiz/prize"><Button type="primary" size="large">下一步：奖品配置</Button></Link>
+            <Link to="/app/activity/create/prize/luckyDrawPrize"><Button type="primary" size="large">下一步：奖品配置</Button></Link>
           </div>
           <Divider />
-          <TagTitle>1、竞猜活动：基本信息</TagTitle>
+          <TagTitle>1、抽奖活动：基本信息</TagTitle>
           <div>
             <Form>
               <FormItem
@@ -67,7 +66,7 @@ class Content extends IntlComponent {
                   type: 'Input',
                   dataIndex: 'title',
                   initialValue: '',
-                  placeholder: '请设置您的活动标题（5--80个字）',
+                  placeholder: '请设置您的活动标题（最多80字符）',
                   maxLength: 80,
                 }}
               />
@@ -91,7 +90,7 @@ class Content extends IntlComponent {
                 conf={{
                   getFieldDecorator,
                   label: '活动时间',
-                  type: 'DatePicker',
+                  type: 'RangePicker',
                   dataIndex: 'date',
                 }}
               />
@@ -108,43 +107,42 @@ class Content extends IntlComponent {
               />
             </Form>
           </div>
-          <TagTitle>2、竞猜设置</TagTitle>
-          <div>
-            <Form>
-              <FormItem
-                conf={{
-                  getFieldDecorator,
-                  label: '每人最多可投几次',
-                  type: 'Input',
-                  dataIndex: 'maxCount',
-                  initialValue: '',
-                  placeholder: '不限制',
-                  maxLength: 80,
-                }}
-              />
-              {/* <FormItem
-                conf={{
-                  getFieldDecorator,
-                  label: '可多选',
-                  type: 'Select',
-                  checkedChildren: '开',
-                  unCheckedChildren: '关'
-                }}
-              /> */}
-            </Form>
-            <div style={{ display: 'flex', justifyContent: 'left', marginLeft: 240 }}>
-              <div>可多选：</div>
-              <Switch checkedChildren="开" unCheckedChildren="关" defaultChecked />
-            </div>
-            <div>
-            {/* TODO */}
-              <div>活动形式：TODO</div>
-              <Radio.Group>
-                <Radio>图片</Radio>
-                <Radio>文字</Radio>
-              </Radio.Group>
-            </div>
-          </div>
+          <TagTitle>2、抽奖设置</TagTitle>
+          <Form>
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '用户抽奖总次数',
+                type: 'Input',
+                dataIndex: 'total',
+                initialValue: '',
+                placeholder: '不限制',
+                maxLength: 80,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '用户每天抽奖次数',
+                type: 'Input',
+                dataIndex: 'everydayNumber',
+                initialValue: '',
+                placeholder: '',
+                maxLength: 80,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '每人中奖次数',
+                type: 'Input',
+                dataIndex: 'everyoneNumber',
+                initialValue: '',
+                placeholder: '',
+                maxLength: 80,
+              }}
+            />
+          </Form>
         </ContentBox>
       </div>
     )

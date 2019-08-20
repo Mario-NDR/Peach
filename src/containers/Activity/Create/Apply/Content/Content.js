@@ -70,7 +70,6 @@ class Content extends IntlComponent {
                   maxLength: 80,
                 }}
               />
-              <div>活动封面TODO</div>
               <FormItem
                 conf={{
                   getFieldDecorator,
