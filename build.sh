@@ -14,10 +14,10 @@ log "压缩静态资源.."
 tar zcvf dist.tar.gz dist
 
 log "上传工程文件.."
-scp dist.tar.gz ol@10.11.11.30:~
+scp dist.tar.gz root@101.91.115.0:~
 rm dist.tar.gz
 
 log "远程部署文件.."
-ssh ol@10.11.11.30 "tar zxvf dist.tar.gz && rm -rf /opt/common_dockers/web_app/common/www && mv dist /opt/common_dockers/web_app/common/www && cd /opt/common_dockers/web_app/ && sudo make build-dev && sudo make install-dev"
+ssh root@101.91.115.0 "tar zxvf dist.tar.gz && rm -rf /var/www/html && mv dist /var/www/html && systemctl restart nginx"
 
 log "部署完成！"

@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const __DEV__ = (process.env.NODE_ENV || 'development') === 'development'
@@ -65,9 +65,9 @@ const prodPlugins = [
     template: 'src/index.html',
     filename: '../index.html'
   }),
-  new CopyWebpackPlugin([ // src下其他的文件直接复制到dist目录下
-    { from: 'src/favicon.ico', to: 'images/favicon.ico' }
-  ]),
+  // new CopyWebpackPlugin([ // src下其他的文件直接复制到dist目录下
+  //   { from: 'src/favicon.ico', to: 'images/favicon.ico' }
+  // ]),
   new UglifyJsPlugin({
     uglifyOptions: {
       ie8: false,
