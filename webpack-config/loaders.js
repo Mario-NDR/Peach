@@ -2,7 +2,7 @@
 // style-loader可以把css文件变成style标签插入head中
 // 多个loader是有顺序要求的，从右往左写，因为转换的时候是从右往左转换的
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const autoprefixer = require('autoprefixer')
 
 const __DEV__ = (process.env.NODE_ENV || 'development') === 'development'
@@ -42,7 +42,8 @@ const cssLoader = {
   test: /\.css$/,
   use: __DEV__
     ? [ 'style-loader', moduleCSSLoader, postCSSLoader ]
-    : [ MiniCssExtractPlugin.loader, moduleCSSLoader, postCSSLoader ],
+    // : [ MiniCssExtractPlugin.loader, moduleCSSLoader, postCSSLoader ],
+    : [ 'style-loader', moduleCSSLoader, postCSSLoader ],
   exclude: path.resolve(__dirname, '../node_modules')
 }
 
@@ -51,7 +52,8 @@ const sassLoader = {
   test: /\.(sass|scss)$/,
   use: __DEV__
     ? [ 'style-loader', moduleCSSLoader, postCSSLoader, 'sass-loader' ]
-    : [ MiniCssExtractPlugin.loader, moduleCSSLoader, postCSSLoader, 'sass-loader' ],
+    // : [ MiniCssExtractPlugin.loader, moduleCSSLoader, postCSSLoader, 'sass-loader' ],
+    : [ 'style-loader', moduleCSSLoader, postCSSLoader, 'sass-loader' ],
 }
 
 // url-loader
