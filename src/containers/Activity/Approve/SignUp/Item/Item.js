@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import { Tag, Icon } from 'antd'
 
@@ -10,10 +11,12 @@ class Item extends Component {
     return (
       <div className={classnames('flex', style.item)}>
         <div className={style.imgBox}>
-          <img src={img} alt="" />
+          <Link to="/app/activity/approve/signUp/details">
+            <img src={img} alt="" />
+          </Link>
         </div>
         <div className={style.right}>
-          <div className={style.title}>社区活动之免费洗车 <Tag color="green">未开始</Tag></div>
+          <div className={style.title}><Link to="/app/activity/approve/signUp/details">社区活动之免费洗车 </Link><Tag color="green">未开始</Tag></div>
           <div className={style.time}><Icon type="clock-circle" /> 今天 14:50 至 17:30</div>
           <div className={style.time}><Icon type="environment" /> 北京市朝阳区</div>
           <div className={style.time}><Icon type="user" /> 罗晓星</div>

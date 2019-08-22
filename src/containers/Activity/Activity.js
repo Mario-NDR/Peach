@@ -14,6 +14,10 @@ import PrizeLibrary from './PrizeLibrary'
 import Approve from './Approve'
 import Lotus from './Approve/Lotus'
 import Settings from './Settings'
+import SignUpDetails from './Approve/SignUp/SignUpDetails'
+import VotingDetails from './Approve/Voting/VotingDetails'
+import QuizActivitiesDetails from './Approve/QuizActivities/QuizActivitiesDetails'
+import LuckyDrawDetails from './Approve/LuckyDraw/LuckyDrawDetails'
 
 class Activity extends IntlComponent {
 
@@ -34,6 +38,10 @@ class Activity extends IntlComponent {
         <Route path="/app/activity/prizeLibrary" component={PrizeLibrary} />
         <Route path="/app/activity/approve" component={Approve} exact />
         <Route path="/app/activity/approve/lotus" component={Lotus} exact />
+        <Route path="/app/activity/approve/signUp/details" component={SignUpDetails} exact />
+        <Route path="/app/activity/approve/vote/details" component={VotingDetails} exact />
+        <Route path="/app/activity/approve/quiz/details" component={QuizActivitiesDetails} exact />
+        <Route path="/app/activity/approve/luckyDraw/details" component={LuckyDrawDetails} exact />
         <Route path="/app/activity/settings" component={Settings} exact />
         <Route component={Error} />
       </Switch>
