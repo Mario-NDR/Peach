@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Divider, Form, Switch, Radio, Icon } from 'antd'
+import { Button, Divider, Form, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
@@ -109,42 +109,42 @@ class Content extends IntlComponent {
             </Form>
           </div>
           <TagTitle>2、竞猜设置</TagTitle>
-          <div>
-            <Form>
-              <FormItem
-                conf={{
-                  getFieldDecorator,
-                  label: '每人最多可投几次',
-                  type: 'Input',
-                  dataIndex: 'maxCount',
-                  initialValue: '',
-                  placeholder: '不限制',
-                  maxLength: 80,
-                }}
-              />
-              {/* <FormItem
-                conf={{
-                  getFieldDecorator,
-                  label: '可多选',
-                  type: 'Select',
-                  checkedChildren: '开',
-                  unCheckedChildren: '关'
-                }}
-              /> */}
-            </Form>
-            <div style={{ display: 'flex', justifyContent: 'left', marginLeft: 240 }}>
-              <div>可多选：</div>
-              <Switch checkedChildren="开" unCheckedChildren="关" defaultChecked />
-            </div>
-            <div>
-            {/* TODO */}
-              <div>活动形式：TODO</div>
-              <Radio.Group>
-                <Radio>图片</Radio>
-                <Radio>文字</Radio>
-              </Radio.Group>
-            </div>
-          </div>
+          <Form>
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '每人最多可投几次',
+                type: 'Input',
+                dataIndex: 'maxCount',
+                initialValue: '',
+                placeholder: '不限制',
+                maxLength: 80,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '可多选',
+                type: 'Switch',
+                dataIndex: 'canMultiSelect',
+                initialValue: 'checked',
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '活动形式',
+                type: 'Radio',
+                dataIndex: 'activityType',
+                initialValue: 'picture',
+                radios: [
+                  { key: 'picture', value: '图文' },
+                  { key: 'text', value: '文字' },
+                ],
+                style: { marginBottom: 0 },
+              }}
+            />
+          </Form>
         </ContentBox>
       </div>
     )

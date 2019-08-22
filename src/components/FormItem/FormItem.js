@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Input, Select, DatePicker, Radio, Upload, } from 'antd'
+import { Form, Input, Select, DatePicker, Radio, Upload, Switch } from 'antd'
 import { flexLayout as formItemLayout } from 'Constants/layout'
 import { IntlComponent } from 'Components/Common'
 
@@ -111,6 +111,9 @@ class FormItem extends IntlComponent {
           { draggerNode }
         </Dragger>
       ),
+      Switch: (
+        <Switch />
+      ),
     }
 
     return elems[type]
@@ -142,6 +145,9 @@ class FormItem extends IntlComponent {
     }
     if (initialValue) {
       extra.initialValue = initialValue
+    }
+    if (type === 'Switch') {
+      extra.valuePropName = 'checked'
     }
     // if (label && _.isString(label)) {
     //   label = this.localeMessage(label)
