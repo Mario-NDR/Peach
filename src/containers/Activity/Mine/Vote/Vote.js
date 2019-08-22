@@ -1,9 +1,10 @@
 /**
- * @summary 竞猜活动
+ * @summary 投票活动
  */
 import React from 'react'
 import { Radio, Input, Button, Icon, Pagination } from 'antd'
 import classnames from 'classnames'
+import { Link } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
 
@@ -12,7 +13,7 @@ import style from './style.scss'
 
 const { Search } = Input
 
-class QuizActivities extends IntlComponent {
+class Vote extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -38,7 +39,9 @@ class QuizActivities extends IntlComponent {
               enterButton="搜索"
               onSearch={value => console.log(value)}
             />
-            <Button type="primary" className="ml16"><Icon type="plus" />创建活动</Button>
+            <Link to="/app/activity/create/vote">
+              <Button type="primary" className="ml16"><Icon type="plus" />创建活动</Button>
+            </Link>
           </div>
         </div>
         <div className={style.main}>
@@ -54,4 +57,4 @@ class QuizActivities extends IntlComponent {
   }
 }
 
-export default QuizActivities
+export default Vote

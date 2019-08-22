@@ -9,10 +9,10 @@ import Bread from 'Components/Bread'
 import ContentBox from 'Components/ContentBox'
 import Subheader from 'Components/Subheader'
 
-import SignUp from './SignUp'
-import Voting from './Voting'
-import QuizActivities from './QuizActivities'
-import LuckyDraw from './LuckyDraw'
+import Apply from './Apply'
+import Vote from './Vote'
+import Quiz from './Quiz'
+import Prize from './Prize'
 
 import style from './style.scss'
 
@@ -38,16 +38,16 @@ class Mine extends IntlComponent {
           <Subheader>我的活动</Subheader>
           <Tabs defaultActiveKey="1">
             <TabPane tab="报名活动" key="1">
-              <SignUp />
+              <Apply />
             </TabPane>
             <TabPane tab="投票活动" key="2">
-              <Voting />
+              <Vote />
             </TabPane>
             <TabPane tab="竞猜活动" key="3">
-              <QuizActivities />
+              <Quiz />
             </TabPane>
             <TabPane tab="抽奖活动" key="4">
-              <LuckyDraw />
+              <Prize />
             </TabPane>
           </Tabs>
         </ContentBox>
