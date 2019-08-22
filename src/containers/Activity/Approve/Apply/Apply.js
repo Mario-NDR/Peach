@@ -1,11 +1,10 @@
 /**
- * @summary 抽奖活动
+ * @summary 报名活动
  */
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-
 import { Radio, Input, Button, Icon, Pagination } from 'antd'
 import classnames from 'classnames'
+import { Link } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
 
@@ -14,7 +13,7 @@ import style from './style.scss'
 
 const { Search } = Input
 
-class LuckyDraw extends IntlComponent {
+class Apply extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -30,9 +29,9 @@ class LuckyDraw extends IntlComponent {
             <Radio.Button value="b">未开始</Radio.Button>
             <Radio.Button value="c">进行中</Radio.Button>
             <Radio.Button value="d">已暂停</Radio.Button>
-            <NavLink to="/app/activity/approve/lotus">
+            <Link to="/app/activity/approve/lotus">
               <Radio.Button value="e">待审批</Radio.Button>
-            </NavLink>
+            </Link>
             <Radio.Button value="f">已结束</Radio.Button>
           </Radio.Group>
           <div>
@@ -42,7 +41,9 @@ class LuckyDraw extends IntlComponent {
               enterButton="搜索"
               onSearch={value => console.log(value)}
             />
-            <Button type="primary" className="ml16"><Icon type="plus" />创建活动</Button>
+            <Link to="/app/activity/create/apply">
+              <Button type="primary" className="ml16"><Icon type="plus" />创建活动</Button>
+            </Link>
           </div>
         </div>
         <div className={style.main}>
@@ -58,4 +59,4 @@ class LuckyDraw extends IntlComponent {
   }
 }
 
-export default LuckyDraw
+export default Apply
