@@ -150,11 +150,175 @@ class Content extends IntlComponent {
           </div>
           <TagTitle>2、报名表单</TagTitle>
           <Form>
-            报名表单TODO
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '姓名',
+                type: 'Input',
+                dataIndex: 'name',
+                initialValue: '',
+                placeholder: '请填写你的姓名',
+                maxLength: 30,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '电话',
+                type: 'Input',
+                dataIndex: 'phone',
+                initialValue: '',
+                placeholder: '请填写你的电话',
+                maxLength: 30,
+              }}
+            />
           </Form>
           <TagTitle>3、发奖环节</TagTitle>
           <Form>
-            发奖环节TODO
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '签到发奖',
+                type: 'Radio',
+                dataIndex: 'signIn',
+                initialValue: 'allow',
+                radios: [
+                  { key: 'allow', value: '允许' },
+                  { key: 'notAllow', value: '不允许' },
+                ],
+                style: { marginBottom: 0 },
+              }}
+            />
+            <FormItem
+              conf={{
+                type: 'Text',
+                label: ' ',
+                colon: false,
+                text: '允许：单个用户可给单个选项重复投票；不允许：单个用户一天之内，不可给单个用户重复投票',
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '票数显示',
+                type: 'Radio',
+                dataIndex: 'showTicketAmount',
+                initialValue: 'allow',
+                radios: [
+                  { key: 'allow', value: '显示' },
+                  { key: 'notAllow', value: '不显示' },
+                ],
+                style: { marginBottom: 0 },
+              }}
+            />
+            <FormItem
+              conf={{
+                type: 'Text',
+                label: ' ',
+                colon: false,
+                text: '显示：可以看见所有项目的投票数；不显示：全部不可见',
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '投票结果',
+                type: 'Radio',
+                dataIndex: 'applyResult',
+                initialValue: 'allow',
+                radios: [
+                  { key: 'allow', value: '开启' },
+                  { key: 'notAllow', value: '关闭' },
+                ],
+                style: { marginBottom: 0 },
+              }}
+            />
+            <FormItem
+              conf={{
+                type: 'Text',
+                label: ' ',
+                colon: false,
+                text: '开启：投票排行榜所有人可见；关闭：所有人不可见',
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '签到奖品',
+                type: 'Radio',
+                dataIndex: 'signInPrize',
+                initialValue: 'thing',
+                radios: [
+                  { key: 'thing', value: '实物奖品' },
+                  { key: 'score', value: '积分奖品' },
+                ],
+                style: { marginBottom: 0 },
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '发放方式',
+                type: 'Radio',
+                dataIndex: 'giveOutType',
+                initialValue: 'live',
+                radios: [
+                  { key: 'live', value: '现场发放' },
+                  { key: 'mail', value: '邮寄' },
+                ],
+                style: { marginBottom: 0 },
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: ' ',
+                colon: false,
+                type: 'Input',
+                dataIndex: 'peopleAmountLimit',
+                initialValue: '',
+                placeholder: '请输入领奖人数限制',
+                maxLength: 30,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: ' ',
+                colon: false,
+                type: 'Input',
+                dataIndex: 'prizeDesc',
+                initialValue: '',
+                placeholder: '请输入奖品的描述',
+                maxLength: 30,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '分享奖品',
+                type: 'Radio',
+                dataIndex: 'sharePrize',
+                initialValue: 'off',
+                radios: [
+                  { key: 'off', value: '关闭' },
+                  { key: 'score', value: '积分' },
+                ],
+                style: { marginBottom: 0 },
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: ' ',
+                colon: false,
+                type: 'Input',
+                dataIndex: 'scoreAmount',
+                initialValue: '',
+                placeholder: '请输入积分数量',
+                maxLength: 30,
+              }}
+            />
           </Form>
         </ContentBox>
       </div>
