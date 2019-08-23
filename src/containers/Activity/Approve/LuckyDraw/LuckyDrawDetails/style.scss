@@ -1,3 +1,43 @@
 .details {
-  
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+
+    .left {
+      display: flex;
+      justify-content: left;
+
+      .imgBox {
+        width: 250px;
+        height: 140px;
+        overflow: hidden;
+        margin-right: 16px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .title {
+        margin-bottom: 8px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .time {
+        margin-bottom: 8px;
+        font-size: 12px;
+        color: #999;
+      }
+    }
+
+    .right {
+
+      .operation {
+        margin-right: 16px;
+      }
+    }
+  }
 }
