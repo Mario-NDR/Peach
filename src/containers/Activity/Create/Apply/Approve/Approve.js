@@ -187,10 +187,10 @@ class Approve extends IntlComponent {
                 <Descriptions.Item label="联系人/电话：">罗晓星/15669154095</Descriptions.Item>
                 <Descriptions.Item label="活动详情">这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，这里是活动说明，</Descriptions.Item>
               </Descriptions>
-              <Table style={{ width: 600, marginLeft: 40 }} columns={this.columnsForm} dataSource={this.dataSourceForm} size="size" pagination={false} />
+              <Table style={{ width: 600, marginLeft: 40 }} columns={this.columnsForm} dataSource={this.dataSourceForm} pagination={false} />
               <Divider />
               <div>奖品信息:</div>
-              <Table columns={this.columns} dataSource={this.dataSource} size="size" pagination={false} />
+              <Table columns={this.columns} dataSource={this.dataSource} size="small" pagination={false} />
             </TabPane>
           </Tabs>
         </ContentBox>

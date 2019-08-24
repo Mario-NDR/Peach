@@ -173,7 +173,7 @@ class Approve extends IntlComponent {
               </Descriptions>
               <Divider />
               <div>奖品信息:</div>
-              <Table columns={this.columns} dataSource={this.dataSource} size="size" pagination={false} />
+              <Table columns={this.columns} dataSource={this.dataSource} pagination={false} />
             </TabPane>
           </Tabs>
         </ContentBox>

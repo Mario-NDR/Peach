@@ -389,7 +389,6 @@ class Content extends IntlComponent {
               <Table
                 columns={this.columns}
                 dataSource={this.dataSource}
-                size="size"
                 pagination={false}
                 rowSelection={rowSelection}
               />
