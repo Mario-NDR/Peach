@@ -26,7 +26,19 @@ class Details extends IntlComponent {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      selectedKey: '',
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.location.state && this.props.location.state.active) {
+      this.setState({ selectedKey: this.props.location.state.active })
+    }
+  }
+
+  handleMenuChange = e => {
+    this.setState({ selectedKey: e.key })
   }
 
   render() {
@@ -61,21 +73,25 @@ class Details extends IntlComponent {
               <a role="button" className={style.operation}><Icon type="share-alt" /> 分享</a>
             </div>
           </div>
-          <Menu defaultSelectedKeys={[ 'detail' ]} onChange={this.handleTabChange} mode="horizontal">
+          <Menu
+            mode="horizontal"
+            selectedKeys={[ this.state.selectedKey || 'detail' ]}
+            onClick={this.handleMenuChange}
+          >
             <Item key="detail">
-              <Link to="/app/activity/approve/signUp/details">活动详情</Link>
+              <Link to="/app/activity/approve/apply/details">活动详情</Link>
             </Item>
-            <Item key="signUpNumber">
-              <Link to="/app/activity/approve/signUp/details/signUpNumber">报名人数（10）</Link>
+            <Item key="applyCount">
+              <Link to="/app/activity/approve/apply/details/applyCount">报名人数（10）</Link>
             </Item>
-            <Item key="leaveMessage">
-              <Link to="/app/activity/approve/signUp/details/leaveMessage">留言（20）</Link>
+            <Item key="message">
+              <Link to="/app/activity/approve/apply/details/message">留言（20）</Link>
             </Item>
           </Menu>
           <Switch>
-            <Route path="/app/activity/approve/signUp/details" component={Detail} exact />
-            <Route path="/app/activity/approve/signUp/details/signUpNumber" component={ApplyCount} />
-            <Route path="/app/activity/approve/signUp/details/leaveMessage" component={Message} />
+            <Route path="/app/activity/approve/apply/details" component={Detail} exact />
+            <Route path="/app/activity/approve/apply/details/applyCount" component={ApplyCount} />
+            <Route path="/app/activity/approve/apply/details/message" component={Message} />
           </Switch>
         </ContentBox>
       </div>

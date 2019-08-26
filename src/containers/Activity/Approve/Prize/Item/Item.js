@@ -11,12 +11,12 @@ class Item extends Component {
     return (
       <div className={classnames('flex', style.item)}>
         <div className={style.imgBox}>
-          <Link to="/app/activity/approve/luckyDraw/details">
+          <Link to="/app/activity/approve/prize/details">
             <img src={img} alt="" />
           </Link>
         </div>
         <div className={style.right}>
-          <div className={style.title}><Link to="/app/activity/approve/luckyDraw/details">幸运大抽奖 </Link><Tag color="green">未开始</Tag></div>
+          <div className={style.title}><Link to="/app/activity/approve/prize/details">幸运大抽奖 </Link><Tag color="green">未开始</Tag></div>
           <div className={style.time}><Icon type="clock-circle" /> 2019-03-26 14:00 至 2019-04-02 14:56</div>
           <div className={classnames('spaceBetween', style.operationBox)}>
             <div>

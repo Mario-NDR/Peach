@@ -38,10 +38,10 @@ class Activity extends IntlComponent {
         <Route path="/app/activity/prizeLibrary" component={PrizeLibrary} />
         <Route path="/app/activity/approve" component={Approve} exact />
         <Route path="/app/activity/approve/lotus" component={Lotus} exact />
-        <Route path="/app/activity/approve/signUp/details" component={ApplyDetails} />
+        <Route path="/app/activity/approve/apply/details" component={ApplyDetails} />
         <Route path="/app/activity/approve/vote/details" component={VoteDetails} />
         <Route path="/app/activity/approve/quiz/details" component={QuizDetails} />
-        <Route path="/app/activity/approve/luckyDraw/details" component={PrizeDetails} />
+        <Route path="/app/activity/approve/prize/details" component={PrizeDetails} />
         <Route path="/app/activity/settings" component={Settings} exact />
         <Route component={Error} />
       </Switch>

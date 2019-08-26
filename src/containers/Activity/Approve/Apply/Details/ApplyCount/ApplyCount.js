@@ -79,9 +79,13 @@ class ApplyCount extends IntlComponent {
 
   render() {
     return (
-      <div className={style.signUpNumber}>
-        <Table columns={this.columns} dataSource={this.dataSource} size="small" pagination={this.renderPagination()} />
-      </div>
+      <Table
+        className={style.applyCount}
+        columns={this.columns}
+        dataSource={this.dataSource}
+        size="small"
+        pagination={this.renderPagination()}
+      />
     )
   }
 }

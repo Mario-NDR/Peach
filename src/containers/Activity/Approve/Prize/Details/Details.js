@@ -62,19 +62,19 @@ class Details extends IntlComponent {
           </div>
           <Menu defaultSelectedKeys={[ 'detail' ]} onChange={this.handleTabChange} mode="horizontal">
             <Item key="detail">
-              <Link to="/app/activity/approve/luckyDraw/details">活动详情</Link>
+              <Link to="/app/activity/approve/prize/details">活动详情</Link>
             </Item>
-            <Item key="signUpNumber">
-              <Link to="/app/activity/approve/luckyDraw/details/data">活动数据</Link>
+            <Item key="data">
+              <Link to="/app/activity/approve/prize/details/data">活动数据</Link>
             </Item>
             <Item key="leaveMessage">
-              <Link to="/app/activity/approve/luckyDraw/details/list">中奖名单</Link>
+              <Link to="/app/activity/approve/prize/details/list">中奖名单</Link>
             </Item>
           </Menu>
           <Switch>
-            <Route path="/app/activity/approve/luckyDraw/details" component={Detail} exact />
-            <Route path="/app/activity/approve/luckyDraw/details/data" component={PrizeData} />
-            <Route path="/app/activity/approve/luckyDraw/details/list" component={PrizeList} />
+            <Route path="/app/activity/approve/prize/details" component={Detail} exact />
+            <Route path="/app/activity/approve/prize/details/data" component={PrizeData} />
+            <Route path="/app/activity/approve/prize/details/list" component={PrizeList} />
           </Switch>
         </ContentBox>
       </div>
