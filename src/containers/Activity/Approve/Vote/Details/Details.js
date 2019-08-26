@@ -13,7 +13,7 @@ import ContentBox from 'Components/ContentBox'
 import Subheader from 'Components/Subheader'
 
 import Detail from './Detail'
-import VotingData from './VotingData'
+import VoteData from './VoteData'
 
 import img from './images/img.png'
 
@@ -21,7 +21,7 @@ import style from './style.scss'
 
 const { Item } = Menu
 
-class VotingDetails extends IntlComponent {
+class Details extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -69,7 +69,7 @@ class VotingDetails extends IntlComponent {
           </Menu>
           <Switch>
             <Route path="/app/activity/approve/vote/details" component={Detail} exact />
-            <Route path="/app/activity/approve/vote/details/data" component={VotingData} />
+            <Route path="/app/activity/approve/vote/details/data" component={VoteData} />
           </Switch>
         </ContentBox>
       </div>
@@ -77,4 +77,4 @@ class VotingDetails extends IntlComponent {
   }
 }
 
-export default VotingDetails
+export default Details

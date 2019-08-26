@@ -13,7 +13,7 @@ import ContentBox from 'Components/ContentBox'
 import Subheader from 'Components/Subheader'
 
 import Detail from './Detail'
-import QuizActivitiesData from './QuizActivitiesData'
+import QuizData from './QuizData'
 
 import img from './images/img.png'
 
@@ -21,7 +21,7 @@ import style from './style.scss'
 
 const { Item } = Menu
 
-class QuizActivitiesDetails extends IntlComponent {
+class Details extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -69,7 +69,7 @@ class QuizActivitiesDetails extends IntlComponent {
           </Menu>
           <Switch>
             <Route path="/app/activity/approve/quiz/details" component={Detail} exact />
-            <Route path="/app/activity/approve/quiz/details/data" component={QuizActivitiesData} />
+            <Route path="/app/activity/approve/quiz/details/data" component={QuizData} />
           </Switch>
         </ContentBox>
       </div>
@@ -77,4 +77,4 @@ class QuizActivitiesDetails extends IntlComponent {
   }
 }
 
-export default QuizActivitiesDetails
+export default Details

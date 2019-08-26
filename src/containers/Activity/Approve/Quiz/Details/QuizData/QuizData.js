@@ -17,7 +17,7 @@ const data = [
   { name: '4月', value: 2556, selected: true },
 ]
 
-class QuizActivitiesData extends IntlComponent {
+class QuizData extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -26,7 +26,7 @@ class QuizActivitiesData extends IntlComponent {
 
   render() {
     return (
-      <div className={style.quizActivitiesData}>
+      <div className={style.quizData}>
         <div className="flex mb16">
           <div className={style.dataItem}>
             <div className={style.dataItemLabel}>总投票数</div>
@@ -59,4 +59,4 @@ class QuizActivitiesData extends IntlComponent {
   }
 }
 
-export default QuizActivitiesData
+export default QuizData

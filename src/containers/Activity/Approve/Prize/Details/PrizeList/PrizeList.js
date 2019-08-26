@@ -8,7 +8,7 @@ import { IntlComponent } from 'Components/Common'
 
 import style from './style.scss'
 
-class LuckyDrawList extends IntlComponent {
+class PrizeList extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -74,4 +74,4 @@ class LuckyDrawList extends IntlComponent {
   }
 }
 
-export default LuckyDrawList
+export default PrizeList

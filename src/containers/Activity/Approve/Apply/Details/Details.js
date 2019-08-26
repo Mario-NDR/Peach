@@ -13,8 +13,8 @@ import ContentBox from 'Components/ContentBox'
 import Subheader from 'Components/Subheader'
 
 import Detail from './Detail'
-import SignUpNumber from './SignUpNumber'
-import LeaveMessage from './LeaveMessage'
+import ApplyCount from './ApplyCount'
+import Message from './Message'
 
 import img from './images/img.png'
 
@@ -22,7 +22,7 @@ import style from './style.scss'
 
 const { Item } = Menu
 
-class SignUpDetails extends IntlComponent {
+class Details extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -74,8 +74,8 @@ class SignUpDetails extends IntlComponent {
           </Menu>
           <Switch>
             <Route path="/app/activity/approve/signUp/details" component={Detail} exact />
-            <Route path="/app/activity/approve/signUp/details/signUpNumber" component={SignUpNumber} />
-            <Route path="/app/activity/approve/signUp/details/leaveMessage" component={LeaveMessage} />
+            <Route path="/app/activity/approve/signUp/details/signUpNumber" component={ApplyCount} />
+            <Route path="/app/activity/approve/signUp/details/leaveMessage" component={Message} />
           </Switch>
         </ContentBox>
       </div>
@@ -83,4 +83,4 @@ class SignUpDetails extends IntlComponent {
   }
 }
 
-export default SignUpDetails
+export default Details

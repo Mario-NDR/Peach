@@ -13,8 +13,8 @@ import ContentBox from 'Components/ContentBox'
 import Subheader from 'Components/Subheader'
 
 import Detail from './Detail'
-import LuckyDrawData from './LuckyDrawData'
-import LuckyDrawList from './LuckyDrawList'
+import PrizeData from './PrizeData'
+import PrizeList from './PrizeList'
 
 import img from './images/img.png'
 
@@ -22,7 +22,7 @@ import style from './style.scss'
 
 const { Item } = Menu
 
-class LuckyDrawDetails extends IntlComponent {
+class Details extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -73,8 +73,8 @@ class LuckyDrawDetails extends IntlComponent {
           </Menu>
           <Switch>
             <Route path="/app/activity/approve/luckyDraw/details" component={Detail} exact />
-            <Route path="/app/activity/approve/luckyDraw/details/data" component={LuckyDrawData} />
-            <Route path="/app/activity/approve/luckyDraw/details/list" component={LuckyDrawList} />
+            <Route path="/app/activity/approve/luckyDraw/details/data" component={PrizeData} />
+            <Route path="/app/activity/approve/luckyDraw/details/list" component={PrizeList} />
           </Switch>
         </ContentBox>
       </div>
@@ -82,4 +82,4 @@ class LuckyDrawDetails extends IntlComponent {
   }
 }
 
-export default LuckyDrawDetails
+export default Details

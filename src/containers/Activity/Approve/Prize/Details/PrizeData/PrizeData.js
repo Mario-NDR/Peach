@@ -1,8 +1,7 @@
 /**
- * @summary 投票详情--活动数据
+ * @summary 抽奖详情--活动数据
  */
 import React from 'react'
-import { Icon } from 'antd'
 
 import { IntlComponent } from 'Components/Common'
 import Subheader from 'Components/Subheader'
@@ -16,38 +15,31 @@ const xAxisData = [ '2019-02-01', '2019-02-02', '2019-02-03', '2019-02-04', '201
 const mockValues1 = []
 const mockValues2 = []
 const mockValues3 = []
-const mockValues4 = []
 for (let i = 0; i < 10; ++i) {
   mockValues1.push(genRandomNum(1, 30))
   mockValues2.push(genRandomNum(1, 40))
   mockValues3.push(genRandomNum(1, 50))
-  mockValues4.push(genRandomNum(1, 35))
 }
 
 const series = [
   {
-    name: '活动一投票数',
+    name: '参与人数',
     type: 'line',
     data: mockValues1,
   },
   {
-    name: '活动二投票数',
+    name: '参与次数',
     type: 'line',
     data: mockValues2,
   },
   {
-    name: '活动三投票数',
+    name: '中奖人数',
     type: 'line',
     data: mockValues3,
   },
-  {
-    name: '活动四投票数',
-    type: 'line',
-    data: mockValues4,
-  },
 ]
 
-class VotingData extends IntlComponent {
+class PrizeData extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -56,19 +48,19 @@ class VotingData extends IntlComponent {
 
   render() {
     return (
-      <div className={style.votingData}>
+      <div className={style.luckyDrawData}>
         <div className="flex mb16">
           <div className={style.dataItem}>
-            <div className={style.dataItemLabel}>总投票数</div>
+            <div className={style.dataItemLabel}>参与人数</div>
             <div className={style.dataItemValue}>126,560</div>
           </div>
           <div className={style.dataItem}>
-            <div className={style.dataItemLabel}>浏览量</div>
-            <div className={style.dataItemValue}>5660<span><Icon type="edit" className={style.icon} /></span></div>
+            <div className={style.dataItemLabel}>参与次数</div>
+            <div className={style.dataItemValue}>5660</div>
           </div>
           <div className={style.dataItem}>
-            <div className={style.dataItemLabel}>投票项</div>
-            <div className={style.dataItemValue}>60<span><Icon type="file" className={style.icon} /></span></div>
+            <div className={style.dataItemLabel}>中奖人数</div>
+            <div className={style.dataItemValue}>60</div>
           </div>
         </div>
         <Subheader>数据查看</Subheader>
@@ -80,4 +72,4 @@ class VotingData extends IntlComponent {
   }
 }
 
-export default VotingData
+export default PrizeData

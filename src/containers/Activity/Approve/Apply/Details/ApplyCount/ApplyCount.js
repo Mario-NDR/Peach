@@ -8,7 +8,7 @@ import { IntlComponent } from 'Components/Common'
 
 import style from './style.scss'
 
-class SignUpNumber extends IntlComponent {
+class ApplyCount extends IntlComponent {
 
   constructor(props) {
     super(props)
@@ -86,4 +86,4 @@ class SignUpNumber extends IntlComponent {
   }
 }
 
-export default SignUpNumber
+export default ApplyCount
