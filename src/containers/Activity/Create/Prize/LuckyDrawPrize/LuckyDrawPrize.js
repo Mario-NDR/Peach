@@ -16,6 +16,8 @@ import FormItem from 'Components/FormItem'
 
 import style from './style.scss'
 
+const { Option } = Select
+
 class LuckyDrawPrize extends IntlComponent {
 
   static propTypes = {
@@ -86,7 +88,7 @@ class LuckyDrawPrize extends IntlComponent {
       visibleUpload: false,
       visibleEdit: false,
       visibleOpen: false,
-      visbleDel: false,
+      visibleDel: false,
     })
   }
 
@@ -150,42 +152,8 @@ class LuckyDrawPrize extends IntlComponent {
       title: '奖品图片',
       key: 'img',
       render: () => {
-        const { getFieldDecorator } = this.props.form
         return (
-          <div>
-            <a href="#" onClick={this.renderUpload}>点击上传图片</a>
-            <Modal
-              title="编辑投票项"
-              visible={this.state.visibleUpload}
-              onOk={this.handleOk}
-              onCancel={this.handleCancel}
-            >
-              <Form>
-                <Form.Item label="上传图片">
-                  <div>
-                    {getFieldDecorator('dragger', {
-                      valuePropName: 'fileList',
-                      getValueFromEvent: this.normFile,
-                    })(
-                      <Upload.Dragger name="files">
-                        <p className="ant-upload-drag-icon">
-                          <Icon type="inbox" />
-                        </p>
-                        <p className="ant-upload-text">点击上传图片！</p>
-                        <p className="ant-upload-hint">支持jpg、jpeg、png、bmp格式的图片，大小4Mb</p>
-                      </Upload.Dragger>,
-                    )}
-                  </div>
-                </Form.Item>
-
-                <Form.Item>
-                  <Button type="primary">
-                    确定上传
-                  </Button>
-                </Form.Item>
-              </Form>
-            </Modal>
-          </div>
+          <a onClick={this.renderUpload} role="button">点击上传图片</a>
         )
       },
     },
@@ -193,134 +161,11 @@ class LuckyDrawPrize extends IntlComponent {
       title: '操作',
       key: 'operation',
       render: () => {
-        const { getFieldDecorator } = this.props.form
-        const { Option } = Select
         return (
           <div>
-            <a href="#" style={{ marginRight: 10 }} onClick={this.renderEdit}>编辑</a>
-            <Modal
-              title="编辑奖品信息"
-              visible={this.state.visibleEdit}
-              onOk={this.handleOk}
-              onCancel={this.handleCancel}
-            >
-              <Form>
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '发奖环节',
-                    type: 'Input',
-                    dataIndex: 'link',
-                    initialValue: '',
-                    placeholder: '分享',
-                    maxLength: 80,
-                  }}
-                />
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '选择奖品来源',
-                    type: 'Select',
-                    dataIndex: 'source',
-                    initialValue: '',
-                    placeholder: '奖品库',
-                    maxLength: 80,
-                  }}
-                >
-                  {this.renderOptions = () => {
-                    return (
-                      <div>
-                        <Option value="library">奖品库</Option>
-                        <Option value="custom">自定义</Option>
-                      </div>
-                    )
-                  }}
-                </FormItem>
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '选择奖品',
-                    type: 'Select',
-                    dataIndex: 'selectPrize',
-                    initialValue: '',
-                    placeholder: 'gt302 小熊礼盒，单价：100，库存：20000',
-                    maxLength: 80,
-                  }}
-                >
-                  {this.renderOptions = () => {
-                    return (
-                      <div>
-                        <Option value="library">奖品库</Option>
-                        <Option value="custom">自定义</Option>
-                      </div>
-                    )
-                  }}
-                </FormItem>
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '奖品数量',
-                    type: 'Input',
-                    dataIndex: 'quantity',
-                    initialValue: '1000',
-                    placeholder: '',
-                    maxLength: 80,
-                  }}
-                />
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '每人发放数量',
-                    type: 'Input',
-                    dataIndex: 'everyoneQuantity',
-                    initialValue: '',
-                    placeholder: '默认为1',
-                    maxLength: 80,
-                  }}
-                />
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '发奖方式',
-                    type: 'Select',
-                    dataIndex: 'type',
-                    initialValue: '',
-                    placeholder: '现场发奖',
-                    maxLength: 80,
-                  }}
-                >
-                  {this.renderOptions = () => {
-                    return (
-                      <div>
-                        <Option value="library">奖品库</Option>
-                        <Option value="custom">自定义</Option>
-                      </div>
-                    )
-                  }}
-                </FormItem>
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '兑奖说明文字',
-                    type: 'Input',
-                    dataIndex: 'description',
-                    initialValue: '',
-                    placeholder: '请输入兑奖说明文字',
-                    maxLength: 80,
-                  }}
-                />
-              </Form>
-            </Modal>
-            <a href="#" onClick={this.renderOpen}>开启</a>
-            <a href="#" style={{ color: 'red' }} onClick={this.renderDel}>删除</a>
-            <Modal
-              title=""
-              visible={this.state.visibleDel}
-              onOk={this.handleOk}
-              onCancel={this.handleCancel}
-            >
-              <Icon type="warning" theme="twoTone" /> 确认删除奖项：幸运奖？
-            </Modal>
+            <a role="button" style={{ marginRight: 8 }} onClick={this.renderEdit}>编辑</a>
+            <a role="button" style={{ marginRight: 8 }} onClick={this.renderOpen}>开启</a>
+            <a role="button" style={{ color: 'red' }} onClick={this.renderDel}>删除</a>
           </div>
         )
       },
@@ -432,42 +277,8 @@ class LuckyDrawPrize extends IntlComponent {
       title: '奖品图片',
       key: 'img',
       render: () => {
-        const { getFieldDecorator } = this.props.form
         return (
-          <div>
-            <a href="#" onClick={this.renderUpload}>点击上传图片</a>
-            <Modal
-              title="编辑投票项"
-              visible={this.state.visibleUpload}
-              onOk={this.handleOk}
-              onCancel={this.handleCancel}
-            >
-              <Form>
-                <Form.Item label="上传图片">
-                  <div>
-                    {getFieldDecorator('dragger', {
-                      valuePropName: 'fileList',
-                      getValueFromEvent: this.normFile,
-                    })(
-                      <Upload.Dragger name="files">
-                        <p className="ant-upload-drag-icon">
-                          <Icon type="inbox" />
-                        </p>
-                        <p className="ant-upload-text">点击上传图片！</p>
-                        <p className="ant-upload-hint">支持jpg、jpeg、png、bmp格式的图片，大小4Mb</p>
-                      </Upload.Dragger>,
-                    )}
-                  </div>
-                </Form.Item>
-
-                <Form.Item>
-                  <Button type="primary">
-                    确定上传
-                  </Button>
-                </Form.Item>
-              </Form>
-            </Modal>
-          </div>
+          <a role="button" onClick={this.renderUpload}>点击上传图片</a>
         )
       },
     },
@@ -475,125 +286,10 @@ class LuckyDrawPrize extends IntlComponent {
       title: '操作',
       key: 'operation',
       render: () => {
-        const { getFieldDecorator } = this.props.form
-        const { Option } = Select
         return (
           <div>
-            <a href="#" style={{ marginRight: 10 }} onClick={this.renderEdit}>编辑</a>
-            <Modal
-              title="编辑奖品信息"
-              visible={this.state.visibleEdit}
-              onOk={this.handleOk}
-              onCancel={this.handleCancel}
-            >
-              <Form>
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '发奖环节',
-                    type: 'Input',
-                    dataIndex: 'link',
-                    initialValue: '',
-                    placeholder: '分享',
-                    maxLength: 80,
-                  }}
-                />
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '选择奖品来源',
-                    type: 'Select',
-                    dataIndex: 'source',
-                    initialValue: '',
-                    placeholder: '奖品库',
-                    maxLength: 80,
-                  }}
-                >
-                  {this.renderOptions = () => {
-                    return (
-                      <div>
-                        <Option value="library">奖品库</Option>
-                        <Option value="custom">自定义</Option>
-                      </div>
-                    )
-                  }}
-                </FormItem>
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '选择奖品',
-                    type: 'Select',
-                    dataIndex: 'selectPrize',
-                    initialValue: '',
-                    placeholder: 'gt302 小熊礼盒，单价：100，库存：20000',
-                    maxLength: 80,
-                  }}
-                >
-                  {this.renderOptions = () => {
-                    return (
-                      <div>
-                        <Option value="library">奖品库</Option>
-                        <Option value="custom">自定义</Option>
-                      </div>
-                    )
-                  }}
-                </FormItem>
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '奖品数量',
-                    type: 'Input',
-                    dataIndex: 'quantity',
-                    initialValue: '1000',
-                    placeholder: '',
-                    maxLength: 80,
-                  }}
-                />
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '每人发放数量',
-                    type: 'Input',
-                    dataIndex: 'everyoneQuantity',
-                    initialValue: '',
-                    placeholder: '默认为1',
-                    maxLength: 80,
-                  }}
-                />
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '发奖方式',
-                    type: 'Select',
-                    dataIndex: 'type',
-                    initialValue: '',
-                    placeholder: '现场发奖',
-                    maxLength: 80,
-                  }}
-                >
-                  {this.renderOptions = () => {
-                    return (
-                      <div>
-                        <Option value="library">奖品库</Option>
-                        <Option value="custom">自定义</Option>
-                      </div>
-                    )
-                  }}
-                </FormItem>
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '兑奖说明文字',
-                    type: 'Input',
-                    dataIndex: 'description',
-                    initialValue: '',
-                    placeholder: '请输入兑奖说明文字',
-                    maxLength: 80,
-                  }}
-                />
-              </Form>
-            </Modal>
-            <a href="#" onClick={this.renderOpen}>开启</a>
+            <a role="button" style={{ marginRight: 8 }} onClick={this.renderEdit}>编辑</a>
+            <a role="button" onClick={this.renderOpen}>开启</a>
           </div>
         )
       },
@@ -687,6 +383,301 @@ class LuckyDrawPrize extends IntlComponent {
           </div>
           <Table columns={this.columnsSetting} dataSource={this.dataSourceSetting} size="small" pagination={false} />
         </ContentBox>
+        <Modal
+          title="编辑奖品信息"
+          visible={this.state.visibleEdit}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <Form>
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '发奖环节',
+                type: 'Input',
+                dataIndex: 'link',
+                initialValue: '',
+                placeholder: '分享',
+                maxLength: 80,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '选择奖品来源',
+                type: 'Select',
+                dataIndex: 'source',
+                initialValue: '',
+                placeholder: '奖品库',
+                maxLength: 80,
+              }}
+            >
+              {this.renderOptions = () => {
+                return (
+                  <div>
+                    <Option value="library">奖品库</Option>
+                    <Option value="custom">自定义</Option>
+                  </div>
+                )
+              }}
+            </FormItem>
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '选择奖品',
+                type: 'Select',
+                dataIndex: 'selectPrize',
+                initialValue: '',
+                placeholder: 'gt302 小熊礼盒，单价：100，库存：20000',
+                maxLength: 80,
+              }}
+            >
+              {this.renderOptions = () => {
+                return (
+                  <div>
+                    <Option value="library">奖品库</Option>
+                    <Option value="custom">自定义</Option>
+                  </div>
+                )
+              }}
+            </FormItem>
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '奖品数量',
+                type: 'Input',
+                dataIndex: 'quantity',
+                initialValue: '1000',
+                placeholder: '',
+                maxLength: 80,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '每人发放数量',
+                type: 'Input',
+                dataIndex: 'everyoneQuantity',
+                initialValue: '',
+                placeholder: '默认为1',
+                maxLength: 80,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '发奖方式',
+                type: 'Select',
+                dataIndex: 'type',
+                initialValue: '',
+                placeholder: '现场发奖',
+                maxLength: 80,
+              }}
+            >
+              {this.renderOptions = () => {
+                return (
+                  <div>
+                    <Option value="library">奖品库</Option>
+                    <Option value="custom">自定义</Option>
+                  </div>
+                )
+              }}
+            </FormItem>
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '兑奖说明文字',
+                type: 'Input',
+                dataIndex: 'description',
+                initialValue: '',
+                placeholder: '请输入兑奖说明文字',
+                maxLength: 80,
+              }}
+            />
+          </Form>
+        </Modal>
+        <Modal
+          title=""
+          visible={this.state.visibleDel}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <Icon type="warning" theme="twoTone" /> 确认删除奖项：幸运奖？
+        </Modal>
+        <Modal
+          title="编辑投票项"
+          visible={this.state.visibleUpload}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <Form>
+            <Form.Item label="上传图片">
+              <div>
+                {getFieldDecorator('dragger', {
+                  valuePropName: 'fileList',
+                  getValueFromEvent: this.normFile,
+                })(
+                  <Upload.Dragger name="files">
+                    <p className="ant-upload-drag-icon">
+                      <Icon type="inbox" />
+                    </p>
+                    <p className="ant-upload-text">点击上传图片！</p>
+                    <p className="ant-upload-hint">支持jpg、jpeg、png、bmp格式的图片，大小4Mb</p>
+                  </Upload.Dragger>,
+                )}
+              </div>
+            </Form.Item>
+
+            <Form.Item>
+              <Button type="primary">
+                确定上传
+              </Button>
+            </Form.Item>
+          </Form>
+        </Modal>
+        <Modal
+          title="编辑奖品信息"
+          visible={this.state.visibleEdit}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <Form>
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '发奖环节',
+                type: 'Input',
+                dataIndex: 'link',
+                initialValue: '',
+                placeholder: '分享',
+                maxLength: 80,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '选择奖品来源',
+                type: 'Select',
+                dataIndex: 'source',
+                initialValue: '',
+                placeholder: '奖品库',
+                maxLength: 80,
+              }}
+            >
+              {this.renderOptions = () => {
+                return (
+                  <div>
+                    <Option value="library">奖品库</Option>
+                    <Option value="custom">自定义</Option>
+                  </div>
+                )
+              }}
+            </FormItem>
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '选择奖品',
+                type: 'Select',
+                dataIndex: 'selectPrize',
+                initialValue: '',
+                placeholder: 'gt302 小熊礼盒，单价：100，库存：20000',
+                maxLength: 80,
+              }}
+            >
+              {this.renderOptions = () => {
+                return (
+                  <div>
+                    <Option value="library">奖品库</Option>
+                    <Option value="custom">自定义</Option>
+                  </div>
+                )
+              }}
+            </FormItem>
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '奖品数量',
+                type: 'Input',
+                dataIndex: 'quantity',
+                initialValue: '1000',
+                placeholder: '',
+                maxLength: 80,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '每人发放数量',
+                type: 'Input',
+                dataIndex: 'everyoneQuantity',
+                initialValue: '',
+                placeholder: '默认为1',
+                maxLength: 80,
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '发奖方式',
+                type: 'Select',
+                dataIndex: 'type',
+                initialValue: '',
+                placeholder: '现场发奖',
+                maxLength: 80,
+              }}
+            >
+              {this.renderOptions = () => {
+                return (
+                  <div>
+                    <Option value="library">奖品库</Option>
+                    <Option value="custom">自定义</Option>
+                  </div>
+                )
+              }}
+            </FormItem>
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '兑奖说明文字',
+                type: 'Input',
+                dataIndex: 'description',
+                initialValue: '',
+                placeholder: '请输入兑奖说明文字',
+                maxLength: 80,
+              }}
+            />
+          </Form>
+        </Modal>
+        <Modal
+          title="编辑投票项"
+          visible={this.state.visibleUpload}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <Form>
+            <Form.Item label="上传图片">
+              <div>
+                {getFieldDecorator('dragger', {
+                  valuePropName: 'fileList',
+                  getValueFromEvent: this.normFile,
+                })(
+                  <Upload.Dragger name="files">
+                    <p className="ant-upload-drag-icon">
+                      <Icon type="inbox" />
+                    </p>
+                    <p className="ant-upload-text">点击上传图片！</p>
+                    <p className="ant-upload-hint">支持jpg、jpeg、png、bmp格式的图片，大小4Mb</p>
+                  </Upload.Dragger>,
+                )}
+              </div>
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary">
+                确定上传
+              </Button>
+            </Form.Item>
+          </Form>
+        </Modal>
       </div>
     )
   }
