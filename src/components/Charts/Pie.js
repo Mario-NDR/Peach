@@ -10,6 +10,7 @@ class Pie extends React.Component {
     data: PropTypes.array,
     options: PropTypes.object,
     id: PropTypes.string,
+    width: PropTypes.number,
     height: PropTypes.number,
     style: PropTypes.object,
   }
@@ -18,6 +19,7 @@ class Pie extends React.Component {
     data: [],
     options: {},
     id: 'pieChart',
+    width: 350,
     height: 250,
     style: {},
   }
@@ -89,7 +91,7 @@ class Pie extends React.Component {
   })
 
   render() {
-    return <section id={this.props.id} style={{ width: '100%', height: this.props.height, ...this.props.style }}> pie </section>
+    return <section id={this.props.id} style={{ width: this.props.width || '100%', height: this.props.height, ...this.props.style }}> pie </section>
   }
 }
 

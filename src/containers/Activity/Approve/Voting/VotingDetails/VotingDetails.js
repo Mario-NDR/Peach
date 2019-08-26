@@ -42,8 +42,6 @@ class VotingDetails extends IntlComponent {
         <ContentBox>
           <Subheader>活动详情：最美同事评选</Subheader>
           <Divider />
-        </ContentBox>
-        <ContentBox>
           <div className={style.title}>
             <div className={style.left}>
               <div className={style.imgBox}><img src={img} alt="" /></div>
@@ -61,8 +59,6 @@ class VotingDetails extends IntlComponent {
               <a role="button" className={style.operation}><Icon type="share-alt" /> 分享</a>
             </div>
           </div>
-        </ContentBox>
-        <ContentBox>
           <Menu defaultSelectedKeys={[ 'detail' ]} onChange={this.handleTabChange} mode="horizontal">
             <Item key="detail">
               <Link to="/app/activity/approve/vote/details">活动详情</Link>

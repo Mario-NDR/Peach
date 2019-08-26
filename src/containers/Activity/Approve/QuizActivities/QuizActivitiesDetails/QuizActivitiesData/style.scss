@@ -1,1 +1,28 @@
-.quizActivitiesData {}
+.quizActivitiesData {
+  padding: 16px 0;
+}
+
+.dataItem {
+  width: 240px;
+  border: 1px solid #ddd;
+  padding: 16px 24px;
+  margin-right: 16px;
+
+  .dataItemLabel {
+    color: #999;
+  }
+
+  .dataItemValue {
+    font-size: 28px;
+    font-weight: bold;
+
+    .icon {
+      position: relative;
+      top: -3px;
+      margin-left: 24px;
+      color: #f93;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+}
