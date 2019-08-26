@@ -179,8 +179,6 @@ class Lotus extends IntlComponent {
               { title: '提交审批' },
             ]}
           />
-        </ContentBox>
-        <ContentBox>
           <Divider />
           <div className={style.operation} align="right">
             <Button size="large" onClick={() => { window.history.go(-1) }}>返回</Button>
@@ -206,8 +204,6 @@ class Lotus extends IntlComponent {
               <TextArea cols="64" rows="10" placeholder="请输入审批意见，140字以内" />
             </Modal>
           </div>
-        </ContentBox>
-        <ContentBox>
           <TagTitle>活动审批：活动内容审核</TagTitle>
           <div className={style.heading}>
             <div className={style.imgBox}>

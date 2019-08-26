@@ -10,7 +10,7 @@ import style from './style.scss'
 
 const selectStyle = {
   width: 120,
-  marginRight: 10,
+  marginRight: 8,
 }
 
 class LocaleSelector extends IntlComponent {

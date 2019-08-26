@@ -271,52 +271,52 @@ class CheckRecord extends IntlComponent {
           <div className={style.operation} align="right">
             <Button size="large" onClick={() => { window.history.go(-1) }}>返回</Button>
             <Button size="large" type="primary" onClick={this.showModal}>导出当前发奖记录</Button>
-            <Modal
-              title="下载发奖记录"
-              visible={this.state.visible}
-              onOk={this.handleOk}
-              onCancel={this.handleCancel}
-            >
-              <Form>
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '奖品编号(自动)',
-                    type: 'Input',
-                    dataIndex: 'serialNumber',
-                    initialValue: 'gt205',
-                    placeholder: '',
-                    maxLength: 80,
-                    disabled: 'disabled',
-                  }}
-                />
-                <FormItem
-                  conf={{
-                    getFieldDecorator,
-                    label: '发奖活动',
-                    type: 'Select',
-                    dataIndex: 'awardActivity',
-                    initialValue: '',
-                    placeholder: '报名活动-社区垃圾分类评选',
-                    maxLength: 80,
-                  }}
-                >
-                  {this.renderOptions = () => {
-                    return (
-                      <div>
-                        <Option value="activityOne">报名活动-社区垃圾分类评选1</Option>
-                        <Option value="activityTwo">报名活动-社区垃圾分类评选2</Option>
-                      </div>
-                    )
-                  }}
-                </FormItem>
-              </Form>
-            </Modal>
           </div>
           <div className={style.prizeTable}>
             <Table columns={this.columns} dataSource={this.dataSource} size="middle" />
           </div>
         </ContentBox>
+        <Modal
+          title="下载发奖记录"
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <Form>
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '奖品编号(自动)',
+                type: 'Input',
+                dataIndex: 'serialNumber',
+                initialValue: 'gt205',
+                placeholder: '',
+                maxLength: 80,
+                disabled: 'disabled',
+              }}
+            />
+            <FormItem
+              conf={{
+                getFieldDecorator,
+                label: '发奖活动',
+                type: 'Select',
+                dataIndex: 'awardActivity',
+                initialValue: '',
+                placeholder: '报名活动-社区垃圾分类评选',
+                maxLength: 80,
+              }}
+            >
+              {this.renderOptions = () => {
+                return (
+                  <div>
+                    <Option value="activityOne">报名活动-社区垃圾分类评选1</Option>
+                    <Option value="activityTwo">报名活动-社区垃圾分类评选2</Option>
+                  </div>
+                )
+              }}
+            </FormItem>
+          </Form>
+        </Modal>
       </div>
     )
   }

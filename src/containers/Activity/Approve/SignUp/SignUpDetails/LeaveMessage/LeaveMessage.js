@@ -62,15 +62,7 @@ class LeaveMessage extends IntlComponent {
       render: () => {
         return (
           <div>
-            <a style={{ marginRight: 20 }} role="button" onClick={this.showModal}>回复</a>
-            <Modal
-              title="回复"
-              visible={this.state.visible}
-              onOk={this.handleOk}
-              onCancel={this.handleCancel}
-            >
-              <TextArea cols="64" rows="10" placeholder="0/500" />
-            </Modal>
+            <a style={{ marginRight: 8 }} role="button" onClick={this.showModal}>回复</a>
             <a role="button">删除</a>
           </div>
         )
@@ -120,6 +112,14 @@ class LeaveMessage extends IntlComponent {
             <Table columns={this.columns} dataSource={this.dataSource} pagination={false} />
           </TabPane>
         </Tabs>
+        <Modal
+          title="回复"
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <TextArea cols="64" rows="10" placeholder="500字以内" />
+        </Modal>
       </div>
     )
   }

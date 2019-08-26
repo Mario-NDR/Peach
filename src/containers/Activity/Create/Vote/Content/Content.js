@@ -92,9 +92,9 @@ class Content extends IntlComponent {
       render: () => {
         return (
           <div>
-            <Button shape="round" onClick={this.showModalEdit}>编辑</Button>
-            <Button shape="round" onClick={this.showModalView} style={{ marginLeft: 10 }}>查看</Button>
-            <Button shape="round" style={{ marginLeft: 10 }}>删除</Button>
+            <a role="button" style={{ marginLeft: 8 }} onClick={this.showModalEdit}>编辑</a>
+            <a role="button" style={{ marginLeft: 8 }} onClick={this.showModalView}>查看</a>
+            <a role="button">删除</a>
           </div>
         )
       }
@@ -118,98 +118,6 @@ class Content extends IntlComponent {
     }
     return (
       <div className={style.content}>
-      {/* 编辑 */}
-        <Modal
-          title="编辑投票项"
-          visible={this.state.visibleEdit}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-          <div>
-            <Form>
-              <Form.Item label="上传图片">
-                <div>
-                  {getFieldDecorator('dragger', {
-                    valuePropName: 'fileList',
-                    getValueFromEvent: this.normFile,
-                  })(
-                    <Upload.Dragger name="files">
-                      <p className="ant-upload-drag-icon">
-                        <Icon type="inbox" />
-                      </p>
-                      <p className="ant-upload-text">点击上传图片！</p>
-                      <p className="ant-upload-hint">支持jpg、jpeg、png、bmp格式的图片，大小4Mb</p>
-                    </Upload.Dragger>,
-                  )}
-                </div>
-              </Form.Item>
-              <Form.Item>
-                <Button type="primary">
-                  确定上传
-                  </Button>
-              </Form.Item>
-              <FormItem
-                conf={{
-                  getFieldDecorator,
-                  label: '编号',
-                  type: 'Input',
-                  dataIndex: 'ID',
-                  initialValue: '',
-                  placeholder: '',
-                  maxLength: 80,
-                }}
-              />
-              <FormItem
-                conf={{
-                  getFieldDecorator,
-                  label: '名称',
-                  type: 'Input',
-                  dataIndex: 'name',
-                  initialValue: '',
-                  placeholder: '',
-                  maxLength: 80,
-                }}
-              />
-              <FormItem
-                conf={{
-                  getFieldDecorator,
-                  label: '票数',
-                  type: 'Input',
-                  dataIndex: 'votes',
-                  initialValue: '',
-                  placeholder: '',
-                  maxLength: 80,
-                }}
-              />
-              <FormItem
-                conf={{
-                  getFieldDecorator,
-                  label: '说明',
-                  type: 'TextArea',
-                  dataIndex: 'description',
-                  initialValue: '',
-                  maxLength: 60,
-                }}
-              />
-            </Form>
-          </div>
-        </Modal>
-        {/* 查看 */}
-        <Modal
-          title="详细信息"
-          visible={this.state.visibleView}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <img src={img1} alt="" />
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
-            <div>03号选手</div>
-            <div style={{ marginLeft: 40 }}>票数：0</div>
-          </div>
-          <div className={style.detail}>感谢您为我投上珍贵的一票</div>
-        </Modal>
         <Bread
           items={[
             { content: '活动' },
@@ -395,6 +303,98 @@ class Content extends IntlComponent {
             </Form>
           </div>
         </ContentBox>
+        {/* 编辑 */}
+        <Modal
+          title="编辑投票项"
+          visible={this.state.visibleEdit}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <div>
+            <Form>
+              <Form.Item label="上传图片">
+                <div>
+                  {getFieldDecorator('dragger', {
+                    valuePropName: 'fileList',
+                    getValueFromEvent: this.normFile,
+                  })(
+                    <Upload.Dragger name="files">
+                      <p className="ant-upload-drag-icon">
+                        <Icon type="inbox" />
+                      </p>
+                      <p className="ant-upload-text">点击上传图片！</p>
+                      <p className="ant-upload-hint">支持jpg、jpeg、png、bmp格式的图片，大小4Mb</p>
+                    </Upload.Dragger>,
+                  )}
+                </div>
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary">
+                  确定上传
+                  </Button>
+              </Form.Item>
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: '编号',
+                  type: 'Input',
+                  dataIndex: 'ID',
+                  initialValue: '',
+                  placeholder: '',
+                  maxLength: 80,
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: '名称',
+                  type: 'Input',
+                  dataIndex: 'name',
+                  initialValue: '',
+                  placeholder: '',
+                  maxLength: 80,
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: '票数',
+                  type: 'Input',
+                  dataIndex: 'votes',
+                  initialValue: '',
+                  placeholder: '',
+                  maxLength: 80,
+                }}
+              />
+              <FormItem
+                conf={{
+                  getFieldDecorator,
+                  label: '说明',
+                  type: 'TextArea',
+                  dataIndex: 'description',
+                  initialValue: '',
+                  maxLength: 60,
+                }}
+              />
+            </Form>
+          </div>
+        </Modal>
+        {/* 查看 */}
+        <Modal
+          title="详细信息"
+          visible={this.state.visibleView}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <img src={img1} alt="" />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
+            <div>03号选手</div>
+            <div style={{ marginLeft: 40 }}>票数：0</div>
+          </div>
+          <div className={style.detail}>感谢您为我投上珍贵的一票</div>
+        </Modal>
       </div>
     )
   }
