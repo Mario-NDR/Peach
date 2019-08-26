@@ -3,7 +3,7 @@
  */
 import React from 'react'
 
-import { Descriptions, Divider, Table } from 'antd'
+import { Descriptions, Table } from 'antd'
 
 import { IntlComponent } from 'Components/Common'
 

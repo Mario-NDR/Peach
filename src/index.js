@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { LocaleProvider, notification } from 'antd'
+import { ConfigProvider, notification } from 'antd'
 import zhCN from 'antd/lib/locale-provider/zh_CN'
 import enUS from 'antd/lib/locale-provider/en_US'
 import moment from 'moment'
@@ -25,11 +25,11 @@ notification.config({ duration: 3 })
 
 render(
   <IntlWrapper>
-    <LocaleProvider locale={antdLocales[userLocale] || zhCN}>
+    <ConfigProvider locale={antdLocales[userLocale] || zhCN}>
       <Provider store={store}>
         <Main />
       </Provider>
-    </LocaleProvider>
+    </ConfigProvider>
   </IntlWrapper>,
   document.querySelector('#root')
 )

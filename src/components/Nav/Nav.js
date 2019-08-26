@@ -22,7 +22,6 @@ class Nav extends React.Component {
     // role: PropTypes.any,
     // roleResources: PropTypes.object,
     // loadRoleResources: PropTypes.func,
-    collapsed: PropTypes.bool.isRequired,
     location: PropTypes.object,
   }
 
@@ -110,7 +109,7 @@ class Nav extends React.Component {
           mode="inline"
           selectedKeys={[ current ]}
           defaultOpenKeys={defaultOpenKeys}
-          inlineCollapsed={this.props.collapsed}
+          // inlineCollapsed={this.props.collapsed}
         >
           { navNodes.map(this.renderNavNode) }
         </Menu>

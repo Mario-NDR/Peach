@@ -45,7 +45,7 @@ class App extends React.PureComponent {
             collapsed={this.state.collapsed}
             onCollapse={this.onCollapse}
           >
-            <Nav collapsed={this.state.collapsed} />
+            <Nav />
           </LayoutSider>
           <LayoutContent className={style.content}>
             <Switch>
