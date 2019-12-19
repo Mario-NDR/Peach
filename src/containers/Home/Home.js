@@ -1,27 +1,27 @@
 /**
- * @summary 首页
+ * @summary 首页HUD
  */
 import React from 'react'
-// import PropTypes from 'prop-types'
 
 import { IntlComponent } from 'Components/Common'
 
+import Map from './Map'
+// import BorderBox from './BorderBox' 
 import style from './style.scss'
 
 class Home extends IntlComponent {
-
-  static propTypes = {}
-
-  static defaultProps = {}
-
   constructor(props) {
     super(props)
+    this.state = {
+      mapData: {}
+    }
   }
 
   render() {
+    const { mapData } = this.state
     return (
       <section className={style.wrapper}>
-        Home
+        <Map data={mapData} />
       </section>
     )
   }

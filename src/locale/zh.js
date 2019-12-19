@@ -18,8 +18,8 @@ export default {
   modifyPassword: '修改密码',
 
   // nav
-  home: '首页',
-  activityManage: '活动管理',
+  home: '地图大屏',
+  activityManage: '数据来源',
   overview: '概况',
   antivityCreate: '活动创建',
   myActivity: '我的活动',
