@@ -39,7 +39,7 @@ class Header extends IntlComponent {
     return (
       <React.Fragment>
         <section className={style.header}>
-          <div className={style.logo}><Icon type="cloud" style={{ fontSize: 28 }} /> 荟生活管理后台</div>
+          <div className={style.logo}><Icon type="cloud" style={{ fontSize: 28 }} /> 马里奥网络实时地图</div>
           <div className={style.headerActions}>
             <LocaleSelector />
             <Dropdown overlay={this.menu()}>
