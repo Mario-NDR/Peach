@@ -88,52 +88,52 @@ const MAX_SCATTER_SIZE = 40
 const MIN_SCATTER_SIZE = 8
 
 // 攻击者散点，带波纹效果
-const renderEffectScatterData = data => {
-  if (!data || !data.length) {
-    return []
-  }
-  const effectScatterData = []
-  const max = Math.max(...(data.map(i => i.attackIp.count))) // 取出最大的count，以它为基准计算其他点的symbolSize
-  data.forEach(item => {
-    if (item.attackIp && !_.isEmpty(item.attackIp)) {
-      const { attackIp } = item
-      let symbolSize = MAX_SCATTER_SIZE * (item.attackIp.count / max)
-      if (symbolSize < MIN_SCATTER_SIZE) symbolSize = MIN_SCATTER_SIZE
-      effectScatterData.push({
-        ...scatterDataCfgAttack,
-        symbolSize,
-        name: attackIp.ip,
-        value: [ attackIp.longitude, attackIp.latitude, attackIp.count ],
-      })
-    }
-  })
-  return effectScatterData
-}
+// const renderEffectScatterData = data => {
+//   if (!data || !data.length) {
+//     return []
+//   }
+//   const effectScatterData = []
+//   const max = Math.max(...(data.map(i => i.attackIp.count))) // 取出最大的count，以它为基准计算其他点的symbolSize
+//   data.forEach(item => {
+//     if (item.attackIp && !_.isEmpty(item.attackIp)) {
+//       const { attackIp } = item
+//       let symbolSize = MAX_SCATTER_SIZE * (item.attackIp.count / max)
+//       if (symbolSize < MIN_SCATTER_SIZE) symbolSize = MIN_SCATTER_SIZE
+//       effectScatterData.push({
+//         ...scatterDataCfgAttack,
+//         symbolSize,
+//         name: attackIp.ip,
+//         value: [ attackIp.longitude, attackIp.latitude, attackIp.count ],
+//       })
+//     }
+//   })
+//   return effectScatterData
+// }
 
 // 被攻击者散点，不带波纹效果
-const renderScatterData = data => {
-  if (!data || !data.length) {
-    return []
-  }
-  const scatterData = []
-  const max = Math.max(...(data.map(i => i.attackIp.count)))
-  data.forEach(item => {
-    if (item.victimIp && !_.isEmpty(item.victimIp)) {
-      const { victimIp } = item
-      victimIp.forEach(v => {
-        let symbolSize = MAX_SCATTER_SIZE * (v.count / max)
-        if (symbolSize < MIN_SCATTER_SIZE) symbolSize = MIN_SCATTER_SIZE
-        scatterData.push({
-          ...scatterDataCfgTarget,
-          symbolSize,
-          name: v.ip,
-          value: [ v.longitude, v.latitude, v.count ],
-        })
-      })
-    }
-  })
-  return scatterData
-}
+// const renderScatterData = data => {
+//   if (!data || !data.length) {
+//     return []
+//   }
+//   const scatterData = []
+//   const max = Math.max(...(data.map(i => i.attackIp.count)))
+//   data.forEach(item => {
+//     if (item.victimIp && !_.isEmpty(item.victimIp)) {
+//       const { victimIp } = item
+//       victimIp.forEach(v => {
+//         let symbolSize = MAX_SCATTER_SIZE * (v.count / max)
+//         if (symbolSize < MIN_SCATTER_SIZE) symbolSize = MIN_SCATTER_SIZE
+//         scatterData.push({
+//           ...scatterDataCfgTarget,
+//           symbolSize,
+//           name: v.ip,
+//           value: [ v.longitude, v.latitude, v.count ],
+//         })
+//       })
+//     }
+//   })
+//   return scatterData
+// }
 
 // /////////////////////////////////////////////////////////////// line
 const linesCfg = {
@@ -174,38 +174,40 @@ const renderLinesData = data => {
   if (!data || !data.length) {
     return []
   }
-  const linesData = []
-  data.forEach(i => {
-    if (i.attackIp && !_.isEmpty(i.attackIp) && i.victimIp && !_.isEmpty(i.victimIp)) {
-      i.victimIp.forEach(v => {
-        linesData.push({
-          coords: [
-            [ i.attackIp.longitude, i.attackIp.latitude ],
-            [ v.longitude, v.latitude ],
-          ]
-        })
-      })
-    }
-  })
-  return linesData
+  // const linesData = []
+  // data.forEach(i => {
+  //   if (i.attackIp && !_.isEmpty(i.attackIp) && i.victimIp && !_.isEmpty(i.victimIp)) {
+  //     i.victimIp.forEach(v => {
+  //       linesData.push({
+  //         coords: [
+  //           [ i.attackIp.longitude, i.attackIp.latitude ],
+  //           [ v.longitude, v.latitude ],
+  //         ]
+  //       })
+  //     })
+  //   }
+  // })
+  // return linesData
+  return data
 }
 
 // /////////////////////////////////////////////////////////////// result
 export default (data) => {
+  console.info('--------------------------', data)
   return {
     title,
     geo,
     tooltip,
     series: [
-      {
-        ...scatterCfg,
-        data: renderScatterData(data),
-      },
-      {
-        ...scatterCfg,
-        type: 'effectScatter',
-        data: renderEffectScatterData(data),
-      },
+      // {
+      //   ...scatterCfg,
+      //   data: renderScatterData(data),
+      // },
+      // {
+      //   ...scatterCfg,
+      //   type: 'effectScatter',
+      //   data: renderEffectScatterData(data),
+      // },
       {
         ...linesCfg,
         data: renderLinesData(data),

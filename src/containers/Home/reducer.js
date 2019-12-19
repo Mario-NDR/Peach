@@ -1,6 +1,10 @@
-const initialState = {}
+const initialState = {
+  mapDetail: [],
+}
 
-const reducers = {}
+const reducers = {
+  getMapDetailData: (state, action) => ({ ...state, mapDetail: action.data }),
+}
 
 export default function userReducer(state = initialState, action) {
   if (reducers[action.type]) {
