@@ -170,30 +170,24 @@ const linesCfg = {
   },
 }
 
+// 地图之间点的连线
 const renderLinesData = data => {
   if (!data || !data.length) {
     return []
   }
-  // const linesData = []
-  // data.forEach(i => {
-  //   if (i.attackIp && !_.isEmpty(i.attackIp) && i.victimIp && !_.isEmpty(i.victimIp)) {
-  //     i.victimIp.forEach(v => {
-  //       linesData.push({
-  //         coords: [
-  //           [ i.attackIp.longitude, i.attackIp.latitude ],
-  //           [ v.longitude, v.latitude ],
-  //         ]
-  //       })
-  //     })
-  //   }
-  // })
-  // return linesData
-  return data
+  const Data = []
+  data.forEach((item) => {
+    Data.push({
+      coords: [
+        [ String(item.src.longitude), String(item.src.latitude) ],
+        [ String(item.dest.longitude), String(item.dest.latitude) ],
+      ]
+    })
+  })
+  return Data
 }
 
-// /////////////////////////////////////////////////////////////// result
 export default (data) => {
-  console.info('--------------------------', data)
   return {
     title,
     geo,

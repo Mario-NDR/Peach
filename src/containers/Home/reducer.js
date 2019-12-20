@@ -3,7 +3,7 @@ const initialState = {
 }
 
 const reducers = {
-  getMapDetailData: (state, action) => ({ ...state, mapDetail: action.data }),
+  getMapDetailData: (state, action) => ({ ...state, mapDetail: action.data.data }),
 }
 
 export default function userReducer(state = initialState, action) {

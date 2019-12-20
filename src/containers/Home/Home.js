@@ -2,29 +2,61 @@
  * @summary 首页HUD
  */
 import React from 'react'
+import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 import { IntlComponent } from 'Components/Common'
 
 import Map from './Map'
-// import BorderBox from './BorderBox' 
 import style from './style.scss'
+import * as actions from './action'
 
 class Home extends IntlComponent {
+
+  static propTypes = {
+    mapDetail: PropTypes.array,
+    data: PropTypes.array,
+  }
+
+  static defaultProps = {
+    mapDetail: [],
+    data: [],
+  }
+
   constructor(props) {
     super(props)
-    this.state = {
-      mapData: {}
-    }
+    this.state = {}
+  }
+
+  componentDidMount() {
+    this.loadData()
+  }
+
+  loadData = () => {
+    this.props.actions.getMapDetailData()
   }
 
   render() {
-    const { mapData } = this.state
+    const { mapDetail } = this.props
+
     return (
       <section className={style.wrapper}>
-        <Map data={mapData} />
+        <Map data={mapDetail} />
       </section>
     )
   }
 }
 
-export default Home
+function mapStateToProps(state) {
+  return {
+    mapDetail: state.mapReducer.mapDetail,
+  }
+}
+
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actions, dispatch) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

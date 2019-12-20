@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Button, Icon } from 'antd'
+import { Form, Button, Icon, message } from 'antd'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -26,16 +26,15 @@ class Login extends IntlComponent {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    // this.props.form.validateFields((err, values) => {
-    //   if (!err) {
-    //     const payload = {
-    //       username: values.username.trim(),
-    //       password: values.password,
-    //     }
-    //     this.props.login(payload)
-    //   }
-    // })
-    history.push('/app/overview')
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        if ((values.username === 'jinghh' || values.username === 'shichq') && values.password === 'mario999') {
+          history.push('/app/home')
+        } else {
+          message.error('用户名或者密码错误，请重新输入')
+        }
+      }
+    })
   }
 
   render() {
@@ -50,10 +49,10 @@ class Login extends IntlComponent {
               type: 'Input',
               label: '',
               dataIndex: 'username',
-              rules: [ { required: true, message: 'userNameRequired' } ],
+              rules: [ { required: true, message: '请输入用户名，最多30个字符' } ],
               autoFocus: 'autoFocus',
               layout: doubleLineLayout,
-              placeholder: 'userNameRequired',
+              placeholder: '请输入用户名',
               prefix: <Icon type="user" style={{ fontSize: '16px' }} />,
             }}
           />
@@ -64,9 +63,9 @@ class Login extends IntlComponent {
               htmlType: 'password',
               label: '',
               dataIndex: 'password',
-              rules: [ { required: true, message: 'passwordRequired' } ],
+              rules: [ { required: true, message: '请输入密码' } ],
               layout: doubleLineLayout,
-              placeholder: 'passwordRequired',
+              placeholder: '请输入密码',
               prefix: <Icon type="unlock" style={{ fontSize: '16px' }} />,
             }}
           />

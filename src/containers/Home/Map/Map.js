@@ -13,16 +13,16 @@ import worldMapJson from 'Maps/world.json'
 import mapOption from './options'
 import style from './style.scss'
 
-import getMapDetailData from '../action'
+import * as actions from '../action'
 
 class Map extends IntlComponent {
 
   static propTypes = {
-    data: PropTypes.array,
+    mapDetail: PropTypes.array,
   }
 
   static defaultProps = {
-    data: [],
+    mapDetail: [],
   }
 
   constructor(props) {
@@ -30,30 +30,16 @@ class Map extends IntlComponent {
     this.map = null
   }
 
-
-  // [
-  //   [i.attackIp.longitude, i.attackIp.latitude],
-  //   [v.longitude, v.latitude],
-  //         ]
   componentDidMount() {
-    this.props.getMapDetailData()
-    const data = [
-      {
-        coords: [
-          [ '116.3889', '39.9288' ],
-          [ '-118.2578', '34.0549' ],
-        ]
-      }
-    ]
     this.map = echarts.init(document.querySelector('#overviewMap'))
     echarts.registerMap('world', worldMapJson)
-    // this.map.setOption(mapOption(this.props.data))
-    this.map.setOption(mapOption(data))
+    this.map.setOption(mapOption(this.props.data))
+    // this.map.setOption(mapOption(data))
   }
-
-  // componentDidUpdate() {
-  //   this.map.setOption(mapOption(this.props.data))
-  // }
+  
+  componentDidUpdate() {
+    this.map.setOption(mapOption(this.props.data))
+  }
 
   render() {
     return (
@@ -64,14 +50,13 @@ class Map extends IntlComponent {
 
 function mapStateToProps(state) {
   return {
-    vulEventList: state.mapReducer.mapDetail,
+    mapDetail: state.mapReducer.mapDetail,
   }
 }
 
 
 function mapDispatchToProps(dispatch) {
-  // return { actions: bindActionCreators({ getMapDetailData }, dispatch) }
-  return bindActionCreators({ getMapDetailData }, dispatch)
+  return { actions: bindActionCreators(actions, dispatch) }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map)
