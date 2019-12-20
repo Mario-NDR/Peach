@@ -49,7 +49,7 @@ class App extends React.PureComponent {
           </LayoutSider>
           <LayoutContent className={style.content}>
             <Switch>
-              <Route path="/app/home" component={Home} exact />
+              <Route path="/app/map" component={Home} exact />
               <Route path="/app/activity" component={Activity} />
               <Route component={Error} />
             </Switch>

@@ -30,7 +30,7 @@ export default {
   // login
   login: '登录',
   userName: '用户名',
-  password: '密码',
+  passWord: '密码',
   userNameRequired: '请输入用户名',
   userNameRequiredPlaceholder: '请输入用户名，最多30个字符',
   passwordRequired: '请输入密码',
@@ -42,4 +42,7 @@ export default {
   systemConfig: '系统配置',
   systemUpgrade: '系统升级',
   authorizationManage: '授权管理',
+
+  // 登录失败
+  loginFailed: '用户名或者密码错误，请重新输入',
 }

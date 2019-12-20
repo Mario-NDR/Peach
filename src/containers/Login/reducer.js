@@ -3,7 +3,7 @@ const initialState = {
 }
 
 const reducers = {
-  login: (state, action) => ({ ...state, userName: action.data.data }),
+  login: (state, action) => ({ ...state, userName: action.data }),
 }
 
 export default function loginReducer(state = initialState, action) {

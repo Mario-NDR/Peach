@@ -20,6 +20,11 @@
     display: flex;
     justify-content: space-between;
     vertical-align: center;
+
+    .divClock {
+      width: 170px;
+      // background-color: pink;
+    }
   }
 
   .userWrapper {
@@ -27,7 +32,7 @@
     cursor: pointer;
     transition: all 0.3s ease-out;
   }
-  
+
   .userIcon {
     margin-right: 6px;
     padding: 3px;
@@ -35,7 +40,7 @@
     border-radius: 50%;
     font-size: 18px !important;
   }
-  
+
   .username {
     position: relative;
     top: -3px;

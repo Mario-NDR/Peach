@@ -3,15 +3,10 @@ import { history } from 'Src/Main'
 import api from 'Constants/api'
 
 export function login(payload) {
-  return network.POST(`${api.v1}/login`, payload, data => {
-    if (data.code >= 2000 && data.code < 3000) {
-      history.push('/app')
-    }
-    return {
-      data,
-      type: 'login',
-    }
-  })
+  return {
+    data: payload,
+    type: 'login',
+  }
 }
 
 export function logout() {

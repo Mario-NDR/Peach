@@ -22,16 +22,25 @@ class Login extends IntlComponent {
   static propTypes = {
     form: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
+    userName: PropTypes.string,
+  }
+
+  static defaultProps = {
+    userName: '',
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        if ((values.username === 'jinghh' || values.username === 'shichq') && values.password === 'mario999') {
-          history.push('/app/home')
+        const map = new Map()
+        map.set('jinghh', true)
+        map.set('shichq', true)
+        if (map.get(values.username) && values.password === 'mario999') {
+          this.props.login(values.username)
+          history.push('/app/map')
         } else {
-          message.error('用户名或者密码错误，请重新输入')
+          message.error(this.localeMessage('loginFailed'))
         }
       }
     })
@@ -49,10 +58,10 @@ class Login extends IntlComponent {
               type: 'Input',
               label: '',
               dataIndex: 'username',
-              rules: [ { required: true, message: '请输入用户名，最多30个字符' } ],
+              rules: [ { required: true, message: this.localeMessage('userNameRequiredPlaceholder') } ],
               autoFocus: 'autoFocus',
               layout: doubleLineLayout,
-              placeholder: '请输入用户名',
+              placeholder: this.localeMessage('userName'),
               prefix: <Icon type="user" style={{ fontSize: '16px' }} />,
             }}
           />
@@ -63,9 +72,9 @@ class Login extends IntlComponent {
               htmlType: 'password',
               label: '',
               dataIndex: 'password',
-              rules: [ { required: true, message: '请输入密码' } ],
+              rules: [ { required: true, message: this.localeMessage('passwordRequired') } ],
               layout: doubleLineLayout,
-              placeholder: '请输入密码',
+              placeholder: this.localeMessage('passwordRequired'),
               prefix: <Icon type="unlock" style={{ fontSize: '16px' }} />,
             }}
           />
@@ -80,8 +89,14 @@ class Login extends IntlComponent {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    userName: state.loginReducer.userName,
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ login }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Form.create()(Login))
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(Login))

@@ -11,7 +11,7 @@ export default [
         <FormattedMessage id="home" />
       </span>
     ),
-    linkTo: '/app/home',
+    linkTo: '/app/map',
     permissions: [ 'admin', 'user' ],
   },
   {
