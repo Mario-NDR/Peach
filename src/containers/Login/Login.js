@@ -46,6 +46,12 @@ class Login extends IntlComponent {
     })
   }
 
+  handleCLickTourists = () => {
+    const payload = '游客'
+    this.props.login(payload)
+    history.push('/app/map')
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form
     return (
@@ -78,6 +84,7 @@ class Login extends IntlComponent {
               prefix: <Icon type="unlock" style={{ fontSize: '16px' }} />,
             }}
           />
+          <div>以<a role="button" onClick={this.handleCLickTourists}>游客</a>身份访问</div>
           <Item>
             <Button className={style.loginButton} type="primary" htmlType="submit">
               { this.localeMessage('login') }

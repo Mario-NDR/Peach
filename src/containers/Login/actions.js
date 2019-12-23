@@ -3,6 +3,7 @@ import { history } from 'Src/Main'
 import api from 'Constants/api'
 
 export function login(payload) {
+  sessionStorage.setItem('userName', payload)
   return {
     data: payload,
     type: 'login',

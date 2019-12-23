@@ -48,8 +48,6 @@ class Header extends IntlComponent {
   }
 
   render() {
-    // const { userInfo } = this.props
-    const { userName } = this.props
     return (
       <React.Fragment>
         <section className={style.header}>
@@ -60,7 +58,7 @@ class Header extends IntlComponent {
             <Dropdown overlay={this.menu()}>
               <div className={style.userWrapper}>
                 <Icon className={style.userIcon} type="user" />
-                <span className={style.username}>{ userName }</span>
+                <span className={style.username}>{ sessionStorage.getItem('userName') || '游客' }</span>
               </div>
             </Dropdown>
           </div>
