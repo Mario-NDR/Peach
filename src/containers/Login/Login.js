@@ -47,7 +47,7 @@ class Login extends IntlComponent {
   }
 
   handleCLickTourists = () => {
-    const payload = '游客'
+    const payload = '访客'
     this.props.login(payload)
     history.push('/app/map')
   }
@@ -84,7 +84,7 @@ class Login extends IntlComponent {
               prefix: <Icon type="unlock" style={{ fontSize: '16px' }} />,
             }}
           />
-          <div>以<a role="button" onClick={this.handleCLickTourists}>游客</a>身份访问</div>
+          <div>以<a role="button" onClick={this.handleCLickTourists}>访客</a>身份访问</div>
           <Item>
             <Button className={style.loginButton} type="primary" htmlType="submit">
               { this.localeMessage('login') }

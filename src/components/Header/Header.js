@@ -28,9 +28,6 @@ class Header extends IntlComponent {
     this.state = {}
   }
 
-  componentDidMount() {
-  }
-
   menu = () => (
     <Menu>
       <Menu.Item key="password" onClick={this.updatePassword}><Icon type="key" /> {this.localeMessage('modifyPassword')} </Menu.Item>
@@ -58,7 +55,7 @@ class Header extends IntlComponent {
             <Dropdown overlay={this.menu()}>
               <div className={style.userWrapper}>
                 <Icon className={style.userIcon} type="user" />
-                <span className={style.username}>{ sessionStorage.getItem('userName') || '游客' }</span>
+                <span className={style.username}>{ sessionStorage.getItem('userName') || '访客' }</span>
               </div>
             </Dropdown>
           </div>

@@ -1,37 +1,5 @@
-.topDetail {
-  display: flex;
-  justify-content: left;
-  margin-bottom: 32px;
-
-  .toSignUp,
-  .vote,
-  .guess,
-  .luckyDraw {
-
-    .icon {
-      font-size: 16px;
-      font-weight: 700;
-      margin-top: 16px;
-      margin-left: 16px;
-    }
-
-    .number {
-      font-size: 40px;
-      font-weight: 600;
-      margin-top: 16px;
-      margin-left: 70px;
-      color: #f93;;
-    }
+.tableList {
+  .tableSrc {
+    color: rgb(226, 105, 125);
   }
-
-  .toSignUp,
-  .vote,
-  .guess,
-  .luckyDraw {
-    width: 200px;
-    height: 180px;
-    margin-left: 30px;
-    // background-color: pink;
-    border: 1px solid rgb(233, 233, 233);
-  }
-}
+} 

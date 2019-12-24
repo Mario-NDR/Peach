@@ -15,11 +15,11 @@ export default [
     permissions: [ 'admin', 'user' ],
   },
   {
-    name: 'activityManage',
+    name: 'attackDetails',
     title: (
       <span>
         <Icon type="appstore-o" />
-        <FormattedMessage id="activityManage" />
+        <FormattedMessage id="attackDetails" />
       </span>
     ),
     menus: [

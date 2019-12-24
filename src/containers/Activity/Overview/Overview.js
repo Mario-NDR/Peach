@@ -1,5 +1,5 @@
 /**
- * @summary 概况
+ * @summary 攻击流量（ip）
  */
 import React from 'react'
 
@@ -22,8 +22,8 @@ class Overview extends IntlComponent {
       <div className={style.overview}>
         <Bread
           items={[
-            { content: '活动' },
-            { content: '概况' },
+            { content: '攻击详情' },
+            { content: '攻击流量（ip）' },
           ]}
         />
         <Home />
