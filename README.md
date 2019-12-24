@@ -46,7 +46,8 @@ $ npm start
 $ npm run build
 ```
 
-## docker
+## docker后端镜像
 ``` bash
+$ docker build -t mario .
 $ docker run -it -p 5000:5000 -d mario
 ```
