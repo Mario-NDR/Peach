@@ -39,6 +39,7 @@ class Login extends IntlComponent {
         if (map.get(values.username) && values.password === 'mario999') {
           this.props.login(values.username)
           history.push('/app/map')
+          message.success(this.localeMessage('loginSuccessful'))
         } else {
           message.error(this.localeMessage('loginFailed'))
         }
@@ -50,6 +51,7 @@ class Login extends IntlComponent {
     const payload = '访客'
     this.props.login(payload)
     history.push('/app/map')
+    message.success(this.localeMessage('loginSuccessfulVisitor'))
   }
 
   render() {

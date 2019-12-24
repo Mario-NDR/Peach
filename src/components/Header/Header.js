@@ -55,7 +55,7 @@ class Header extends IntlComponent {
             <Dropdown overlay={this.menu()}>
               <div className={style.userWrapper}>
                 <Icon className={style.userIcon} type="user" />
-                <span className={style.username}>{ sessionStorage.getItem('userName') || '访客' }</span>
+                <span className={style.username}>{sessionStorage.getItem('userName') || this.localeMessage('visitor') }</span>
               </div>
             </Dropdown>
           </div>

@@ -36,8 +36,13 @@ exports.devPlugins = [
       context: '/'
     }
   }),
+  // new HtmlWebpackPlugin({
+  //   template: 'src/index.dev.html'
+  // }),
   new HtmlWebpackPlugin({
-    template: 'src/index.dev.html'
+    filename: 'index.html',
+    template: `${process.cwd()}/src/index.dev.html`,
+    favicon: `${process.cwd()}/src/favicon.ico`,
   }),
   // new BundleAnalyzerPlugin()
 ]
@@ -61,13 +66,18 @@ const prodPlugins = [
     chunkFilename: 'css/app.[contenthash:12].css',
   }),
   new webpack.optimize.AggressiveMergingPlugin(),
-  new HtmlWebpackPlugin({
-    template: 'src/index.html',
-    filename: '../index.html'
-  }),
+  // new HtmlWebpackPlugin({
+  //   template: 'src/index.html',
+  //   filename: '../index.html'
+  // }),
   // new CopyWebpackPlugin([ // src下其他的文件直接复制到dist目录下
   //   { from: 'src/favicon.ico', to: 'images/favicon.ico' }
   // ]),
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: `${process.cwd()}/src/index.html`,
+    favicon: `${process.cwd()}/src/favicon.ico`,
+  }),
   new UglifyJsPlugin({
     uglifyOptions: {
       ie8: false,

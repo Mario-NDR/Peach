@@ -34,6 +34,9 @@ export default {
   userNameRequired: '请输入用户名',
   userNameRequiredPlaceholder: '请输入用户名，最多30个字符',
   passwordRequired: '请输入密码',
+  visitor: '访客',
+  loginSuccessful: '登录成功',
+  loginSuccessfulVisitor: '以访客身份成功登录',
 
   // overview
   helloworld: '你好，世界！',
