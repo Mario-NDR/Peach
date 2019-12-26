@@ -31,7 +31,6 @@ class Home extends IntlComponent {
 
   componentDidMount() {
     this.loadData()
-    console.info('useruseruseruseruseruseruseruseruseruseruseruseruseruseruseruseruseruseruser', this.props)
   }
 
   loadData = () => {

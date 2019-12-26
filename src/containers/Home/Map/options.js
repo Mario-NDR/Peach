@@ -1,10 +1,12 @@
 const title = {
-  // text: '网站侦控分布情况',
+  text: '网络攻击实时分布',
   x: 'center',
   y: '8px',
   textStyle: {
     color: '#666',
     fontWeight: '400',
+    fontSize: '30',
+    paddingTop: '-10',
   }
 }
 
@@ -16,7 +18,7 @@ const geo = {
   name: '',
   type: 'map',
   map: 'world',
-  roam: false,
+  roam: true, // 是否支持缩放
   zoom: 1.5,
   z: 1,
   // left: '20',
@@ -28,19 +30,19 @@ const geo = {
       },
     },
     emphasis: {
-      show: false,
+      show: true,
       textStyle: {
-        color: '#e6eaee',
+        color: '#FF9966',
       },
     },
   },
   itemStyle: { // 地图区域的多边形 图形样式
     normal: {
-      areaColor: 'rgb(230, 234, 238)',
+      areaColor: 'rgb(0, 204, 153)',
       borderColor: 'rgb(230, 234, 238)'
     },
     emphasis: {
-      color: 'rgb(230, 234, 238)'
+      // color: 'rgb(230, 234, 238)' // 鼠标悬浮国家的背景颜色
     }
   }
 }
@@ -55,13 +57,13 @@ const scatterCfg = {
   showEffectOn: 'render', // 配置何时显示特效，render表示渲染完就显示
   rippleEffect: { // 涟漪特效相关配置
     period: 5,
-    scale: 2,
+    scale: 3,
     brushType: 'stroke'
   },
   tooltip: {
     trigger: 'item',
     formatter(param) {
-      return `IP: ${param.name}<br />次数: ${param.data.value[2]}`
+      return `${param.marker}城市: ${param.name}<br />${param.marker}${param.componentIndex === 0 ? '被攻击次数' : '攻击次数'}: ${param.data.value[2]}`
     },
   },
 }
@@ -70,7 +72,7 @@ const scatterDataCfgAttack = {
   z: 2,
   itemStyle: {
     normal: {
-      color: 'rgb(245, 109, 7)'
+      color: 'rgb(245, 109, 7)' // 攻击者散点
     }
   },
 }
@@ -79,61 +81,46 @@ const scatterDataCfgTarget = {
   z: 2,
   itemStyle: {
     normal: {
-      color: 'rgb(7, 52, 145)'
+      color: 'rgb(204, 0, 102)' // 被攻击者散点
     }
   },
 }
 
-const MAX_SCATTER_SIZE = 40
-const MIN_SCATTER_SIZE = 8
-
 // 攻击者散点，带波纹效果
-// const renderEffectScatterData = data => {
-//   if (!data || !data.length) {
-//     return []
-//   }
-//   const effectScatterData = []
-//   const max = Math.max(...(data.map(i => i.attackIp.count))) // 取出最大的count，以它为基准计算其他点的symbolSize
-//   data.forEach(item => {
-//     if (item.attackIp && !_.isEmpty(item.attackIp)) {
-//       const { attackIp } = item
-//       let symbolSize = MAX_SCATTER_SIZE * (item.attackIp.count / max)
-//       if (symbolSize < MIN_SCATTER_SIZE) symbolSize = MIN_SCATTER_SIZE
-//       effectScatterData.push({
-//         ...scatterDataCfgAttack,
-//         symbolSize,
-//         name: attackIp.ip,
-//         value: [ attackIp.longitude, attackIp.latitude, attackIp.count ],
-//       })
-//     }
-//   })
-//   return effectScatterData
-// }
+const renderEffectScatterData = data => {
+  if (!data || !data.length) {
+    return []
+  }
+  const Data = []
+  const symbolSize = 10
+  data.forEach((item) => {
+    Data.push({
+      ...scatterDataCfgAttack,
+      symbolSize,
+      name: item.src.city,
+      value: [ item.src.longitude, item.src.latitude, 10 ], // 攻击和被攻击的次数，后端要加的字段【TODO】
+    })
+  })
+  return Data
+}
 
 // 被攻击者散点，不带波纹效果
-// const renderScatterData = data => {
-//   if (!data || !data.length) {
-//     return []
-//   }
-//   const scatterData = []
-//   const max = Math.max(...(data.map(i => i.attackIp.count)))
-//   data.forEach(item => {
-//     if (item.victimIp && !_.isEmpty(item.victimIp)) {
-//       const { victimIp } = item
-//       victimIp.forEach(v => {
-//         let symbolSize = MAX_SCATTER_SIZE * (v.count / max)
-//         if (symbolSize < MIN_SCATTER_SIZE) symbolSize = MIN_SCATTER_SIZE
-//         scatterData.push({
-//           ...scatterDataCfgTarget,
-//           symbolSize,
-//           name: v.ip,
-//           value: [ v.longitude, v.latitude, v.count ],
-//         })
-//       })
-//     }
-//   })
-//   return scatterData
-// }
+const renderScatterData = data => {
+  if (!data || !data.length) {
+    return []
+  }
+  const Data = []
+  const symbolSize = 10
+  data.forEach((item) => {
+    Data.push({
+      ...scatterDataCfgTarget,
+      symbolSize,
+      name: item.dest.city,
+      value: [ item.dest.longitude, item.dest.latitude, 10 ],
+    })
+  })
+  return Data
+}
 
 // /////////////////////////////////////////////////////////////// line
 const linesCfg = {
@@ -162,7 +149,8 @@ const linesCfg = {
         colorStops: [ {
           offset: 0, color: 'rgb(240, 90, 58)' // 0% 处的颜色
         }, {
-          offset: 1, color: 'rgb(162, 159, 160)' // 100% 处的颜色
+          // offset: 1, color: 'rgb(162, 159, 160)' // 100% 处的颜色
+          offset: 1, color: 'rgb(204, 0, 102)' // 100% 处的颜色
         } ],
         global: false // 缺省为 false
       },
@@ -181,7 +169,8 @@ const renderLinesData = data => {
       coords: [
         [ String(item.src.longitude), String(item.src.latitude) ],
         [ String(item.dest.longitude), String(item.dest.latitude) ],
-      ]
+      ],
+      city: [ item.src.city, item.dest.city ],
     })
   })
   return Data
@@ -192,16 +181,20 @@ export default (data) => {
     title,
     geo,
     tooltip,
+    formatter(param) {
+      return `<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[0].color};"></span>${param.data.city[0]}<span style="color: #FF6600"> ———— </span><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[1].color};"></span>${param.data.city[1]}`
+    },
     series: [
-      // {
-      //   ...scatterCfg,
-      //   data: renderScatterData(data),
-      // },
-      // {
-      //   ...scatterCfg,
-      //   type: 'effectScatter',
-      //   data: renderEffectScatterData(data),
-      // },
+      {
+        ...scatterCfg,
+        type: 'effectScatter',
+        data: renderScatterData(data),
+      },
+      {
+        ...scatterCfg,
+        type: 'effectScatter',
+        data: renderEffectScatterData(data),
+      },
       {
         ...linesCfg,
         data: renderLinesData(data),

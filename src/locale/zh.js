@@ -20,7 +20,7 @@ export default {
   // nav
   home: '地图大屏',
   attackDetails: '攻击详情',
-  overview: '攻击流量（ip）',
+  overview: '攻击流量(ip)',
   antivityCreate: '活动创建',
   myActivity: '我的活动',
   prizeLibraryMange: '奖品库管理',
