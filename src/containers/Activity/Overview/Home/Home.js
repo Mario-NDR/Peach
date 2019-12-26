@@ -3,13 +3,15 @@
  */
 import React from 'react'
 // import PropTypes from 'prop-types'
-import { Table } from 'antd'
+import { Table, Tooltip } from 'antd'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
 import Subheader from 'Components/Subheader'
+import { zoneTransfer } from 'Utils/time'
+import { ellipsis } from 'Utils/string'
 
 import * as actions from '../../action'
 import style from './style.scss'
@@ -33,6 +35,14 @@ class Home extends IntlComponent {
       )
     },
     { dataIndex: 'dest', title: '目的IP', key: 'dest' },
+    {
+      dataIndex: 'time',
+      title: '时间',
+      key: 'time',
+      render: (text) => {
+        return zoneTransfer(text, 'YYYY-MM-DD HH:mm:ss')
+      }
+    },
     { dataIndex: 'event_type', title: '事件类型', key: 'event_type' },
     {
       dataIndex: 'action',
@@ -45,7 +55,18 @@ class Home extends IntlComponent {
         return '阻止模式'
       }
     },
-    { dataIndex: 'alert_message', title: '告警信息', key: 'alert_message' },
+    {
+      dataIndex: 'alert_message',
+      title: '告警信息',
+      key: 'alert_message',
+      render: (text) => {
+        return (
+          <Tooltip title={text}>
+            {ellipsis(text, 20)}
+          </Tooltip>
+        )
+      }
+    },
   ]
 
   componentDidMount() {

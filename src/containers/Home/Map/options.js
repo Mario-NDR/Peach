@@ -63,6 +63,7 @@ const scatterCfg = {
   tooltip: {
     trigger: 'item',
     formatter(param) {
+      console.info(param)
       return `${param.marker}城市: ${param.name}<br />${param.marker}${param.componentIndex === 0 ? '被攻击次数' : '攻击次数'}: ${param.data.value[2]}`
     },
   },
@@ -98,7 +99,7 @@ const renderEffectScatterData = data => {
       ...scatterDataCfgAttack,
       symbolSize,
       name: item.src.city,
-      value: [ item.src.longitude, item.src.latitude, 10 ], // 攻击和被攻击的次数，后端要加的字段【TODO】
+      value: [ item.src.longitude, item.src.latitude, item.src_count ], // 攻击和被攻击的次数，后端要加的字段【TODO】
     })
   })
   return Data
@@ -116,7 +117,7 @@ const renderScatterData = data => {
       ...scatterDataCfgTarget,
       symbolSize,
       name: item.dest.city,
-      value: [ item.dest.longitude, item.dest.latitude, 10 ],
+      value: [ item.dest.longitude, item.dest.latitude, item.dest_count ],
     })
   })
   return Data
