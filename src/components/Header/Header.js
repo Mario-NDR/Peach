@@ -48,7 +48,7 @@ class Header extends IntlComponent {
     return (
       <React.Fragment>
         <section className={style.header}>
-          <div className={style.logo}><Icon type="ant-cloud" style={{ fontSize: '28px', lineHeight: '60px' }} onClick={this.handleClickLogo} /> network Detection and Response</div>
+          <div className={style.logo}><Icon type="ant-cloud" style={{ fontSize: '28px', lineHeight: '60px' }} onClick={this.handleClickLogo} /> 网络监测实时响应</div>
           <div className={style.headerActions}>
             <div className={style.divClock}><Clock /></div>
             <LocaleSelector />

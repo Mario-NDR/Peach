@@ -1,5 +1,7 @@
+import { zoneTransfer } from 'Utils/time'
+
 const title = {
-  text: '网络攻击实时分布',
+  text: '',
   x: 'center',
   y: '8px',
   textStyle: {
@@ -99,7 +101,7 @@ const renderEffectScatterData = data => {
       ...scatterDataCfgAttack,
       symbolSize,
       name: item.src.city,
-      value: [ item.src.longitude, item.src.latitude, item.src_count ], // 攻击和被攻击的次数，后端要加的字段【TODO】
+      value: [ item.src.longitude, item.src.latitude, item.src_count ],
     })
   })
   return Data
@@ -131,7 +133,7 @@ const linesCfg = {
   effect: {
     show: true,
     period: 4, // 箭头指向速度，值越小速度越快
-    trailLength: 0.02, // 特效尾迹长度[0,1]值越大，尾迹越长重
+    trailLength: 0.0002, // 特效尾迹长度[0,1]值越大，尾迹越长重
     symbol: 'arrow', // 箭头图标
     symbolSize: 6, // 图标大小
   },
@@ -172,6 +174,11 @@ const renderLinesData = data => {
         [ String(item.dest.longitude), String(item.dest.latitude) ],
       ],
       city: [ item.src.city, item.dest.city ],
+      country: [ item.src.country, item.dest.country ],
+      port: [ item.src_port, item.dest_port ],
+      message: item.alert_message,
+      date: item.time,
+      type: item.event_type,
     })
   })
   return Data
@@ -183,7 +190,7 @@ export default (data) => {
     geo,
     tooltip,
     formatter(param) {
-      return `<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[0].color};"></span>${param.data.city[0]}<span style="color: #FF6600"> ———— </span><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[1].color};"></span>${param.data.city[1]}`
+      return `<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[0].color};"></span>${param.data.country[0]}: ${param.data.city[0]}<span style="color: #FF6600"> ———— </span><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[1].color};"></span>${param.data.country[1]}: ${param.data.city[1]}<br />攻击者端口: ${param.data.port[0]}<br />被攻击者端口: ${param.data.port[1]}<br />时间: ${zoneTransfer(param.data.date, 'YYYY-MM-DD HH:mm:ss')}<br />攻击类型: ${param.data.type}<br />详情: ${param.data.message}`
     },
     series: [
       {
