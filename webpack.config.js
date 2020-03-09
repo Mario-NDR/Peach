@@ -9,11 +9,11 @@ const devtool = __DEV__ ? 'eval-source-map' : 'cheap-module-source-map'
 // const devtool = __DEV__ ? 'eval-source-map' : 'cheap-eval-source-map'
 
 const enviroment = process.env.NODE_ENV
-// const host = 'localhost'
-const host = 'mario.test.com'
+const host = '0.0.0.0'
+// const host = 'mario.test.com'
 const port = 9955
 // const apiProxy = 'http://95.169.17.220:5000/'
-const apiProxy = '0.0.0.0:5000/'
+const apiProxy = 'http://127.0.0.1:5000/'
 // const apiProxy = 'http://114.116.254.238:5000/'
 // const apiProxy = 'http://95.169.17.220:5000'
 
