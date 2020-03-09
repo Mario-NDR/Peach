@@ -34,7 +34,6 @@ class Map extends IntlComponent {
     this.map = echarts.init(document.querySelector('#overviewMap'))
     echarts.registerMap('world', worldMapJson)
     this.map.setOption(mapOption(this.props.data))
-    // this.map.setOption(mapOption(data))
   }
   
   componentDidUpdate() {
@@ -43,7 +42,7 @@ class Map extends IntlComponent {
 
   render() {
     return (
-      <section className={style.mapWrapper}><div id="overviewMap" style={{ width: '85%', height: '500%' }} /></section>
+      <section className={style.mapWrapper}><div id="overviewMap" style={{ width: '84%', height: '690%' }} /></section>
     )
   }
 }
