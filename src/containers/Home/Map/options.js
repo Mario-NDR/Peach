@@ -65,7 +65,6 @@ const scatterCfg = {
   tooltip: {
     trigger: 'item',
     formatter(param) {
-      console.info(param)
       return `${param.marker}城市: ${param.name}<br />${param.marker}${param.componentIndex === 0 ? '被攻击次数' : '攻击次数'}: ${param.data.value[2]}`
     },
   },
@@ -101,7 +100,7 @@ const renderEffectScatterData = data => {
       ...scatterDataCfgAttack,
       symbolSize,
       name: item.src.city,
-      value: [ item.src.longitude, item.src.latitude, item.src_count ],
+      value: [ item.src.longitude, item.src.latitude, item.src.src_count ],
     })
   })
   return Data
@@ -119,7 +118,7 @@ const renderScatterData = data => {
       ...scatterDataCfgTarget,
       symbolSize,
       name: item.dest.city,
-      value: [ item.dest.longitude, item.dest.latitude, item.dest_count ],
+      value: [ item.dest.longitude, item.dest.latitude, item.dest.dest_count ],
     })
   })
   return Data
@@ -175,7 +174,7 @@ const renderLinesData = data => {
       ],
       city: [ item.src.city, item.dest.city ],
       country: [ item.src.country, item.dest.country ],
-      port: [ item.src_port, item.dest_port ],
+      port: [ item.src.src_port, item.dest.dest_port ],
       message: item.alert_message,
       date: item.time,
       type: item.event_type,
