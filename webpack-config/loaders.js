@@ -84,7 +84,7 @@ const lessLoader = {
         modifyVars: {
           // antd theme
           // 'primary-color': '#f93',
-          'border-radius-base': '0',
+          // 'border-radius-base': '0',
           'primary-color': '#5a97f4',
           'link-color': '#5a97f4',
         },

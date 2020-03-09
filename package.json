@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "aes256": "1.0.4",
-    "antd": "^3.21.4",
+    "antd": "^3.26.13",
     "autoprefixer": "9.2.0",
     "axios": "0.18.1",
     "classnames": "2.2.6",
