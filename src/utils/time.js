@@ -13,5 +13,5 @@ export function zoneTransfer(time, format) {
   if (!time) {
     return '-'
   }
-  return moment(time).utc().utcOffset(8).format(format || 'YYYY-MM-DD HH:mm')
+  return moment(time).utc().utcOffset(8).format(format || 'YYYY-MM-DD HH:mm:ss')
 }
