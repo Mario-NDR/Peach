@@ -6,6 +6,7 @@ import React from 'react'
 import { Table, Tooltip, Tag } from 'antd'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+// import echarts from 'echarts'
 
 import moment from 'moment'
 
@@ -14,6 +15,7 @@ import ContentBox from 'Components/ContentBox'
 import Subheader from 'Components/Subheader'
 import { zoneTransfer } from 'Utils/time'
 import { ellipsis } from 'Utils/string'
+// import trendChartOption from './option'
 
 import * as actions from '../../../Home/action'
 import style from './style.scss'
@@ -25,6 +27,7 @@ class Home extends IntlComponent {
   constructor(props) {
     super(props)
     this.state = {}
+    this.trendChart = null
   }
 
   columns = [
@@ -89,9 +92,19 @@ class Home extends IntlComponent {
     },
   ]
 
+  // componentDidMount() {
+  //   this.props.actions.getMapDetailData()
+  // }
+
   componentDidMount() {
     this.props.actions.getMapDetailData()
+    // this.trendChart = echarts.init(document.querySelector('#overviewMap'))
+    // this.trendChart.setOption(trendChartOption(this.props.data))
   }
+
+  // componentDidUpdate() {
+  //   this.trendChart.setOption(trendChartOption(this.props.data))
+  // }
 
   render() {
     let { mapDetail } = this.props
@@ -120,9 +133,7 @@ class Home extends IntlComponent {
           />
         </div>
         <Subheader>趋势图</Subheader>
-        <div>
-          Trend chart
-        </div>
+        {/* <section><div id="trendChart" /></section> */}
       </ContentBox>
     )
   }
