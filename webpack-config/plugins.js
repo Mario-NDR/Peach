@@ -74,7 +74,7 @@ const prodPlugins = [
   //   { from: 'src/favicon.ico', to: 'images/favicon.ico' }
   // ]),
   new HtmlWebpackPlugin({
-    filename: 'index.html',
+    filename: '../index.html',
     template: `${process.cwd()}/src/index.html`,
     favicon: `${process.cwd()}/src/favicon.ico`,
   }),
