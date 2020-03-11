@@ -8,9 +8,7 @@ install:
 - npm install
 script:
 - npm run build
-after_script:
 - tar -zcvf dist.tar.gz ./dist/
-- ls 
 deploy:
   provider: releases
   api_key:
