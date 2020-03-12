@@ -11,8 +11,8 @@ const devtool = __DEV__ ? 'eval-source-map' : 'cheap-module-source-map'
 const enviroment = process.env.NODE_ENV
 const host = '0.0.0.0'
 const port = 9955
-const apiProxy = 'http://127.0.0.1:5000/'
-// const apiProxy = 'http://95.169.17.220:5000'
+// const apiProxy = 'http://127.0.0.1:5000/'
+const apiProxy = 'http://107.182.25.94:5000/'
 
 let entry = './src/index.js'
 

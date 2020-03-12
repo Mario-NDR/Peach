@@ -14,6 +14,9 @@ const title = {
 
 const tooltip = {
   trigger: 'item',
+  position(point, _params, _dom, _rect, size) {
+    return [ point[0] - size.contentSize[0] / 2, point[1] + 10 ]
+  },
 }
 
 const geo = {
@@ -64,6 +67,7 @@ const scatterCfg = {
   },
   tooltip: {
     trigger: 'item',
+    position: 'top',
     formatter(param) {
       return `${param.marker}城市: ${param.name}<br />${param.marker}${param.componentIndex === 0 ? '被攻击次数' : '攻击次数'}: ${param.data.value[2]}`
     },

@@ -36,6 +36,7 @@ class Home extends IntlComponent {
       title: '源IP',
       key: 'src',
       align: 'center',
+      width: '15%',
       render: (text) => (
         <div className={style.tableSrc}>
           {text}
@@ -47,6 +48,7 @@ class Home extends IntlComponent {
       title: '目的IP',
       key: 'dest',
       align: 'center',
+      width: '15%',
       render: (text) => (
         <div className={style.tableDest}>
           {text}
@@ -58,18 +60,26 @@ class Home extends IntlComponent {
       title: '时间',
       key: 'time',
       align: 'center',
+      width: '16%',
       render: (text) => (
         <Tag color="#87d068">
           {zoneTransfer(text, 'YYYY-MM-DD HH:mm:ss')}
         </Tag>
       )
     },
-    { dataIndex: 'event_type', title: '事件类型', key: 'event_type', align: 'center' },
+    {
+      dataIndex: 'event_type',
+      title: '事件类型',
+      key: 'event_type',
+      align: 'center',
+      width: '10%',
+    },
     {
       dataIndex: 'action',
       title: '模式',
       key: 'action',
       align: 'center',
+      width: '10%',
       render: (text) => {
         if (text === 'allowed') {
           return '告警模式'
@@ -82,10 +92,11 @@ class Home extends IntlComponent {
       title: '告警信息',
       key: 'alert_message',
       align: 'center',
+      width: '34%',
       render: (text) => {
         return (
           <Tooltip title={text}>
-            {ellipsis(text, 20)}
+            {ellipsis(text, 40)}
           </Tooltip>
         )
       }
@@ -106,6 +117,12 @@ class Home extends IntlComponent {
   //   this.trendChart.setOption(trendChartOption(this.props.data))
   // }
 
+  renderPagination = () => {
+    return {
+      pageSize: 10,
+    }
+  }
+
   render() {
     let { mapDetail } = this.props
     if (mapDetail.length !== 0) {
@@ -121,6 +138,8 @@ class Home extends IntlComponent {
       })
     }
 
+    console.info('-----------', mapDetail.length)
+
     return (
       <ContentBox>
         <Subheader>概况</Subheader>
@@ -129,7 +148,8 @@ class Home extends IntlComponent {
             bordered
             columns={this.columns}
             dataSource={mapDetail}
-            rowKey={(r) => r.src}
+            pagination={this.renderPagination}
+            // rowKey={(r) => r.src}
           />
         </div>
         <Subheader>趋势图</Subheader>
