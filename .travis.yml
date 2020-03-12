@@ -10,6 +10,13 @@ script:
 - npm run build
 before_deploy:
 - tar -zcvf dist.tar.gz ./dist/*
+notifications:
+  email:
+    recipients:
+    - co0ontty@aliyun.com
+    - 1131278521@qq.com
+    on_success: always
+    on_failure: always
 deploy:
   provider: releases
   skip_cleanup: true
