@@ -1,5 +1,5 @@
 /**
- * @summary 奖品库管理
+ * @summary 规则管理
  */
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'

@@ -20,12 +20,8 @@ export default {
   // nav
   home: '地图大屏',
   attackDetails: '攻击详情',
-  overview: '攻击流量(ip)',
-  antivityCreate: '活动创建',
-  myActivity: '我的活动',
-  prizeLibraryMange: '奖品库管理',
-  activityApprove: '活动审批',
-  activitySettings: '活动通用设置',
+  overview: '攻击流量',
+  prizeLibraryMange: '规则管理',
 
   // login
   login: '登录',

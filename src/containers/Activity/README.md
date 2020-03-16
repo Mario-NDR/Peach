@@ -1,9 +1,5 @@
 ```
 .
-├── Overview            攻击流量（ip）
-├── Create              活动创建
-├── Mine                我的活动
-├── PrizeLibrary        奖品库管理
-├── Approve             活动管理/审批
-└── Settings            活动通用设置
+├── Overview            攻击流量
+├── PrizeLibrary        规则管理
 ```

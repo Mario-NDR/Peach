@@ -1,12 +1,11 @@
 /**
- * @sumary 攻击详情 攻击流量（ip）
+ * @sumary 攻击详情 攻击流量
  */
 import React from 'react'
 // import PropTypes from 'prop-types'
 import { Table, Tooltip, Tag } from 'antd'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-// import echarts from 'echarts'
 
 import moment from 'moment'
 
@@ -15,7 +14,6 @@ import ContentBox from 'Components/ContentBox'
 import Subheader from 'Components/Subheader'
 import { zoneTransfer } from 'Utils/time'
 import { ellipsis } from 'Utils/string'
-// import trendChartOption from './option'
 
 import * as actions from '../../../Home/action'
 import style from './style.scss'
@@ -60,7 +58,7 @@ class Home extends IntlComponent {
       title: '时间',
       key: 'time',
       align: 'center',
-      width: '16%',
+      width: '15%',
       render: (text) => (
         <Tag color="#87d068">
           {zoneTransfer(text, 'YYYY-MM-DD HH:mm:ss')}
@@ -68,11 +66,16 @@ class Home extends IntlComponent {
       )
     },
     {
-      dataIndex: 'event_type',
-      title: '事件类型',
-      key: 'event_type',
+      dataIndex: 'client_ip',
+      title: '客户端',
+      key: 'client_ip',
       align: 'center',
-      width: '10%',
+      width: '15%',
+      render: (text) => (
+        <div className={style.tableDest}>
+          {text}
+        </div>
+      )
     },
     {
       dataIndex: 'action',
@@ -92,7 +95,7 @@ class Home extends IntlComponent {
       title: '告警信息',
       key: 'alert_message',
       align: 'center',
-      width: '34%',
+      width: '30%',
       render: (text) => {
         return (
           <Tooltip title={text}>
@@ -103,23 +106,14 @@ class Home extends IntlComponent {
     },
   ]
 
-  // componentDidMount() {
-  //   this.props.actions.getMapDetailData()
-  // }
-
   componentDidMount() {
     this.props.actions.getMapDetailData()
-    // this.trendChart = echarts.init(document.querySelector('#overviewMap'))
-    // this.trendChart.setOption(trendChartOption(this.props.data))
   }
-
-  // componentDidUpdate() {
-  //   this.trendChart.setOption(trendChartOption(this.props.data))
-  // }
 
   renderPagination = () => {
     return {
-      pageSize: 10,
+      pageSize: 20,
+      showTotal: (totals) => `共 ${totals} 条数据`
     }
   }
 
@@ -131,29 +125,25 @@ class Home extends IntlComponent {
           src: item.src.ip,
           dest: item.dest.ip,
           time: item.time,
-          event_type: item.event_type,
+          client_ip: item.client_ip,
           action: item.action,
           alert_message: item.alert_message,
         }
       })
     }
 
-    console.info('-----------', mapDetail.length)
-
     return (
       <ContentBox>
-        <Subheader>概况</Subheader>
+        <Subheader>攻击流量概况</Subheader>
         <div className={style.tableList}>
           <Table
             bordered
             columns={this.columns}
             dataSource={mapDetail}
-            pagination={this.renderPagination}
+            pagination={this.renderPagination()}
             // rowKey={(r) => r.src}
           />
         </div>
-        <Subheader>趋势图</Subheader>
-        {/* <section><div id="trendChart" /></section> */}
       </ContentBox>
     )
   }
@@ -161,7 +151,6 @@ class Home extends IntlComponent {
 
 function mapStateToProps(state) {
   return {
-    // attackTrafficData: state.attackTrafficReducer.attackTrafficData,
     mapDetail: state.mapReducer.mapDetail,
   }
 }

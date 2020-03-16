@@ -1,5 +1,5 @@
 /**
- * @summary 攻击流量（ip）
+ * @summary 攻击流量
  */
 import React from 'react'
 
@@ -23,7 +23,7 @@ class Overview extends IntlComponent {
         <Bread
           items={[
             { content: '攻击详情' },
-            { content: '攻击流量（ip）' },
+            { content: '攻击流量' },
           ]}
         />
         <Home />

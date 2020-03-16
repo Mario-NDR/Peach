@@ -6,11 +6,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Table, Button, Input } from 'antd'
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
 import Bread from 'Components/Bread'
 import Subheader from 'Components/Subheader'
 
+import * as actions from '../action'
 import style from './style.scss'
 
 class PrizeTable extends IntlComponent {
@@ -24,114 +28,42 @@ class PrizeTable extends IntlComponent {
 
   columns = [
     {
-      title: '奖品编号',
-      dataIndex: 'serialNumber',
-      key: 'serialNumber',
+      title: '规则编号',
+      dataIndex: 'sid',
+      key: 'sid',
     },
     {
-      title: '奖品名称',
-      dataIndex: 'namePrize',
-      key: 'namePrize',
+      title: '协议',
+      dataIndex: 'content_type',
+      key: 'content_type',
     },
     {
-      title: '奖品类型',
-      dataIndex: 'typePrize',
-      key: 'typePrize',
-    },
-    {
-      title: '奖品单价',
-      dataIndex: 'price',
-      key: 'price',
-    },
-    {
-      title: '奖品库存',
-      dataIndex: 'inventory',
-      key: 'inventory',
-    },
-    {
-      title: '奖品发放记录',
-      dataIndex: 'record',
-      key: 'record',
-      render: () => {
-        return (
-          <a role="button" href="#">查看发放记录</a>
-        )
-      }
-    },
-    {
-      title: '操作',
-      dataIndex: 'operation',
-      key: 'operation',
-      render: () => {
-        return (
-          <div>
-            <a role="button" href="#">编辑</a>
-            <a role="button" href="#" style={{ marginLeft: 10 }}>删除</a>
-          </div>
-        )
-      }
+      title: '规则信息',
+      dataIndex: 'msg',
+      key: 'msg',
     },
   ]
 
-  dataSource = [
-    {
-      serialNumber: 'gt001',
-      namePrize: '积分',
-      typePrize: '虚拟奖品',
-      price: '0.01',
-      inventory: '无限制',
-    },
-    {
-      serialNumber: 'gt002',
-      namePrize: '积分',
-      typePrize: '虚拟奖品',
-      price: '0.01',
-      inventory: '无限制',
-    },
-    {
-      serialNumber: 'gt003',
-      namePrize: '积分',
-      typePrize: '虚拟奖品',
-      price: '0.01',
-      inventory: '无限制',
-    },
-    {
-      serialNumber: 'gt004',
-      namePrize: '积分',
-      typePrize: '虚拟奖品',
-      price: '0.01',
-      inventory: '无限制',
-    },
-    {
-      serialNumber: 'gt005',
-      namePrize: '积分',
-      typePrize: '虚拟奖品',
-      price: '0.01',
-      inventory: '无限制',
-    },
-    {
-      serialNumber: 'gt006',
-      namePrize: '积分',
-      typePrize: '虚拟奖品',
-      price: '0.01',
-      inventory: '无限制',
-    },
-  ]
+  componentDidMount() {
+    this.props.actions.getRules({ server: 'server' })
+  }
 
   render() {
 
+    const { rules } = this.props
     const { type } = this.state
+
 
     return (
       <div className={style.prizeTable}>
         <Bread
           items={[
-            { content: '活动' },
-            { content: '奖品库管理' },
+            { content: '规则管理' },
+            { content: '服务端规则' },
           ]}
         />
         <ContentBox>
-          <Subheader>奖品库管理</Subheader>
+          <Subheader>已有规则展示</Subheader>
           <div className={style.search}>
             <div>
               奖品编号：
@@ -162,7 +94,12 @@ class PrizeTable extends IntlComponent {
             <Button size="large" type="primary">添加奖品</Button>
           </div>
           <div className={style.prizeTable}>
-            <Table columns={this.columns} dataSource={this.dataSource} size="middle" />
+            <Table
+              bordered
+              columns={this.columns}
+              dataSource={rules}
+              rowKey={(r) => r.sid}
+            />
           </div>
         </ContentBox>
       </div>
@@ -170,4 +107,15 @@ class PrizeTable extends IntlComponent {
   }
 }
 
-export default PrizeTable
+function mapStateToProps(state) {
+  return {
+    rules: state.rulesReducer.rules,
+  }
+}
+
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actions, dispatch) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrizeTable)

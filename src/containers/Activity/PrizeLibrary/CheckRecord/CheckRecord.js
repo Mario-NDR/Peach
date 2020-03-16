@@ -1,5 +1,5 @@
 /**
- * @summary 奖品库管理
+ * @summary 规则管理
  */
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -232,9 +232,9 @@ class CheckRecord extends IntlComponent {
         <div className={style.viewRecord}>
           <Bread
             items={[
-              { content: '活动' },
-              { content: '奖品库管理' },
-              { content: '查看发奖记录' },
+              { content: '规则管理' },
+              { content: '服务端规则' },
+              { content: '规则下发' },
             ]}
           />
           <ContentBox>
