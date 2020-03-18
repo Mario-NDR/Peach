@@ -193,7 +193,7 @@ export default (data) => {
     geo,
     tooltip,
     formatter(param) {
-      return `<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[0].color};"></span>${param.data.country[0]}: ${param.data.city[0]}<span style="color: #FF6600"> ———— </span><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[1].color};"></span>${param.data.country[1]}: ${param.data.city[1]}<br />攻击者端口: ${param.data.port[0]}<br />被攻击者端口: ${param.data.port[1]}<br />时间: ${zoneTransfer(param.data.date, 'YYYY-MM-DD HH:mm:ss')}<br />攻击类型: ${param.data.type}<br />详情: ${param.data.message}`
+      return `<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[0].color};"></span>${param.data.country[0]}: ${param.data.city[0]}<span style="color: #FF6600"> ———— </span><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[1].color};"></span>${param.data.country[1]}: ${param.data.city[1]}<br />源IP: ${param.data.port[0]}<br />目的IP: ${param.data.port[1]}<br />时间: ${zoneTransfer(param.data.date, 'YYYY-MM-DD HH:mm:ss')}<br />模式: ${param.data.type === 'alert' ? '检测模式' : '阻断模式'}<br />详情: ${param.data.message}`
     },
     series: [
       {
