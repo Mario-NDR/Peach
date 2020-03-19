@@ -178,7 +178,7 @@ const renderLinesData = data => {
       ],
       city: [ item.src.city, item.dest.city ],
       country: [ item.src.country, item.dest.country ],
-      port: [ item.src.src_port, item.dest.dest_port ],
+      port: [ item.src.ip, item.dest.ip ],
       message: item.alert_message,
       date: item.time,
       type: item.event_type,
