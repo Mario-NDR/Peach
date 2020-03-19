@@ -19,16 +19,10 @@ const defaultOpenKeys = navNodes.map(navNode => navNode.name)
 
 class Nav extends React.Component {
   static propTypes = {
-    // role: PropTypes.any,
-    // roleResources: PropTypes.object,
-    // loadRoleResources: PropTypes.func,
     location: PropTypes.object,
   }
 
   static defaultProps = {
-    // role: null,
-    // roleResources: {},
-    // loadRoleResources: null,
     location: {},
   }
 

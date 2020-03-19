@@ -15,24 +15,9 @@
 }
 
 .wrapperNav {
-  // width: 255px;
-  // height: calc(100% - 60px);
-  // margin-top: 60px !important;
   min-height: 400px;
 
   :global(.ant-menu) {
     height: 100%;
   }
-
-  // :global(.ant-menu-dark) {
-  //   background: $dark !important;
-  // }
-
-  // :global(.ant-menu-sub) {
-  //   background: $gray !important;
-  // }
-
-  // :global(.ant-menu-dark .ant-menu-item > a) {
-  //   color: rgba(255, 255, 255, 0.85) !important;
-  // }
 }

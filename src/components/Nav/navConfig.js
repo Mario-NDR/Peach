@@ -1,5 +1,4 @@
 import React from 'react'
-import { Icon } from 'antd'
 import { FormattedMessage } from 'react-intl'
 
 export default [
@@ -7,7 +6,7 @@ export default [
     name: 'home',
     title: (
       <span>
-        <Icon type="home" />
+        <img src="../../images/map.ico" alt="" style={{ width: '10%', marginRight: 10 }} />
         <FormattedMessage id="home" />
       </span>
     ),
@@ -15,17 +14,25 @@ export default [
     permissions: [ 'admin', 'user' ],
   },
   {
-    name: 'attackDetails',
+    name: 'overview',
     title: (
       <span>
-        <Icon type="appstore-o" />
-        <FormattedMessage id="attackDetails" />
+        <img src="../../images/flow.ico" alt="" style={{ width: '10%', marginRight: 10 }} />
+        <FormattedMessage id="overview" />
       </span>
     ),
-    menus: [
-      { title: 'overview', linkTo: '/app/activity/overview', permissions: [ 'admin', 'user' ] },
-      { title: 'prizeLibraryMange', linkTo: '/app/activity/prizeLibrary', permissions: [ 'admin', 'user' ] },
-    ],
+    linkTo: '/app/activity/overview',
+    permissions: [ 'admin', 'user' ],
+  },
+  {
+    name: 'prizeLibraryMange',
+    title: (
+      <span>
+        <img src="../../images/rules.ico" alt="" style={{ width: '10%', marginRight: 10 }} />
+        <FormattedMessage id="prizeLibraryMange" />
+      </span>
+    ),
+    linkTo: '/app/activity/prizeLibrary',
     permissions: [ 'admin', 'user' ],
   },
 ]

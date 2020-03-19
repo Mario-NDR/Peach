@@ -42,7 +42,7 @@ class Map extends IntlComponent {
 
   render() {
     return (
-      <section className={style.mapWrapper}><div id="overviewMap" style={{ width: '84%', height: '690%' }} /></section>
+      <section className={style.mapWrapper}><div id="overviewMap" style={{ width: '100%', height: '750%' }} /></section>
     )
   }
 }

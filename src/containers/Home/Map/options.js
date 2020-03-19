@@ -43,7 +43,7 @@ const geo = {
   },
   itemStyle: { // 地图区域的多边形 图形样式
     normal: {
-      areaColor: 'rgb(0, 204, 153)',
+      areaColor: 'rgb(90, 152, 244)',
       borderColor: 'rgb(230, 234, 238)'
     },
     emphasis: {
