@@ -18,9 +18,9 @@ export default {
   modifyPassword: '修改密码',
 
   // nav
-  home: '地图大屏',
-  attackDetails: '攻击详情',
-  overview: '攻击流量',
+  home: '态势感知',
+  attackDetails: '入侵防御',
+  overview: '入侵防御',
   prizeLibraryMange: '规则管理',
 
   // login

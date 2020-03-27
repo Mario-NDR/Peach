@@ -22,8 +22,8 @@ class Overview extends IntlComponent {
       <div className={style.overview}>
         <Bread
           items={[
-            { content: '攻击详情' },
-            { content: '攻击流量' },
+            { content: '入侵防御' },
+            { content: '防御日志' },
           ]}
         />
         <Home />

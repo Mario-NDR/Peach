@@ -72,11 +72,25 @@ class PrizeTable extends IntlComponent {
       align: 'center',
       width: '8%',
       render: (text) => {
-        return (
-          <Tag color="geekblue">
-          {text}
-          </Tag>
-        )
+        if (text === '木马活动') {
+          return (
+            <Tag color="volcano">
+            {text}
+            </Tag>
+          )
+        } else if (text === '网络扫描') {
+          return (
+            <Tag color="lime">
+            {text}
+            </Tag>
+          )
+        } else {
+          return (
+            <Tag color="cyan">
+            {text}
+            </Tag>
+          )
+        }
       }
     },
   ]
