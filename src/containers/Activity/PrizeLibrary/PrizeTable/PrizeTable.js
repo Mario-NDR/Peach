@@ -110,24 +110,17 @@ class PrizeTable extends IntlComponent {
         <Bread
           items={[
             { content: '规则管理' },
-            { content: '服务端规则' },
+            { content: '全部规则' },
           ]}
         />
         <ContentBox>
-          <Subheader>已有规则展示</Subheader>
+          <Subheader>全部规则</Subheader>
           <div className={style.search}>
             <div>
-              奖品编号：
+              关键字搜索：
             <Input
               style={{ width: 250 }}
-              placeholder="输入奖品编号"
-            />
-            </div>
-            <div>
-              奖品名称：
-            <Input
-              style={{ width: 250 }}
-              placeholder="输入奖品名称，支持模糊搜索"
+              placeholder="输入规则关键字，支持模糊搜索"
             />
             </div>
             <div>
@@ -140,9 +133,8 @@ class PrizeTable extends IntlComponent {
           <div className={style.operation} align="right">
             <Button size="large" onClick={() => window.history.go(-1)}>返回</Button>
             <Link to={`/app/activity/prizeLibrary/${type}`}>
-              <Button type="primary" size="large" ghost>查看发奖记录</Button>
+              <Button type="primary" size="large" ghost>已应用规则</Button>
             </Link>
-            <Button size="large" type="primary">添加奖品</Button>
           </div>
           <div className={style.prizeTable}>
             <Table

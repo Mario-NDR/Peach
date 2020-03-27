@@ -1,5 +1,5 @@
 <h1 align="center">
-  蔚蓝盾 网络监测实时响应
+  网络监测实时响应
 </h1>
 
 <p align="center">
