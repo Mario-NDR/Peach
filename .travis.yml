@@ -14,7 +14,6 @@ notifications:
   email:
     recipients:
     - co0ontty@gmail.com
-    - 1131278521@qq.com
     on_success: always
     on_failure: always
 deploy:
