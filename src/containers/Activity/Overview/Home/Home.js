@@ -36,7 +36,7 @@ class Home extends IntlComponent {
       align: 'center',
       width: '17%',
       render: (text) => (
-        <div className={style.tableDest}>
+        <div className={style.tableTime}>
           {zoneTransfer(text, 'YYYY-MM-DD HH:mm:ss')}
         </div>
       )
@@ -85,7 +85,7 @@ class Home extends IntlComponent {
       width: '30%',
       render: (text) => {
         return (
-          <Tooltip title={text}>
+          <Tooltip title={text} className={style.tableTime}>
             {ellipsis(text, 40)}
           </Tooltip>
         )
@@ -100,13 +100,13 @@ class Home extends IntlComponent {
       render: (text) => {
         if (text === 'allowed') {
           return (
-          <Tag color="#CC0033">
+          <Tag color="volcano">
             {'告警模式'}
           </Tag>
           )
         }
         return (
-          <Tag color="#6666FF">
+          <Tag color="geekblue">
             {'拦截模式'}
           </Tag>
         )

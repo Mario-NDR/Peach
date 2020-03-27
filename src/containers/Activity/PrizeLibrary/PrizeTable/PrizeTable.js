@@ -4,7 +4,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import { Table, Button, Input } from 'antd'
+import { Table, Button, Input, Tag } from 'antd'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -31,16 +31,53 @@ class PrizeTable extends IntlComponent {
       title: '规则编号',
       dataIndex: 'sid',
       key: 'sid',
-    },
-    {
-      title: '协议',
-      dataIndex: 'content_type',
-      key: 'content_type',
+      align: 'center',
+      width: '10%',
+      render: (text) => (
+        <div className={style.tableText}>
+          {text}
+        </div>
+      )
     },
     {
       title: '规则信息',
       dataIndex: 'msg',
       key: 'msg',
+      align: 'center',
+      render: (text) => (
+        <div className={style.tableText}>
+          {text}
+        </div>
+      )
+    },
+    {
+      title: '协议',
+      dataIndex: 'content_type',
+      key: 'content_type',
+      align: 'center',
+      width: '8%',
+      render: (text) => {
+        return (
+          <Tag color="geekblue">
+          {text}
+          </Tag>
+        )
+      }
+    },
+
+    {
+      title: '类型',
+      dataIndex: 'class_type',
+      key: 'class_type',
+      align: 'center',
+      width: '8%',
+      render: (text) => {
+        return (
+          <Tag color="geekblue">
+          {text}
+          </Tag>
+        )
+      }
     },
   ]
 
