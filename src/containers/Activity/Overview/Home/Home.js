@@ -30,6 +30,18 @@ class Home extends IntlComponent {
 
   columns = [
     {
+      dataIndex: 'time',
+      title: '时间',
+      key: 'time',
+      align: 'center',
+      width: '17%',
+      render: (text) => (
+        <div className={style.tableDest}>
+          {zoneTransfer(text, 'YYYY-MM-DD HH:mm:ss')}
+        </div>
+      )
+    },
+    {
       dataIndex: 'src',
       title: '源IP',
       key: 'src',
@@ -54,18 +66,6 @@ class Home extends IntlComponent {
       )
     },
     {
-      dataIndex: 'time',
-      title: '时间',
-      key: 'time',
-      align: 'center',
-      width: '15%',
-      render: (text) => (
-        <Tag color="#87d068">
-          {zoneTransfer(text, 'YYYY-MM-DD HH:mm:ss')}
-        </Tag>
-      )
-    },
-    {
       dataIndex: 'client_ip',
       title: '客户端',
       key: 'client_ip',
@@ -78,19 +78,6 @@ class Home extends IntlComponent {
       )
     },
     {
-      dataIndex: 'action',
-      title: '模式',
-      key: 'action',
-      align: 'center',
-      width: '10%',
-      render: (text) => {
-        if (text === 'allowed') {
-          return '告警模式'
-        }
-        return '阻止模式'
-      }
-    },
-    {
       dataIndex: 'alert_message',
       title: '告警信息',
       key: 'alert_message',
@@ -101,6 +88,27 @@ class Home extends IntlComponent {
           <Tooltip title={text}>
             {ellipsis(text, 40)}
           </Tooltip>
+        )
+      }
+    },
+    {
+      dataIndex: 'action',
+      title: '模式',
+      key: 'action',
+      align: 'center',
+      width: '8%',
+      render: (text) => {
+        if (text === 'allowed') {
+          return (
+          <Tag color="#CC0033">
+            {'告警模式'}
+          </Tag>
+          )
+        }
+        return (
+          <Tag color="#6666FF">
+            {'拦截模式'}
+          </Tag>
         )
       }
     },
