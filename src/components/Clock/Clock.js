@@ -46,7 +46,6 @@ class Clock extends IntlComponent {
     const { h, m, s } = this.state
     return (
       <div className={style.clock}>
-        <Icon type="clock-circle" style={{ fontSize: '24px', marginRight: 10, lineHeight: '60px' }} />
         <span>{ zeroPad(h) }</span>
         <span>:</span>
         <span>{ zeroPad(m) }</span>

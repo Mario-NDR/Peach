@@ -54,18 +54,20 @@ class CheckRecord extends IntlComponent {
       )
     },
     {
-      title: '防御方式',
+      title: '防御策略',
       dataIndex: 'type',
       key: 'type',
       align: 'center',
       render: (text) => {
         if (text === 'alert') {
+          text = '告警'
           return (
             <Tag color="volcano">
             {text}
             </Tag>
           )
         } else {
+          text = '拦截'
           return (
             <Tag color="geekblue">
             {text}
@@ -75,7 +77,7 @@ class CheckRecord extends IntlComponent {
       }
     },
     {
-      title: '协议类型',
+      title: '传输协议',
       dataIndex: 'content_type',
       key: 'content_type',
       align: 'center',
@@ -88,7 +90,7 @@ class CheckRecord extends IntlComponent {
       }
     },
     {
-      title: '类型',
+      title: '漏洞类型',
       dataIndex: 'class_type',
       key: 'class_type',
       align: 'center',

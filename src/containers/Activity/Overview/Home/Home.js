@@ -34,10 +34,22 @@ class Home extends IntlComponent {
       title: '时间',
       key: 'time',
       align: 'center',
-      width: '17%',
+      // width: '17%',
       render: (text) => (
         <div className={style.tableTime}>
           {zoneTransfer(text, 'YYYY-MM-DD HH:mm:ss')}
+        </div>
+      )
+    },
+    {
+      dataIndex: 'client_ip',
+      title: '客户端',
+      key: 'client_ip',
+      align: 'center',
+      // width: '15%',
+      render: (text) => (
+        <div className={style.tableDest}>
+          {text}
         </div>
       )
     },
@@ -46,7 +58,7 @@ class Home extends IntlComponent {
       title: '源IP',
       key: 'src',
       align: 'center',
-      width: '15%',
+      // width: '15%',
       render: (text) => (
         <div className={style.tableSrc}>
           {text}
@@ -58,19 +70,7 @@ class Home extends IntlComponent {
       title: '目的IP',
       key: 'dest',
       align: 'center',
-      width: '15%',
-      render: (text) => (
-        <div className={style.tableDest}>
-          {text}
-        </div>
-      )
-    },
-    {
-      dataIndex: 'client_ip',
-      title: '客户端',
-      key: 'client_ip',
-      align: 'center',
-      width: '15%',
+      // width: '15%',
       render: (text) => (
         <div className={style.tableDest}>
           {text}
@@ -82,7 +82,7 @@ class Home extends IntlComponent {
       title: '告警信息',
       key: 'alert_message',
       align: 'center',
-      width: '30%',
+      // width: '30%',
       render: (text) => {
         return (
           <Tooltip title={text} className={style.tableTime}>
@@ -93,23 +93,59 @@ class Home extends IntlComponent {
     },
     {
       dataIndex: 'action',
-      title: '模式',
+      title: '防御策略',
       key: 'action',
       align: 'center',
-      width: '8%',
+      // width: '8%',
       render: (text) => {
+        console.log(text)
         if (text === 'allowed') {
           return (
           <Tag color="volcano">
-            {'告警模式'}
+            {'仅告警'}
           </Tag>
           )
         }
         return (
           <Tag color="geekblue">
-            {'拦截模式'}
+            {'已拦截'}
           </Tag>
         )
+      }
+    },
+    {
+      dataIndex: 'category',
+      title: '攻击类型',
+      key: 'category',
+      align: 'center',
+      // width: '8%',
+      render: (text) => {
+        console.log(text)
+        if (text === 'A Network Trojan was detected') {
+          return (
+            <Tag color="volcano">
+            {'木马活动'}
+            </Tag>
+          )
+        } else if (text === 'Detection of a Network Scan') {
+          return (
+            <Tag color="lime">
+            {'网络扫描'}
+            </Tag>
+          )
+        } else if (text === 'Executable code was detected') {
+          return (
+            <Tag color="cyan">
+            {'命令执行'}
+            </Tag>
+          )
+        } else {
+          return (
+            <Tag color="cyan">
+            {'其他类型'}
+            </Tag>
+          )
+        }
       }
     },
   ]
@@ -136,13 +172,14 @@ class Home extends IntlComponent {
           client_ip: item.client_ip,
           action: item.action,
           alert_message: item.alert_message,
+          category: item.category
         }
       })
     }
 
     return (
       <ContentBox>
-        <Subheader>攻击流量概况</Subheader>
+        <Subheader>入侵防御记录</Subheader>
         <div className={style.tableList}>
           <Table
             bordered

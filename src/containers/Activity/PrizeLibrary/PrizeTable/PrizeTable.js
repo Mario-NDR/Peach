@@ -51,7 +51,7 @@ class PrizeTable extends IntlComponent {
       )
     },
     {
-      title: '协议',
+      title: '传输协议',
       dataIndex: 'content_type',
       key: 'content_type',
       align: 'center',
@@ -66,7 +66,7 @@ class PrizeTable extends IntlComponent {
     },
 
     {
-      title: '类型',
+      title: '漏洞类型',
       dataIndex: 'class_type',
       key: 'class_type',
       align: 'center',
