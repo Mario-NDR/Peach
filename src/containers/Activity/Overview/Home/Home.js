@@ -136,7 +136,7 @@ class Home extends IntlComponent {
         } else if (text === 'Executable code was detected') {
           return (
             <Tag color="cyan">
-            {'命令执行'}
+            {'恶意代码'}
             </Tag>
           )
         } else {
