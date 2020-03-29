@@ -136,15 +136,15 @@ const linesCfg = {
   effect: {
     show: true,
     period: 20, // 箭头指向速度，值越小速度越快
-    trailLength: 0.002, // 特效尾迹长度[0,1]值越大，尾迹越长重
-    symbol: 'arrow', // 箭头图标
-    symbolSize: 6, // 图标大小
+    trailLength: 0.2, // 特效尾迹长度[0,1]值越大，尾迹越长重
+    symbol: 'roundRect', // 箭头图标
+    symbolSize: 5, // 图标大小
   },
   zlevel: 1,
   lineStyle: {
     normal: {
-      width: 1, // 尾迹线条宽度
-      opacity: 0.5, // 尾迹线条透明度
+      width: 2, // 尾迹线条宽度
+      opacity: 0, // 尾迹线条透明度
       curveness: 0.3, // 尾迹线条曲直度
       color: {
         type: 'linear',
