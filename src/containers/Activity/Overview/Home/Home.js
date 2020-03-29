@@ -101,7 +101,7 @@ class Home extends IntlComponent {
         console.log(text)
         if (text === 'allowed') {
           return (
-          <Tag color="orange">
+          <Tag color="red">
             {'仅告警'}
           </Tag>
           )
