@@ -74,7 +74,7 @@ class PrizeTable extends IntlComponent {
       render: (text) => {
         if (text === '木马活动') {
           return (
-            <Tag color="volcano">
+            <Tag color="red">
             {text}
             </Tag>
           )

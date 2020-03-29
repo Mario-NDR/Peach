@@ -101,7 +101,7 @@ class Home extends IntlComponent {
         console.log(text)
         if (text === 'allowed') {
           return (
-          <Tag color="red">
+          <Tag color="volcano">
             {'仅告警'}
           </Tag>
           )
@@ -123,7 +123,7 @@ class Home extends IntlComponent {
         console.log(text)
         if (text === 'A Network Trojan was detected') {
           return (
-            <Tag color="volcano">
+            <Tag color="red">
             {'木马活动'}
             </Tag>
           )

@@ -62,7 +62,7 @@ class CheckRecord extends IntlComponent {
         if (text === 'alert') {
           text = '告警'
           return (
-            <Tag color="red">
+            <Tag color="volcano">
             {text}
             </Tag>
           )
@@ -97,7 +97,7 @@ class CheckRecord extends IntlComponent {
       render: (text) => {
         if (text === '木马活动') {
           return (
-            <Tag color="volcano">
+            <Tag color="red">
             {text}
             </Tag>
           )
