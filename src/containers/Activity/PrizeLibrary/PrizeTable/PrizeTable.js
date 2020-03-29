@@ -86,7 +86,7 @@ class PrizeTable extends IntlComponent {
           )
         } else {
           return (
-            <Tag color="cyan">
+            <Tag color="orange">
             {text}
             </Tag>
           )

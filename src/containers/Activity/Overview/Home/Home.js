@@ -101,13 +101,13 @@ class Home extends IntlComponent {
         console.log(text)
         if (text === 'allowed') {
           return (
-          <Tag color="volcano">
+          <Tag color="orange">
             {'仅告警'}
           </Tag>
           )
         }
         return (
-          <Tag color="geekblue">
+          <Tag color="green">
             {'已拦截'}
           </Tag>
         )
@@ -135,13 +135,13 @@ class Home extends IntlComponent {
           )
         } else if (text === 'Executable code was detected') {
           return (
-            <Tag color="cyan">
+            <Tag color="orange">
             {'恶意代码'}
             </Tag>
           )
         } else {
           return (
-            <Tag color="cyan">
+            <Tag color="orange">
             {'其他类型'}
             </Tag>
           )

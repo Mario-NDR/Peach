@@ -135,8 +135,8 @@ const linesCfg = {
   // polyline: false,
   effect: {
     show: true,
-    period: 4, // 箭头指向速度，值越小速度越快
-    trailLength: 0.0002, // 特效尾迹长度[0,1]值越大，尾迹越长重
+    period: 20, // 箭头指向速度，值越小速度越快
+    trailLength: 0.002, // 特效尾迹长度[0,1]值越大，尾迹越长重
     symbol: 'arrow', // 箭头图标
     symbolSize: 6, // 图标大小
   },
@@ -144,7 +144,7 @@ const linesCfg = {
   lineStyle: {
     normal: {
       width: 1, // 尾迹线条宽度
-      opacity: 1, // 尾迹线条透明度
+      opacity: 0.5, // 尾迹线条透明度
       curveness: 0.3, // 尾迹线条曲直度
       color: {
         type: 'linear',
@@ -157,6 +157,8 @@ const linesCfg = {
         }, {
           // offset: 1, color: 'rgb(162, 159, 160)' // 100% 处的颜色
           offset: 1, color: 'rgb(204, 0, 102)' // 100% 处的颜色
+          // offset: 1, color: 'rgb(255, 255, 255)' // 100% 处的颜色
+
         } ],
         global: false // 缺省为 false
       },
@@ -181,7 +183,7 @@ const renderLinesData = data => {
       port: [ item.src.ip, item.dest.ip ],
       message: item.alert_message,
       date: item.time,
-      type: item.event_type,
+      action: item.action,
     })
   })
   return Data
@@ -193,7 +195,7 @@ export default (data) => {
     geo,
     tooltip,
     formatter(param) {
-      return `<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[0].color};"></span>${param.data.country[0]}: ${param.data.city[0]}<span style="color: #FF6600"> ———— </span><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[1].color};"></span>${param.data.country[1]}: ${param.data.city[1]}<br />源IP: ${param.data.port[0]}<br />目的IP: ${param.data.port[1]}<br />时间: ${zoneTransfer(param.data.date, 'YYYY-MM-DD HH:mm:ss')}<br />模式: ${param.data.type === 'alert' ? '检测模式' : '阻断模式'}<br />详情: ${param.data.message}`
+      return `<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[0].color};"></span>${param.data.country[0]}: ${param.data.city[0]}<span style="color: #FF6600"> ———— </span><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color: ${param.color.colorStops[1].color};"></span>${param.data.country[1]}: ${param.data.city[1]}<br />源IP: ${param.data.port[0]}<br />目的IP: ${param.data.port[1]}<br />时间: ${zoneTransfer(param.data.date, 'YYYY-MM-DD HH:mm:ss')}<br />防御策略: ${param.data.action === 'blocked' ? '已拦截' : '仅告警'}<br /> ${param.data.message}`
     },
     series: [
       {
