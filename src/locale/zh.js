@@ -19,9 +19,10 @@ export default {
 
   // nav
   home: '态势感知',
-  attackDetails: '入侵防御',
+  attackDetails: '规则策略',
   overview: '入侵防御',
-  prizeLibraryMange: '规则管理',
+  allRules: '全部规则',
+  clientRules: '防御策略',
 
   // login
   login: '登录',

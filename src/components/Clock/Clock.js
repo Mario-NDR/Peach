@@ -2,7 +2,7 @@
  * @summary 时钟组件
  */
 import React from 'react'
-import { Icon } from 'antd'
+// import { Icon } from 'antd'
 
 import { IntlComponent } from 'Components/Common'
 import { zeroPad } from 'Utils/number'

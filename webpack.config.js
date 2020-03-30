@@ -9,7 +9,8 @@ const devtool = __DEV__ ? 'eval-source-map' : 'cheap-module-source-map'
 // const devtool = __DEV__ ? 'eval-source-map' : 'cheap-eval-source-map'
 
 const enviroment = process.env.NODE_ENV
-const host = '0.0.0.0'
+// const host = '0.0.0.0'
+const host = 'localhost'
 const port = 9955
 // const apiProxy = 'http://127.0.0.1:5000/'
 const apiProxy = 'http://47.97.194.105:5000/'

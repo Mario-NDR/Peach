@@ -6,8 +6,8 @@ import { Switch, Route } from 'react-router-dom'
 
 import { IntlComponent } from 'Components/Common'
 
-import PrizeTable from './PrizeTable'
-import CheckRecord from './CheckRecord'
+import AllRules from './AllRules'
+import ClientRules from './ClientRules'
 
 class PrizeLibrary extends IntlComponent {
 
@@ -19,8 +19,8 @@ class PrizeLibrary extends IntlComponent {
   render() {
     return (
       <Switch>
-        <Route path="/app/activity/prizeLibrary" component={PrizeTable} exact />
-        <Route path="/app/activity/prizeLibrary/prizeRecord" component={CheckRecord} exact />
+        <Route path="/app/activity/prizeLibrary" component={AllRules} exact />
+        <Route path="/app/activity/prizeRecord" component={ClientRules} exact />
         <Route component={Error} />
       </Switch>
     )

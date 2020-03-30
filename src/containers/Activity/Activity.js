@@ -8,7 +8,7 @@ import { IntlComponent } from 'Components/Common'
 import Error from 'Containers/Error'
 
 import Overview from './Overview'
-import PrizeLibrary from './PrizeLibrary'
+import Rules from './Rules'
 
 class Activity extends IntlComponent {
 
@@ -24,7 +24,8 @@ class Activity extends IntlComponent {
     return (
       <Switch>
         <Route path="/app/activity/overview" component={Overview} exact />
-        <Route path="/app/activity/prizeLibrary" component={PrizeLibrary} />
+        <Route path="/app/activity/prizeLibrary" component={Rules} />
+        <Route path="/app/activity/prizeRecord" component={Rules} />
         <Route component={Error} />
       </Switch>
     )

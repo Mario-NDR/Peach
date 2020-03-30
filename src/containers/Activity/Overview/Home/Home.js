@@ -1,5 +1,5 @@
 /**
- * @sumary 攻击详情 攻击流量
+ * @sumary 入侵防御
  */
 import React from 'react'
 // import PropTypes from 'prop-types'
@@ -25,7 +25,6 @@ class Home extends IntlComponent {
   constructor(props) {
     super(props)
     this.state = {}
-    this.trendChart = null
   }
 
   columns = [
@@ -34,7 +33,6 @@ class Home extends IntlComponent {
       title: '时间',
       key: 'time',
       align: 'center',
-      // width: '17%',
       render: (text) => (
         <div className={style.tableTime}>
           {zoneTransfer(text, 'YYYY-MM-DD HH:mm:ss')}
@@ -46,7 +44,6 @@ class Home extends IntlComponent {
       title: '客户端',
       key: 'client_ip',
       align: 'center',
-      // width: '15%',
       render: (text) => (
         <div className={style.tableDest}>
           {text}
@@ -58,7 +55,6 @@ class Home extends IntlComponent {
       title: '源IP',
       key: 'src',
       align: 'center',
-      // width: '15%',
       render: (text) => (
         <div className={style.tableSrc}>
           {text}
@@ -70,7 +66,6 @@ class Home extends IntlComponent {
       title: '目的IP',
       key: 'dest',
       align: 'center',
-      // width: '15%',
       render: (text) => (
         <div className={style.tableDest}>
           {text}
@@ -82,7 +77,6 @@ class Home extends IntlComponent {
       title: '告警信息',
       key: 'alert_message',
       align: 'center',
-      // width: '30%',
       render: (text) => {
         return (
           <Tooltip title={text} className={style.tableTime}>
@@ -96,9 +90,7 @@ class Home extends IntlComponent {
       title: '防御策略',
       key: 'action',
       align: 'center',
-      // width: '8%',
       render: (text) => {
-        console.log(text)
         if (text === 'allowed') {
           return (
           <Tag color="volcano">
@@ -118,31 +110,29 @@ class Home extends IntlComponent {
       title: '攻击类型',
       key: 'category',
       align: 'center',
-      // width: '8%',
       render: (text) => {
-        console.log(text)
         if (text === 'A Network Trojan was detected') {
           return (
             <Tag color="red">
-            {'木马活动'}
+              {'木马活动'}
             </Tag>
           )
         } else if (text === 'Detection of a Network Scan') {
           return (
             <Tag color="lime">
-            {'网络扫描'}
+              {'网络扫描'}
             </Tag>
           )
         } else if (text === 'Executable code was detected') {
           return (
             <Tag color="orange">
-            {'恶意代码'}
+              {'恶意代码'}
             </Tag>
           )
         } else {
           return (
             <Tag color="orange">
-            {'其他类型'}
+              {'其他类型'}
             </Tag>
           )
         }
@@ -157,7 +147,7 @@ class Home extends IntlComponent {
   renderPagination = () => {
     return {
       pageSize: 20,
-      showTotal: (totals) => `共 ${totals} 条数据`
+      showTotal: (totals) => `共 ${totals} 条日志`
     }
   }
 
