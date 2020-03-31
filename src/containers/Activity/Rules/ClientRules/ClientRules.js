@@ -107,7 +107,7 @@ class ClientRules extends IntlComponent {
               />
               </div>
               <div>
-                <Button type="primary" onClick={this.handleSearchRules}>查询</Button>
+                <Button style={{ marginLeft: 15 }} type="primary" onClick={this.handleSearchRules}>查询</Button>
                 <Button style={{ marginLeft: 15 }} onClick={this.handleReset}>重置</Button>
               </div>
             </div>
