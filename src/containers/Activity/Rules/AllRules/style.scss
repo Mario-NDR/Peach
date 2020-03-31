@@ -10,12 +10,17 @@
 
   .search {
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
+
+    .leftSearch {
+      display: flex;
+      justify-content: left;
+    }
   }
 
-  .search>div {
-    margin-right: 50px;
-  }
+  // .search>div {
+  //   margin-right: 50px;
+  // }
 
   .tableText {
     color: rgb(0, 0, 51);

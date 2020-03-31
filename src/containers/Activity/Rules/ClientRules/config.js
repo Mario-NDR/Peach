@@ -1,16 +1,24 @@
 import React from 'react'
-import { Tag } from 'antd'
+import { Tag, Popconfirm } from 'antd'
 import style from './style.scss'
 
-const columns = [
+const columns = (confirm, cancel, confirmDel, cancelDel) => [
   {
     title: '规则编号',
     dataIndex: 'sid',
     key: 'sid',
     align: 'center',
-    render: (text) => (
+    render: (text, record) => (
       <div className={style.tableText}>
-        {text}
+        <Popconfirm
+          title="确定删除吗?"
+          onConfirm={() => confirmDel(record)}
+          onCancel={() => cancelDel(record)}
+          okText="删除"
+          cancelText="取消"
+        >
+          <a role="button">{text}</a>
+        </Popconfirm>
       </div>
     )
   },
@@ -30,10 +38,20 @@ const columns = [
     dataIndex: 'type',
     key: 'type',
     align: 'center',
-    render: (text) => (
-      <Tag color={text === 'alert' ? 'volcano' : 'green'}>
-        {text === 'alert' ? '告警' : '拦截'}
-      </Tag>
+    render: (text, record) => (
+      <div className={style.tableText}>
+        <Popconfirm
+          title={`确定修改防御策略为 - ${record.type === 'drop' ? '告警' : '拦截'}?`}
+          onConfirm={() => confirm(record)}
+          onCancel={() => cancel(record)}
+          okText="确定"
+          cancelText="取消"
+        >
+          <Tag color={text === 'alert' ? 'volcano' : 'green'}>
+            {text === 'alert' ? '告警' : '拦截'}
+          </Tag>
+        </Popconfirm>
+      </div>
     )
   },
   {
@@ -62,7 +80,7 @@ const columns = [
           return (<Tag color="orange">{text}</Tag>)
       }
     }
-  }
+  },
 ]
 
 export default columns

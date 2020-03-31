@@ -62,6 +62,24 @@ class ClientRules extends IntlComponent {
     this.props.actions.getRules({ server: 'client' })
   }
 
+  // 修改防御策略
+  confirm = (record) => {
+    console.info(record)
+  }
+
+  cancel = (record) => {
+    console.info('cancel', record)
+  }
+
+  // 删除防御策略
+  confirmDel = (record) => {
+    console.info('del', record)
+  }
+
+  cancelDel = (record) => {
+    console.info('delCancel', record)
+  }
+
   render() {
     const { rules } = this.props
     const { searchValue } = this.state
@@ -72,11 +90,11 @@ class ClientRules extends IntlComponent {
           <Bread
             items={[
               { content: '规则管理' },
-              { content: '已应用规则' },
+              { content: '防御策略' },
             ]}
           />
           <ContentBox>
-            <Subheader>客户端已应用规则</Subheader>
+            <Subheader>防御策略</Subheader>
             <div className={style.search}>
               <div>
                 搜索：
@@ -99,7 +117,7 @@ class ClientRules extends IntlComponent {
           <div className={style.prizeTable}>
             <Table
               bordered
-              columns={columns}
+              columns={columns(this.confirm, this.cancel, this.confirmDel, this.cancelDel)}
               dataSource={rules}
               rowKey={(r) => r.sid}
             />

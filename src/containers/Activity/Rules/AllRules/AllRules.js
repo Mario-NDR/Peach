@@ -3,7 +3,9 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Table, Button, Input } from 'antd'
+import {
+  Table, Button, Input, Message, Modal, Radio,
+} from 'antd'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -27,10 +29,16 @@ class AllRules extends IntlComponent {
     super(props)
     this.state = {
       searchValue: '',
+      selectedRowKeys: [],
+      container: [],
+      visible: false,
+      rulesType: 'alert',
     }
     this.handleChangeSearch = this.handleChangeSearch.bind(this)
     this.handleReset = this.handleReset.bind(this)
     this.handleSearchRules = this.handleSearchRules.bind(this)
+    this.handleOk = this.handleOk.bind(this)
+    this.handleCancel = this.handleCancel.bind(this)
   }
 
   componentDidMount() {
@@ -44,6 +52,14 @@ class AllRules extends IntlComponent {
     if (e.target.value === '') {
       this.props.actions.getRules({ server: 'server' })
     }
+  }
+
+  handleOk = () => {
+    this.setState({ visible: false })
+  }
+
+  handleCancel = () => {
+    this.setState({ visible: false })
   }
 
   // 查询
@@ -63,9 +79,39 @@ class AllRules extends IntlComponent {
     })
   }
 
+  // 规则下发
+  handleRulesPost = () => {
+    const { selectedRowKeys } = this.state
+    if (selectedRowKeys.length === 0) {
+      Message.info('请选择要下发到客户端的规则')
+    } else {
+      this.setState({ visible: true })
+    }
+  }
+
+  // 规则下发多选
+  onSelectChange = (selectedRowKeys, record) => {
+    console.info('selectedRowKeys', selectedRowKeys)
+    console.info('record', record)
+    this.setState({ selectedRowKeys })
+    this.setState({ container: record })
+  }
+
+  // 防御策略
+  changeRulesType = (e) => {
+    this.setState({ rulesType: e.target.value })
+  }
+
   render() {
     const { rules } = this.props
-    const { searchValue } = this.state
+    const {
+      searchValue, selectedRowKeys, visible, rulesType
+    } = this.state
+
+    const rowSelection = {
+      selectedRowKeys,
+      onChange: this.onSelectChange,
+    }
 
     return (
       <div className={style.allRules}>
@@ -78,19 +124,24 @@ class AllRules extends IntlComponent {
         <ContentBox>
           <Subheader>全部规则</Subheader>
           <div className={style.search}>
-            <div>
-              搜索：
-              <Input
-                style={{ width: 250 }}
-                allowClear
-                placeholder="输入规则关键字，支持模糊搜索"
-                value={searchValue}
-                onChange={this.handleChangeSearch}
-              />
+            <div className={style.leftSearch}>
+              <div>
+                搜索：
+                <Input
+                  style={{ width: 250 }}
+                  allowClear
+                  placeholder="输入规则关键字，支持模糊搜索"
+                  value={searchValue}
+                  onChange={this.handleChangeSearch}
+                />
+              </div>
+              <div>
+                <Button style={{ marginLeft: 15 }} type="primary" onClick={this.handleSearchRules}>查询</Button>
+                <Button style={{ marginLeft: 15 }} onClick={this.handleReset}>重置</Button>
+              </div>
             </div>
             <div>
-              <Button type="primary" onClick={this.handleSearchRules}>查询</Button>
-              <Button style={{ marginLeft: 15 }} onClick={this.handleReset}>重置</Button>
+              <Button type="primary" onClick={this.handleRulesPost}>规则下发</Button>
             </div>
           </div>
         </ContentBox>
@@ -99,9 +150,23 @@ class AllRules extends IntlComponent {
             bordered
             columns={columns}
             dataSource={rules}
+            rowSelection={rowSelection}
             rowKey={(r) => r.sid}
           />
         </ContentBox>
+        <Modal
+          title="防御策略"
+          visible={visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+          closable={false}
+        >
+          策略：
+          <Radio.Group onChange={this.changeRulesType} value={rulesType}>
+            <Radio value="alert">告警</Radio>
+            <Radio value="drop">拦截</Radio>
+          </Radio.Group>
+        </Modal>
       </div>
     )
   }
