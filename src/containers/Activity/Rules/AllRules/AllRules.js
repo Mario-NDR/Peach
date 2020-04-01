@@ -9,6 +9,7 @@ import {
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
@@ -54,8 +55,21 @@ class AllRules extends IntlComponent {
     }
   }
 
-  handleOk = () => {
+  handleOk = async () => {
+    const { container, rulesType } = this.state
     this.setState({ visible: false })
+    const rules_info = container.map((item) => ({ id: item.sid, type: rulesType }))
+    const payload = JSON.stringify({ rules_info })
+    try {
+      const { data } = await axios.post('/api/rules', payload)
+      if (data === 'ok') {
+        Message.success(this.localeMessage('successSetRules'))
+        this.setState({ selectedRowKeys: [], container: [] })
+      }
+    } catch (e) {
+      console.err('error', e)
+      Message.error(this.localeMessage('errorSetRules'))
+    }
   }
 
   handleCancel = () => {
@@ -65,25 +79,30 @@ class AllRules extends IntlComponent {
   // 查询
   handleSearchRules = () => {
     const { searchValue } = this.state
-    this.props.actions.getRules({
-      server: 'server',
-      search: searchValue
-    })
+    if (searchValue.length !== 0) {
+      this.props.actions.getRules({
+        server: 'server',
+        search: searchValue
+      })
+    }
   }
 
   // 重置
   handleReset = () => {
+    const { searchValue } = this.state
     this.setState({ searchValue: '' })
-    this.props.actions.getRules({
-      server: 'server'
-    })
+    if (searchValue.length !== 0) {
+      this.props.actions.getRules({
+        server: 'server'
+      })
+    }
   }
 
   // 规则下发
   handleRulesPost = () => {
     const { selectedRowKeys } = this.state
     if (selectedRowKeys.length === 0) {
-      Message.info('请选择要下发到客户端的规则')
+      Message.info(this.localeMessage('alertInfo'))
     } else {
       this.setState({ visible: true })
     }
@@ -91,8 +110,6 @@ class AllRules extends IntlComponent {
 
   // 规则下发多选
   onSelectChange = (selectedRowKeys, record) => {
-    console.info('selectedRowKeys', selectedRowKeys)
-    console.info('record', record)
     this.setState({ selectedRowKeys })
     this.setState({ container: record })
   }
@@ -100,6 +117,10 @@ class AllRules extends IntlComponent {
   // 防御策略
   changeRulesType = (e) => {
     this.setState({ rulesType: e.target.value })
+  }
+
+  allRulesChange = () => {
+    this.setState({ selectedRowKeys: [], container: [] })
   }
 
   render() {
@@ -130,7 +151,7 @@ class AllRules extends IntlComponent {
                 <Input
                   style={{ width: 250 }}
                   allowClear
-                  placeholder="输入规则关键字，支持模糊搜索"
+                  placeholder={this.localeMessage('placeholderSearchRules')}
                   value={searchValue}
                   onChange={this.handleChangeSearch}
                 />
@@ -151,11 +172,12 @@ class AllRules extends IntlComponent {
             columns={columns}
             dataSource={rules}
             rowSelection={rowSelection}
-            rowKey={(r) => r.sid}
+            onChange={this.allRulesChange}
+            // rowKey={(r) => r.sid}
           />
         </ContentBox>
         <Modal
-          title="防御策略"
+          title={this.localeMessage('modalRulesTitle')}
           visible={visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}

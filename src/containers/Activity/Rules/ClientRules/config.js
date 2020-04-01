@@ -1,8 +1,8 @@
 import React from 'react'
-import { Tag, Popconfirm } from 'antd'
+import { Tag, Popconfirm, Icon, Tooltip } from 'antd'
 import style from './style.scss'
 
-const columns = (confirm, cancel, confirmDel, cancelDel) => [
+const columns = (confirm, cancel, confirmDel, cancelDel, onVisibleChange) => [
   {
     title: '规则编号',
     dataIndex: 'sid',
@@ -38,6 +38,12 @@ const columns = (confirm, cancel, confirmDel, cancelDel) => [
     dataIndex: 'type',
     key: 'type',
     align: 'center',
+    filterDropdown: (<div />),
+    filterIcon: (
+      <Tooltip onVisibleChange={() => onVisibleChange(1)} placement="top">
+        <Icon type="question-circle-o" />
+      </Tooltip>
+    ),
     render: (text, record) => (
       <div className={style.tableText}>
         <Popconfirm

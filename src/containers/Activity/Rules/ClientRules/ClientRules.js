@@ -5,8 +5,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
-import { Table, Button, Input } from 'antd'
+import { Table, Button, Input, Message } from 'antd'
 
 import Bread from 'Components/Bread'
 import Subheader from 'Components/Subheader'
@@ -27,7 +28,8 @@ class ClientRules extends IntlComponent {
   constructor(props) {
     super(props)
     this.state = {
-      searchValue: ''
+      searchValue: '',
+      filterTitleKey: ''
     }
     this.handleChangeInput = this.handleChangeInput.bind(this)
     this.handleReset = this.handleReset.bind(this)
@@ -50,21 +52,33 @@ class ClientRules extends IntlComponent {
   // 查询
   handleSearchRules = () => {
     const { searchValue } = this.state
-    this.props.actions.getRules({
-      server: 'client',
-      search: searchValue
-    })
+    if (searchValue.length !== 0) {
+      this.props.actions.getRules({
+        server: 'client',
+        search: searchValue
+      })
+    }
   }
 
   // 重置
   handleReset = () => {
-    this.setState({ searchValue: '' })
-    this.props.actions.getRules({ server: 'client' })
+    const { searchValue } = this.state
+    if (searchValue.length !== 0) {
+      this.setState({ searchValue: '' })
+      this.props.actions.getRules({ server: 'client' })
+    }
   }
 
   // 修改防御策略
-  confirm = (record) => {
-    console.info(record)
+  confirm = async (record) => {
+    const payload = { id: record.sid, type: record.type === 'drop' ? 'alert' : 'drop' }
+    try {
+      await axios.post('/api/rules/change', payload)
+      this.props.actions.getRules({ server: 'client' })
+    } catch (e) {
+      console.info('error', e)
+      Message.error(this.localeMessage('errorEditRules'))
+    }
   }
 
   cancel = (record) => {
@@ -72,17 +86,38 @@ class ClientRules extends IntlComponent {
   }
 
   // 删除防御策略
-  confirmDel = (record) => {
-    console.info('del', record)
+  confirmDel = async (record) => {
+    const payload = { id: record.sid, type: record.type }
+    try {
+      await axios.post('/api/rules/del', payload)
+      Message.success(this.localeMessage('successDelRules'))
+      this.props.actions.getRules({ server: 'client' })
+    } catch (e) {
+      console.info('error', e)
+      Message.error(this.localeMessage('errorDelRules'))
+    }
   }
 
   cancelDel = (record) => {
-    console.info('delCancel', record)
+    console.info(record)
+  }
+
+  // 修改策略字段tooltip
+  onVisibleChange = (key) => {
+    let str = ''
+    switch (key) {
+      case 1:
+        str = this.localeMessage('tooltipChangeRules')
+      // eslint-disable-next-line no-fallthrough
+      default:
+        break
+    }
+    this.setState({ filterTitleKey: str })
   }
 
   render() {
     const { rules } = this.props
-    const { searchValue } = this.state
+    const { searchValue, filterTitleKey } = this.state
 
     return (
       <div className={style.clientRules}>
@@ -98,13 +133,13 @@ class ClientRules extends IntlComponent {
             <div className={style.search}>
               <div>
                 搜索：
-              <Input
-                style={{ width: 250 }}
-                allowClear
-                placeholder="输入规则关键字，支持模糊搜索"
-                value={searchValue}
-                onChange={this.handleChangeInput}
-              />
+                <Input
+                  style={{ width: 250 }}
+                  allowClear
+                  placeholder={this.localeMessage('placeholderSearchRules')}
+                  value={searchValue}
+                  onChange={this.handleChangeInput}
+                />
               </div>
               <div>
                 <Button style={{ marginLeft: 15 }} type="primary" onClick={this.handleSearchRules}>查询</Button>
@@ -117,9 +152,12 @@ class ClientRules extends IntlComponent {
           <div className={style.prizeTable}>
             <Table
               bordered
-              columns={columns(this.confirm, this.cancel, this.confirmDel, this.cancelDel)}
+              columns={columns(this.confirm, this.cancel, this.confirmDel, this.cancelDel, this.onVisibleChange)}
               dataSource={rules}
-              rowKey={(r) => r.sid}
+              // rowKey={(r) => r.sid}
+              locale={{
+                filterTitle: filterTitleKey || '默认',
+              }}
             />
           </div>
         </ContentBox>

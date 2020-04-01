@@ -10,7 +10,7 @@ import { logout } from 'Containers/Login/actions'
 // import ModifyPassword from 'Containers/User/ModifyPassword'
 import Clock from '../Clock'
 
-import LocaleSelector from './LocaleSelector'
+// import LocaleSelector from './LocaleSelector'
 import style from './style.scss'
 
 class Header extends IntlComponent {
@@ -51,7 +51,7 @@ class Header extends IntlComponent {
           <div className={style.logo}><Icon type="ant-cloud" style={{ fontSize: '28px', lineHeight: '60px' }} onClick={this.handleClickLogo} /> 网络监测实时响应</div>
           <div className={style.headerActions}>
             <div className={style.divClock}><Clock /></div>
-            <LocaleSelector />
+            {/* <LocaleSelector /> */}
             <Dropdown overlay={this.menu()}>
               <div className={style.userWrapper}>
                 <Icon className={style.userIcon} type="user" />

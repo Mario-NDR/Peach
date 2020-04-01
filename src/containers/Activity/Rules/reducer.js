@@ -1,9 +1,11 @@
 const initialState = {
   rules: [],
+  data: '',
 }
 
 const reducers = {
   getRules: (state, action) => ({ ...state, rules: action.data.rules }),
+  postRules: (state, action) => ({ ...state, data: action.data })
 }
 
 export default function userReducer(state = initialState, action) {

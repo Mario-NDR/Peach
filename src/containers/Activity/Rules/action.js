@@ -9,10 +9,18 @@ export function getRules(payload = {}) {
   }))
 }
 
-// 规则下发，规则修改，规则删除
+// 规则下发
 export function postRules(payload = {}) {
   return network.POST('/api/rules', payload, (data) => ({
     data,
     type: 'postRules',
+  }))
+}
+
+// 规则修改
+export function postChangeRules(payload = {}) {
+  return network.POST('/api/rules/change', payload, (data) => ({
+    data,
+    type: 'postChangeRules',
   }))
 }

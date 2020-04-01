@@ -45,4 +45,15 @@ export default {
 
   // 登录失败
   loginFailed: '用户名或者密码错误，请重新输入',
+
+  // 规则模块
+  successSetRules: '规则已下发至客户端',
+  errorSetRules: '规则下发失败',
+  errorEditRules: '规则修改失败',
+  successDelRules: '规则删除成功',
+  errorDelRules: '规则删除失败',
+  alertInfo: '请选择要下发到客户端的规则',
+  placeholderSearchRules: '输入规则关键字，支持模糊搜索',
+  modalRulesTitle: '防御策略',
+  tooltipChangeRules: '点击修改防御策略',
 }
