@@ -122,7 +122,8 @@ module.exports = {
       chunks: 'all',
       minSize: 0,
       name: 'js/common-chunks',
-      minChunks: 1,
+      // minChunks: 1,
+      minChunks: Infinity,
     }
   },
   // externals,
