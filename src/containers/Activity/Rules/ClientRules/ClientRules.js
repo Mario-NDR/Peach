@@ -115,6 +115,17 @@ class ClientRules extends IntlComponent {
     this.setState({ filterTitleKey: str })
   }
 
+  // 删除策略
+  handleDelRules = async () => {
+    const { status } = await axios.delete('/api/rules/del')
+    if (status >= 200 && status < 400) {
+      Message.success(this.localeMessage('successDelAllRules'))
+      this.props.actions.getRules({ server: 'client' })
+    } else {
+      Message.error(this.localeMessage('errorDelAllRules'))
+    }
+  }
+
   render() {
     const { rules } = this.props
     const { searchValue, filterTitleKey } = this.state
@@ -131,19 +142,24 @@ class ClientRules extends IntlComponent {
           <ContentBox>
             <Subheader>防御策略</Subheader>
             <div className={style.search}>
-              <div>
-                搜索：
-                <Input
-                  style={{ width: 250 }}
-                  allowClear
-                  placeholder={this.localeMessage('placeholderSearchRules')}
-                  value={searchValue}
-                  onChange={this.handleChangeInput}
-                />
+              <div className={style.leftSearch}>
+                <div>
+                  搜索：
+                  <Input
+                    style={{ width: 250 }}
+                    allowClear
+                    placeholder={this.localeMessage('placeholderSearchRules')}
+                    value={searchValue}
+                    onChange={this.handleChangeInput}
+                  />
+                </div>
+                <div>
+                  <Button style={{ marginLeft: 15 }} type="primary" onClick={this.handleSearchRules}>查询</Button>
+                  <Button style={{ marginLeft: 15 }} onClick={this.handleReset}>重置</Button>
+                </div>
               </div>
               <div>
-                <Button style={{ marginLeft: 15 }} type="primary" onClick={this.handleSearchRules}>查询</Button>
-                <Button style={{ marginLeft: 15 }} onClick={this.handleReset}>重置</Button>
+                <Button type="danger" disabled={rules.length === 0} onClick={this.handleDelRules}>全部删除</Button>
               </div>
             </div>
           </ContentBox>

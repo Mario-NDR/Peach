@@ -61,8 +61,8 @@ class AllRules extends IntlComponent {
     const rules_info = container.map((item) => ({ id: item.sid, type: rulesType }))
     const payload = JSON.stringify({ rules_info })
     try {
-      const { data } = await axios.post('/api/rules', payload)
-      if (data === 'ok') {
+      const { status } = await axios.post('/api/rules', payload)
+      if (status >= 200 && status < 400) {
         Message.success(this.localeMessage('successSetRules'))
         this.setState({ selectedRowKeys: [], container: [] })
       }
@@ -110,17 +110,14 @@ class AllRules extends IntlComponent {
 
   // 规则下发多选
   onSelectChange = (selectedRowKeys, record) => {
-    this.setState({ selectedRowKeys })
-    this.setState({ container: record })
+    console.info(selectedRowKeys)
+    console.info(record)
+    this.setState({ selectedRowKeys, container: record })
   }
 
   // 防御策略
   changeRulesType = (e) => {
     this.setState({ rulesType: e.target.value })
-  }
-
-  allRulesChange = () => {
-    this.setState({ selectedRowKeys: [], container: [] })
   }
 
   render() {
@@ -172,7 +169,7 @@ class AllRules extends IntlComponent {
             columns={columns}
             dataSource={rules}
             rowSelection={rowSelection}
-            onChange={this.allRulesChange}
+            pagination={false}
             // rowKey={(r) => r.sid}
           />
         </ContentBox>

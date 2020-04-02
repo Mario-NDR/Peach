@@ -4,7 +4,12 @@
 
     .search {
       display: flex;
-      justify-content: left;
+      justify-content: space-between;
+
+      .leftSearch {
+        display: flex;
+        justify-content: left;
+      }
     }
   }
 
