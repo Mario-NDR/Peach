@@ -56,6 +56,7 @@ export default {
   placeholderSearchRules: '输入规则关键字，支持模糊搜索',
   modalRulesTitle: '防御策略',
   tooltipChangeRules: '点击修改防御策略',
+  tooltipSidChangeRules: '点击删除防御策略',
   successDelAllRules: '删除成功',
   errorDelAllRules: '删除失败',
 }

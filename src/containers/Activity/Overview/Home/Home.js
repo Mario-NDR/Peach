@@ -77,13 +77,11 @@ class Home extends IntlComponent {
       title: '告警信息',
       key: 'alert_message',
       align: 'center',
-      render: (text) => {
-        return (
-          <Tooltip title={text} className={style.tableTime}>
-            {ellipsis(text, 40)}
-          </Tooltip>
-        )
-      }
+      render: (text) => (
+        <Tooltip title={text} className={style.tableTime}>
+          {ellipsis(text, 40)}
+        </Tooltip>
+      )
     },
     {
       dataIndex: 'action',
@@ -145,10 +143,7 @@ class Home extends IntlComponent {
   }
 
   renderPagination = () => {
-    return {
-      pageSize: 20,
-      showTotal: (totals) => `共 ${totals} 条日志`
-    }
+    return { pageSize: 20 }
   }
 
   render() {
@@ -171,6 +166,9 @@ class Home extends IntlComponent {
       <ContentBox>
         <Subheader>入侵防御记录</Subheader>
         <div className={style.tableList}>
+          <div style={{ marginBottom: 10, marginLeft: 10 }}>
+            {`共 ${mapDetail.length} 条记录`}
+          </div>
           <Table
             bordered
             columns={this.columns}

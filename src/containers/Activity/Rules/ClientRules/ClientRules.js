@@ -29,7 +29,8 @@ class ClientRules extends IntlComponent {
     super(props)
     this.state = {
       searchValue: '',
-      filterTitleKey: ''
+      filterTitleKey: '',
+      filterSidTitleKey: ''
     }
     this.handleChangeInput = this.handleChangeInput.bind(this)
     this.handleReset = this.handleReset.bind(this)
@@ -115,6 +116,19 @@ class ClientRules extends IntlComponent {
     this.setState({ filterTitleKey: str })
   }
 
+  // sid字段tooltip
+  onVisibleSidChange = (key) => {
+    let str = ''
+    switch (key) {
+      case 1:
+        str = this.localeMessage('tooltipSidChangeRules')
+      // eslint-disable-next-line no-fallthrough
+      default:
+        break
+    }
+    this.setState({ filterTitleKey: str })
+  }
+
   // 删除策略
   handleDelRules = async () => {
     const { status } = await axios.delete('/api/rules/del')
@@ -128,7 +142,7 @@ class ClientRules extends IntlComponent {
 
   render() {
     const { rules } = this.props
-    const { searchValue, filterTitleKey } = this.state
+    const { searchValue, filterTitleKey, filterSidTitleKey } = this.state
 
     return (
       <div className={style.clientRules}>
@@ -166,13 +180,25 @@ class ClientRules extends IntlComponent {
         </div>
         <ContentBox>
           <div className={style.prizeTable}>
+            <div style={{ marginLeft: 10, marginBottom: 10 }}>
+              {`共 ${rules.length} 条防御策略`}
+            </div>
             <Table
               bordered
-              columns={columns(this.confirm, this.cancel, this.confirmDel, this.cancelDel, this.onVisibleChange)}
+              columns={
+                columns(
+                  this.confirm,
+                  this.cancel,
+                  this.confirmDel,
+                  this.cancelDel,
+                  this.onVisibleChange,
+                  this.onVisibleSidChange
+                )
+              }
               dataSource={rules}
               // rowKey={(r) => r.sid}
               locale={{
-                filterTitle: filterTitleKey || '默认',
+                filterTitle: filterTitleKey || filterSidTitleKey || '默认',
               }}
             />
           </div>

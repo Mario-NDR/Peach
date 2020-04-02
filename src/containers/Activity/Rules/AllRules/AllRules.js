@@ -34,6 +34,7 @@ class AllRules extends IntlComponent {
       container: [],
       visible: false,
       rulesType: 'alert',
+      selectRules: 0,
     }
     this.handleChangeSearch = this.handleChangeSearch.bind(this)
     this.handleReset = this.handleReset.bind(this)
@@ -110,9 +111,11 @@ class AllRules extends IntlComponent {
 
   // 规则下发多选
   onSelectChange = (selectedRowKeys, record) => {
-    console.info(selectedRowKeys)
-    console.info(record)
-    this.setState({ selectedRowKeys, container: record })
+    this.setState({
+      selectedRowKeys,
+      container: record,
+      selectRules: selectedRowKeys.length,
+    })
   }
 
   // 防御策略
@@ -123,7 +126,7 @@ class AllRules extends IntlComponent {
   render() {
     const { rules } = this.props
     const {
-      searchValue, selectedRowKeys, visible, rulesType
+      searchValue, selectedRowKeys, visible, rulesType, selectRules,
     } = this.state
 
     const rowSelection = {
@@ -164,6 +167,22 @@ class AllRules extends IntlComponent {
           </div>
         </ContentBox>
         <ContentBox>
+          <div
+            style={{
+              marginBottom: 10,
+              marginLeft: 10,
+            }}
+          >
+            {
+              `共 ${rules.length} 条规则${
+                selectRules !== 0
+                  ? selectRules === rules.length
+                    ? '，全部选择'
+                    : `，已选择 ${selectRules} 条规则`
+                  : ''
+              }`
+            }
+          </div>
           <Table
             bordered
             columns={columns}
