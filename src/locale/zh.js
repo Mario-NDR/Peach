@@ -18,7 +18,8 @@ export default {
   modifyPassword: '修改密码',
 
   // nav
-  home: '态势感知',
+  situationalAwareness: '态势感知',
+  visualization: '可视化',
   attackDetails: '规则策略',
   overview: '入侵防御',
   allRules: '全部规则',
