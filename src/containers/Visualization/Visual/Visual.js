@@ -16,7 +16,6 @@ import { Pie } from 'Components/Charts'
 import * as actions from '../action'
 import style from './style.scss'
 
-// const color = ['#006666', '#006699', '#009999', '#0099CC', '#00CCCC', '#00CCFF']
 const color = [
   '#7FC9FE',
   '#71E3E3',
@@ -89,7 +88,7 @@ class Visual extends IntlComponent {
             width="100%"
             height={450}
             options={{
-              radius: [ 0, '65%' ],
+              radius: [ '40%', '65%' ],
               textStyle: { fontSize: 16 },
               legend: {
                 type: 'scroll',

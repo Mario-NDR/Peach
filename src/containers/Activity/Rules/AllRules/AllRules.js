@@ -85,6 +85,8 @@ class AllRules extends IntlComponent {
         server: 'server',
         search: searchValue
       })
+    } else {
+      Message.info('请输入关键字')
     }
   }
 
@@ -157,8 +159,20 @@ class AllRules extends IntlComponent {
                 />
               </div>
               <div>
-                <Button style={{ marginLeft: 15 }} type="primary" onClick={this.handleSearchRules}>查询</Button>
-                <Button style={{ marginLeft: 15 }} onClick={this.handleReset}>重置</Button>
+                <Button
+                  style={{ marginLeft: 15 }}
+                  type="primary"
+                  onClick={this.handleSearchRules}
+                >
+                    查询
+                  </Button>
+                <Button
+                  style={{ marginLeft: 15 }}
+                  disabled={searchValue.length === 0}
+                  onClick={this.handleReset}
+                >
+                  重置
+                </Button>
               </div>
             </div>
             <div>

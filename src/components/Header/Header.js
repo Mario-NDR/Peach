@@ -30,8 +30,12 @@ class Header extends IntlComponent {
 
   menu = () => (
     <Menu>
-      <Menu.Item key="password" onClick={this.updatePassword}><Icon type="key" /> {this.localeMessage('modifyPassword')} </Menu.Item>
-      <Menu.Item key="logout" onClick={this.logout}><Icon type="poweroff" /> {this.localeMessage('logout')}</Menu.Item>
+      {/* <Menu.Item key="password" onClick={this.updatePassword}>
+        <Icon type="key" /> {this.localeMessage('modifyPassword')}
+      </Menu.Item> */}
+      <Menu.Item key="logout" onClick={this.logout}>
+        <Icon type="poweroff" /> {this.localeMessage('logout')}
+      </Menu.Item>
     </Menu>
   )
 
