@@ -10,7 +10,7 @@ class Pie extends React.Component {
     data: PropTypes.array,
     options: PropTypes.object,
     id: PropTypes.string,
-    width: PropTypes.number,
+    width: PropTypes.string || PropTypes.number,
     height: PropTypes.number,
     style: PropTypes.object,
   }
@@ -60,7 +60,7 @@ class Pie extends React.Component {
   setOption = (data) => ({
     title: this.props.options.title || null,
     color: this.props.options.color || echartsColors,
-    textStyle: this.props.options.textStyle || null,
+    // textStyle: this.props.options.textStyle || null,
     tooltip: {
       trigger: 'item',
       formatter: '{b} : {c} ({d}%)',

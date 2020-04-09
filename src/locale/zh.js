@@ -18,7 +18,8 @@ export default {
   modifyPassword: '修改密码',
 
   // nav
-  home: '态势感知',
+  situationalAwareness: '态势感知',
+  visualization: '可视化',
   attackDetails: '规则策略',
   overview: '入侵防御',
   allRules: '全部规则',
@@ -56,4 +57,7 @@ export default {
   placeholderSearchRules: '输入规则关键字，支持模糊搜索',
   modalRulesTitle: '防御策略',
   tooltipChangeRules: '点击修改防御策略',
+  tooltipSidChangeRules: '点击删除防御策略',
+  successDelAllRules: '删除成功',
+  errorDelAllRules: '删除失败',
 }

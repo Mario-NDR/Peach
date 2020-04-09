@@ -34,6 +34,7 @@ class AllRules extends IntlComponent {
       container: [],
       visible: false,
       rulesType: 'alert',
+      selectRules: 0,
     }
     this.handleChangeSearch = this.handleChangeSearch.bind(this)
     this.handleReset = this.handleReset.bind(this)
@@ -61,8 +62,8 @@ class AllRules extends IntlComponent {
     const rules_info = container.map((item) => ({ id: item.sid, type: rulesType }))
     const payload = JSON.stringify({ rules_info })
     try {
-      const { data } = await axios.post('/api/rules', payload)
-      if (data === 'ok') {
+      const { status } = await axios.post('/api/rules', payload)
+      if (status >= 200 && status < 400) {
         Message.success(this.localeMessage('successSetRules'))
         this.setState({ selectedRowKeys: [], container: [] })
       }
@@ -110,8 +111,11 @@ class AllRules extends IntlComponent {
 
   // 规则下发多选
   onSelectChange = (selectedRowKeys, record) => {
-    this.setState({ selectedRowKeys })
-    this.setState({ container: record })
+    this.setState({
+      selectedRowKeys,
+      container: record,
+      selectRules: selectedRowKeys.length,
+    })
   }
 
   // 防御策略
@@ -119,14 +123,10 @@ class AllRules extends IntlComponent {
     this.setState({ rulesType: e.target.value })
   }
 
-  allRulesChange = () => {
-    this.setState({ selectedRowKeys: [], container: [] })
-  }
-
   render() {
     const { rules } = this.props
     const {
-      searchValue, selectedRowKeys, visible, rulesType
+      searchValue, selectedRowKeys, visible, rulesType, selectRules,
     } = this.state
 
     const rowSelection = {
@@ -167,12 +167,28 @@ class AllRules extends IntlComponent {
           </div>
         </ContentBox>
         <ContentBox>
+          <div
+            style={{
+              marginBottom: 10,
+              marginLeft: 10,
+            }}
+          >
+            {
+              `共 ${rules.length} 条规则${
+                selectRules !== 0
+                  ? selectRules === rules.length
+                    ? '，全部选择'
+                    : `，已选择 ${selectRules} 条规则`
+                  : ''
+              }`
+            }
+          </div>
           <Table
             bordered
             columns={columns}
             dataSource={rules}
             rowSelection={rowSelection}
-            onChange={this.allRulesChange}
+            pagination={false}
             // rowKey={(r) => r.sid}
           />
         </ContentBox>

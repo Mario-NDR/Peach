@@ -24,3 +24,11 @@ export function postChangeRules(payload = {}) {
     type: 'postChangeRules',
   }))
 }
+
+// 删除所有已下发规则
+export function delClientRules(payload = {}) {
+  return network.POST('/api/rules/delall', payload, (data) => ({
+    data,
+    type: 'delClientRules',
+  }))
+}

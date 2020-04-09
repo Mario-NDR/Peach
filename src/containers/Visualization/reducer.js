@@ -1,9 +1,9 @@
 const initialState = {
-  rules: [],
+  pieData: {},
 }
 
 const reducers = {
-  getRules: (state, action) => ({ ...state, rules: action.data.rules }),
+  getPieData: (state, action) => ({ ...state, pieData: action.data }),
 }
 
 export default function userReducer(state = initialState, action) {

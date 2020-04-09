@@ -6,6 +6,7 @@ import { Layout } from 'antd'
 import Header from 'Components/Header'
 import Nav from 'Components/Nav'
 import Home from 'Containers/Home'
+import Visualization from 'Containers/Visualization'
 import Activity from 'Containers/Activity'
 import Error from 'Containers/Error'
 
@@ -51,6 +52,7 @@ class App extends React.PureComponent {
             <Switch>
               <Route path="/app/map" component={Home} exact />
               <Route path="/app/activity" component={Activity} />
+              <Route path="/app/visualization" component={Visualization} />
               <Route component={Error} />
             </Switch>
           </LayoutContent>
