@@ -18,3 +18,14 @@
   border: 1px dashed #ccc;
   margin-top: 10px;
 }
+
+.modalTitle {
+  font-size: 18px;
+  // margin-left: 10px;
+  text-align: center;
+  font-weight: 600;
+
+  .modalTitleIp {
+    color: rgb(206, 115, 115);
+  }
+}

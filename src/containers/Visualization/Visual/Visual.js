@@ -3,6 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Tag } from 'antd'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -12,6 +13,7 @@ import ContentBox from 'Components/ContentBox'
 import Bread from 'Components/Bread'
 import Subheader from 'Components/Subheader'
 import { Pie } from 'Components/Charts'
+import { formatTime } from 'Utils/time'
 
 import * as actions from '../action'
 import style from './style.scss'
@@ -96,8 +98,11 @@ class Visual extends IntlComponent {
                 <span>现存日志数: </span>
                 <span style={{ color: '#e8eb62' }}>{ sum }</span>
               </div>
-              <div>
-                {`上次清理时间: ${typeof (last_clean) === 'string' ? '没有运行清理过程' : 123}`}
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span>上次清理时间: </span>
+                {
+                  typeof (last_clean) === 'string' ? '没有运行清理过程' : <Tag color="#87d068">{formatTime(last_clean)}</Tag>
+                }
               </div>
             </div>
           </div>

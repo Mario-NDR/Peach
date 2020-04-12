@@ -3,7 +3,7 @@
  */
 import React from 'react'
 // import PropTypes from 'prop-types'
-import { Table, Tooltip, Tag, Modal, Radio } from 'antd'
+import { Table, Tooltip, Tag, Modal, Spin, Icon } from 'antd'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -20,14 +20,17 @@ import style from './style.scss'
 
 moment.suppressDeprecationWarnings = true
 
+const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
+
 class Home extends IntlComponent {
 
   constructor(props) {
     super(props)
     this.state = {
       visible: false,
-      typeSelect: '',
-      selectionRecord: {},
+      ipTitle: '',
+      ip: '',
+      loadingModal: true,
     }
   }
 
@@ -49,7 +52,11 @@ class Home extends IntlComponent {
       key: 'client_ip',
       align: 'center',
       render: (text) => (
-        <div className={style.tableDest}>
+        <div
+          role="button"
+          className={style.tableDest}
+          onClick={() => this.clickClient(text)}
+        >
           {text}
         </div>
       )
@@ -60,7 +67,11 @@ class Home extends IntlComponent {
       key: 'src',
       align: 'center',
       render: (text) => (
-        <div className={style.tableSrc}>
+        <div
+          role="button"
+          className={style.tableSrc}
+          onClick={() => this.clickSrc(text)}
+        >
           {text}
         </div>
       )
@@ -71,7 +82,11 @@ class Home extends IntlComponent {
       key: 'dest',
       align: 'center',
       render: (text) => (
-        <div className={style.tableDest}>
+        <div
+          role="button"
+          className={style.tableDest}
+          onClick={() => this.clickDest(text)}
+        >
           {text}
         </div>
       )
@@ -146,6 +161,12 @@ class Home extends IntlComponent {
     this.props.actions.getMapDetailData()
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.loadingModal !== nextProps.loadingModal) {
+      this.setState({ loadingModal: false })
+    }
+  }
+
   renderPagination = () => {
     return { pageSize: 20 }
   }
@@ -167,6 +188,21 @@ class Home extends IntlComponent {
     }
   }
 
+  clickClient = (r) => {
+    this.setState({ visible: true, ipTitle: '客户端', ip: r, loadingModal: true })
+    this.props.actions.postSecurityBrain({ query: r })
+  }
+
+  clickSrc = (r) => {
+    this.setState({ visible: true, ipTitle: '源IP', ip: r, loadingModal: true })
+    this.props.actions.postSecurityBrain({ query: r })
+  }
+
+  clickDest = (r) => {
+    this.setState({ visible: true, ipTitle: '目的IP', ip: r, loadingModal: true })
+    this.props.actions.postSecurityBrain({ query: r })
+  }
+
   render() {
     let { mapDetail } = this.props
     const { securityBrain } = this.props
@@ -176,7 +212,7 @@ class Home extends IntlComponent {
       brain1 = securityBrain.data[0]
       brain2 = securityBrain.data[1]
     }
-    const { visible, typeSelect } = this.state
+    const { visible } = this.state
     if (mapDetail.length !== 0) {
       mapDetail = mapDetail.map((item) => {
         return {
@@ -204,17 +240,6 @@ class Home extends IntlComponent {
             dataSource={mapDetail}
             pagination={this.renderPagination()}
             rowKey={(r) => r.time}
-            onRow={(record) => ({
-              onClick: () => {
-                const selection = window.getSelection()
-                if (selection.toString().length === 0) {
-                  this.setState({
-                    visible: true,
-                    selectionRecord: record,
-                  })
-                }
-              }
-            })}
           />
         </div>
         <Modal
@@ -223,125 +248,124 @@ class Home extends IntlComponent {
           visible={visible}
           footer={null}
           onCancel={this.handleCancel}
+          destroyOnClose
         >
-          <Radio.Group
-            onChange={this.handleChangeType}
-            value={typeSelect}
-          >
-            <Radio value={0}>客户端</Radio>
-            <Radio value={1}>源IP</Radio>
-            <Radio value={2}>目的IP</Radio>
-          </Radio.Group>
-          <div className={style.brainModule}>
-            <div>
+          <div className={style.modalTitle}>
+            <span>{`${this.state.ipTitle}: `}</span>
+            <span className={style.modalTitleIp}>{this.state.ip}</span>
+          </div>
+          <Spin spinning={this.state.loadingModal} indicator={antIcon}>
+            <div className={style.brainModule}>
               <div>
                 <div>
-                  <span>最后活跃时间: </span>
-                  <span>
-                    {
-                      Object.keys(brain1).length === 0
-                        ? '--'
-                        : !isNaN(brain1.active_time)
-                          ? (<Tag color="#87d068">{formatTime(brain1.active_time)}</Tag>)
-                          : '--'
-                    }
-                  </span>
-                </div>
-                <div>
-                  <span>多引擎威胁分析结果: </span>
-                  <span>
-                    {
-                      Object.keys(brain1).length === 0
-                        ? '--'
-                        : brain1.engine_result.length === 0
+                  <div>
+                    <span>最后活跃时间: </span>
+                    <span>
+                      {
+                        Object.keys(brain1).length === 0
                           ? '--'
-                          : brain1.engine_result.map((item, key) => (<Tag key={key} color="#87d068">{item}</Tag>))
-                    }
-                  </span>
-                </div>
-                <div>
-                  <span>分析引擎: </span>
-                  <span>
-                    {
-                      Object.keys(brain1).length === 0
-                        ? '--'
-                        : brain1.vendor.length === 0
+                          : !isNaN(brain1.active_time)
+                            ? (<Tag color="#87d068">{formatTime(brain1.active_time)}</Tag>)
+                            : '--'
+                      }
+                    </span>
+                  </div>
+                  <div>
+                    <span>多引擎威胁分析结果: </span>
+                    <span>
+                      {
+                        Object.keys(brain1).length === 0
                           ? '--'
-                          : brain1.vendor
-                    }
-                  </span>
+                          : brain1.engine_result.length === 0
+                            ? '--'
+                            : brain1.engine_result.map((item, key) => (<Tag key={key} color="#87d068">{item}</Tag>))
+                      }
+                    </span>
+                  </div>
+                  <div>
+                    <span>分析引擎: </span>
+                    <span>
+                      {
+                        Object.keys(brain1).length === 0
+                          ? '--'
+                          : brain1.vendor.length === 0
+                            ? '--'
+                            : brain1.vendor
+                      }
+                    </span>
+                  </div>
                 </div>
               </div>
+              <div>--水波图1--</div>
             </div>
-            <div>--水波图1--</div>
-          </div>
-          <div className={style.brainModule}>
-            <div>
+            <div className={style.brainModule}>
               <div>
                 <div>
-                  <span>最后活跃时间: </span>
-                  <span>
-                    {
-                      Object.keys(brain2).length === 0
-                        ? '--'
-                        : !isNaN(brain2.active_time)
-                          ? (<Tag color="#87d068">{formatTime(brain2.active_time)}</Tag>)
-                          : '--'
-                    }
-                  </span>
-                </div>
-                <div>
-                  <span>城市: </span>
-                  <span>
-                    {
-                      Object.keys(brain2).length === 0
-                        ? '--'
-                        : brain2.city.length === 0
+                  <div>
+                    <span>最后活跃时间: </span>
+                    <span>
+                      {
+                        Object.keys(brain2).length === 0
                           ? '--'
-                          : brain2.city
-                    }
-                  </span>
-                </div>
-                <div>
-                  <span>运营商: </span>
-                  <span>
-                    {
-                      Object.keys(brain2).length === 0
-                        ? '--'
-                        : brain2.operator.length === 0
+                          : !isNaN(brain2.active_time)
+                            ? (<Tag color="#87d068">{formatTime(brain2.active_time)}</Tag>)
+                            : '--'
+                      }
+                    </span>
+                  </div>
+                  <div>
+                    <span>城市: </span>
+                    <span>
+                      {
+                        Object.keys(brain2).length === 0
                           ? '--'
-                          : brain2.operator
-                    }
-                  </span>
-                </div>
-                <div>
-                  <span>Tags: </span>
-                  <span>
-                    {
-                      Object.keys(brain2).length === 0
-                        ? '--'
-                        : brain2.tags.length === 0
+                          : brain2.city.length === 0
+                            ? '--'
+                            : brain2.city
+                      }
+                    </span>
+                  </div>
+                  <div>
+                    <span>运营商: </span>
+                    <span>
+                      {
+                        Object.keys(brain2).length === 0
                           ? '--'
-                          : brain2.tags.map((item, key) => (<Tag key={key} color="#87d068">{item}</Tag>))
-                    }
-                  </span>
-                </div>
-                <div>
-                  <span>分析引擎: </span>
-                  <span>
-                    {
-                      Object.keys(brain2).length === 0
-                        ? '--'
-                        : brain2.vendor.length === 0
+                          : brain2.operator.length === 0
+                            ? '--'
+                            : brain2.operator
+                      }
+                    </span>
+                  </div>
+                  <div>
+                    <span>Tags: </span>
+                    <span>
+                      {
+                        Object.keys(brain2).length === 0
                           ? '--'
-                          : brain2.vendor
-                    }
-                  </span>
+                          : brain2.tags.length === 0
+                            ? '--'
+                            : brain2.tags.map((item, key) => (<Tag key={key} color="#87d068">{item}</Tag>))
+                      }
+                    </span>
+                  </div>
+                  <div>
+                    <span>分析引擎: </span>
+                    <span>
+                      {
+                        Object.keys(brain2).length === 0
+                          ? '--'
+                          : brain2.vendor.length === 0
+                            ? '--'
+                            : brain2.vendor
+                      }
+                    </span>
+                  </div>
                 </div>
               </div>
+              <div>--水波图2--</div>
             </div>
-            <div>--水波图2--</div>
-          </div>
+          </Spin>
         </Modal>
       </ContentBox>
     )
@@ -352,6 +376,7 @@ function mapStateToProps(state) {
   return {
     mapDetail: state.mapReducer.mapDetail,
     securityBrain: state.mapReducer.securityBrain,
+    loadingModal: state.mapReducer.loadingModal,
   }
 }
 
