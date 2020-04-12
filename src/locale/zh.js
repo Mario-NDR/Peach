@@ -26,7 +26,7 @@ export default {
   clientRules: '防御策略',
 
   // login
-  login: '登录',
+  login: '进入',
   userName: '用户名',
   passWord: '密码',
   userNameRequired: '请输入用户名',

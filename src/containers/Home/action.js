@@ -7,3 +7,11 @@ export function getMapDetailData(payload = {}) {
     type: 'getMapDetailData',
   }))
 }
+
+// 安全大脑
+export function postSecurityBrain(payload = {}) {
+  return network.POST('/api/vulsearch', payload, (data) => ({
+    data,
+    type: 'postSecurityBrain',
+  }))
+}

@@ -27,11 +27,7 @@ class ClientRules extends IntlComponent {
 
   constructor(props) {
     super(props)
-    this.state = {
-      searchValue: '',
-      filterTitleKey: '',
-      filterSidTitleKey: ''
-    }
+    this.state = { searchValue: '' }
     this.handleChangeInput = this.handleChangeInput.bind(this)
     this.handleReset = this.handleReset.bind(this)
     this.handleSearchRules = this.handleSearchRules.bind(this)
@@ -58,6 +54,8 @@ class ClientRules extends IntlComponent {
         server: 'client',
         search: searchValue
       })
+    } else {
+      Message.info('请输入关键字')
     }
   }
 
@@ -103,32 +101,6 @@ class ClientRules extends IntlComponent {
     console.info(record)
   }
 
-  // 修改策略字段tooltip
-  onVisibleChange = (key) => {
-    let str = ''
-    switch (key) {
-      case 1:
-        str = this.localeMessage('tooltipChangeRules')
-      // eslint-disable-next-line no-fallthrough
-      default:
-        break
-    }
-    this.setState({ filterTitleKey: str })
-  }
-
-  // sid字段tooltip
-  onVisibleSidChange = (key) => {
-    let str = ''
-    switch (key) {
-      case 1:
-        str = this.localeMessage('tooltipSidChangeRules')
-      // eslint-disable-next-line no-fallthrough
-      default:
-        break
-    }
-    this.setState({ filterTitleKey: str })
-  }
-
   // 删除策略
   handleDelRules = async () => {
     const { status } = await axios.delete('/api/rules/del')
@@ -142,7 +114,7 @@ class ClientRules extends IntlComponent {
 
   render() {
     const { rules } = this.props
-    const { searchValue, filterTitleKey, filterSidTitleKey } = this.state
+    const { searchValue } = this.state
 
     return (
       <div className={style.clientRules}>
@@ -168,8 +140,20 @@ class ClientRules extends IntlComponent {
                   />
                 </div>
                 <div>
-                  <Button style={{ marginLeft: 15 }} type="primary" onClick={this.handleSearchRules}>查询</Button>
-                  <Button style={{ marginLeft: 15 }} onClick={this.handleReset}>重置</Button>
+                  <Button
+                    style={{ marginLeft: 15 }}
+                    type="primary"
+                    onClick={this.handleSearchRules}
+                  >
+                    查询
+                  </Button>
+                  <Button
+                    style={{ marginLeft: 15 }}
+                    disabled={searchValue.length === 0}
+                    onClick={this.handleReset}
+                  >
+                    重置
+                  </Button>
                 </div>
               </div>
               <div>
@@ -191,15 +175,10 @@ class ClientRules extends IntlComponent {
                   this.cancel,
                   this.confirmDel,
                   this.cancelDel,
-                  this.onVisibleChange,
-                  this.onVisibleSidChange
                 )
               }
               dataSource={rules}
               // rowKey={(r) => r.sid}
-              locale={{
-                filterTitle: filterTitleKey || filterSidTitleKey || '默认',
-              }}
             />
           </div>
         </ContentBox>

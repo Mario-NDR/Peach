@@ -2,18 +2,19 @@ import React from 'react'
 import { Tag, Popconfirm, Icon, Tooltip } from 'antd'
 import style from './style.scss'
 
-const columns = (confirm, cancel, confirmDel, cancelDel, onVisibleChange, onVisibleSidChange) => [
+const columns = (confirm, cancel, confirmDel, cancelDel) => [
   {
-    title: '规则编号',
+    title: (
+      <span>
+        规则编号
+        <Tooltip title="点击规则编号删除">
+          <Icon type="question-circle" style={{ marginLeft: 3 }} />
+        </Tooltip>
+      </span>
+    ),
     dataIndex: 'sid',
     key: 'sid',
     align: 'center',
-    filterDropdown: (<div />),
-    filterIcon: (
-      <Tooltip onVisibleChange={() => onVisibleSidChange(1)} placement="top">
-        <Icon type="question-circle-o" />
-      </Tooltip>
-    ),
     render: (text, record) => (
       <div className={style.tableText}>
         <Popconfirm
@@ -40,16 +41,17 @@ const columns = (confirm, cancel, confirmDel, cancelDel, onVisibleChange, onVisi
     )
   },
   {
-    title: '防御策略',
+    title: (
+      <span>
+        防御策略
+        <Tooltip title="点击修改防御策略">
+          <Icon type="question-circle" style={{ marginLeft: 3 }} />
+        </Tooltip>
+      </span>
+    ),
     dataIndex: 'type',
     key: 'type',
     align: 'center',
-    filterDropdown: (<div />),
-    filterIcon: (
-      <Tooltip onVisibleChange={() => onVisibleChange(1)} placement="top">
-        <Icon type="question-circle-o" />
-      </Tooltip>
-    ),
     render: (text, record) => (
       <div className={style.tableText}>
         <Popconfirm

@@ -16,7 +16,6 @@ import { Pie } from 'Components/Charts'
 import * as actions from '../action'
 import style from './style.scss'
 
-// const color = ['#006666', '#006699', '#009999', '#0099CC', '#00CCCC', '#00CCFF']
 const color = [
   '#7FC9FE',
   '#71E3E3',
@@ -65,17 +64,20 @@ class Visual extends IntlComponent {
   render() {
     const { pieData } = this.props
     let sum = 0
+    let last_clean = ''
+    let total = 0
     let innerPieData = []
     if (Object.keys(pieData).length !== 0) {
       innerPieData = pieData.data.map((item) => {
         return { name: item.name, value: item.count }
       })
       sum = pieData.sum
+      last_clean = pieData.last_clean
+      total = pieData.total
     }
-    console.info(sum)
 
     return (
-      <div className={style.allRules}>
+      <div className={style.visual}>
         <Bread
           items={[
             { content: '数据可视化' },
@@ -84,36 +86,53 @@ class Visual extends IntlComponent {
         />
         <ContentBox>
           <Subheader>巴拉巴拉1</Subheader>
-          <Pie
-            data={innerPieData}
-            width="100%"
-            height={450}
-            options={{
-              radius: [ 0, '65%' ],
-              textStyle: { fontSize: 16 },
-              legend: {
-                type: 'scroll',
-                orient: 'vertical',
-                right: 10,
-                top: 20,
-                bottom: 20,
-                data: innerPieData,
-                textStyle: { color: '#fff', fontSize: 12 },
-              },
-              label: {
-                normal: { show: false },
-              },
-              center: [ '35%', '50%' ],
-              title: {
-                show: true,
-                text: '巴拉巴拉2',
-                textStyle: { color: '#966', fontSize: 18 },
-                left: 'center',
-              },
-              color,
-            }}
+          <div className={style.info}>
+            <div className={style.infoVisual}>
+              <div>
+                <span>累计处理请求: </span>
+                <span style={{ color: '#e8eb62' }}>{total}</span>
+              </div>
+              <div>
+                <span>现存日志数: </span>
+                <span style={{ color: '#e8eb62' }}>{ sum }</span>
+              </div>
+              <div>
+                {`上次清理时间: ${typeof (last_clean) === 'string' ? '没有运行清理过程' : 123}`}
+              </div>
+            </div>
+          </div>
+          <div className={style.pieLeft}>
+            <Pie
+              data={innerPieData}
+              width="100%"
+              height={450}
+              options={{
+                radius: [ '40%', '65%' ],
+                textStyle: { fontSize: 16 },
+                legend: {
+                  type: 'scroll',
+                  orient: 'vertical',
+                  right: 10,
+                  top: 20,
+                  bottom: 20,
+                  data: innerPieData,
+                  textStyle: { color: '#fff', fontSize: 12 },
+                },
+                label: {
+                  normal: { show: false },
+                },
+                center: [ '35%', '50%' ],
+                title: {
+                  show: true,
+                  text: '巴拉巴拉2',
+                  textStyle: { color: '#966', fontSize: 18 },
+                  left: 'center',
+                },
+                color,
+              }}
             // style={{ marginTop: 32 }}
-          />
+            />
+          </div>
         </ContentBox>
       </div>
     )
