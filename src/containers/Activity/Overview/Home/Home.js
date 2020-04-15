@@ -4,6 +4,9 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import { Table, Tooltip, Tag, Modal, Spin, Icon } from 'antd'
+import echarts from 'echarts'
+// import liquidFill from 'echarts-liquidfill'
+import 'echarts-liquidfill'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -14,6 +17,7 @@ import ContentBox from 'Components/ContentBox'
 import Subheader from 'Components/Subheader'
 import { zoneTransfer, formatTime } from 'Utils/time'
 import { ellipsis } from 'Utils/string'
+import mapOption from './option'
 
 import * as actions from '../../../Home/action'
 import style from './style.scss'
@@ -32,6 +36,7 @@ class Home extends IntlComponent {
       ip: '',
       loadingModal: true,
     }
+    this.liquid1 = null
   }
 
   columns = [
@@ -159,6 +164,12 @@ class Home extends IntlComponent {
 
   componentDidMount() {
     this.props.actions.getMapDetailData()
+    // this.liquid1 = echarts.init(document.querySelector('#liquidFill1'))
+    // this.liquid1.setOption(mapOption(0.5))
+  }
+
+  componentDidUpdate() {
+    // this.liquid1.setOption(mapOption(0.5))
   }
 
   componentWillReceiveProps(nextProps) {
@@ -175,19 +186,6 @@ class Home extends IntlComponent {
     this.setState({ visible: false })
   }
 
-  // 选择要查询的IP
-  handleChangeType = (e) => {
-    const { selectionRecord } = this.state
-    this.setState({ typeSelect: e.target.value })
-    if (e.target.value === 0) {
-      this.props.actions.postSecurityBrain({ query: selectionRecord.client_ip })
-    } else if (e.target.value === 1) {
-      this.props.actions.postSecurityBrain({ query: selectionRecord.src })
-    } else {
-      this.props.actions.postSecurityBrain({ query: selectionRecord.dest })
-    }
-  }
-
   clickClient = (r) => {
     this.setState({ visible: true, ipTitle: '客户端', ip: r, loadingModal: true })
     this.props.actions.postSecurityBrain({ query: r })
@@ -201,6 +199,19 @@ class Home extends IntlComponent {
   clickDest = (r) => {
     this.setState({ visible: true, ipTitle: '目的IP', ip: r, loadingModal: true })
     this.props.actions.postSecurityBrain({ query: r })
+  }
+
+  modalRef = (obj) => {
+    if (obj) {
+      this.echartsFn(obj)
+    }
+  }
+
+  echartsFn(obj) {
+    console.info(obj)
+    // echarts内容
+    this.liquid1 = echarts.init(document.querySelector('#liquidFill1'))
+    this.liquid1.setOption(mapOption(0.4))
   }
 
   render() {
@@ -243,6 +254,7 @@ class Home extends IntlComponent {
           />
         </div>
         <Modal
+          wrapClassName="modal"
           width="70%"
           title="安全大脑威胁分析结果"
           visible={visible}
@@ -296,7 +308,9 @@ class Home extends IntlComponent {
                   </div>
                 </div>
               </div>
-              <div>--水波图1--</div>
+              <section>
+                <div id="liquidFill1" style={{ width: 300, height: 300 }} ref={this.modalRef} />
+              </section>
             </div>
             <div className={style.brainModule}>
               <div>
