@@ -14,9 +14,16 @@
 
 .brainModule {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  border: 1px dashed #ccc;
+  border: 1px dashed #e4a318;
+  border-radius: 6px;
+  background: rgb(250, 248, 248);
   margin-top: 10px;
+
+  .item {
+    margin: 10px 0 15px 10px;
+  }
 }
 
 .modalTitle {

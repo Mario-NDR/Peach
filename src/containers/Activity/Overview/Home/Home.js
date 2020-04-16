@@ -5,7 +5,6 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import { Table, Tooltip, Tag, Modal, Spin, Icon } from 'antd'
 import echarts from 'echarts'
-// import liquidFill from 'echarts-liquidfill'
 import 'echarts-liquidfill'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -37,6 +36,7 @@ class Home extends IntlComponent {
       loadingModal: true,
     }
     this.liquid1 = null
+    this.liquid2 = null
   }
 
   columns = [
@@ -164,17 +164,15 @@ class Home extends IntlComponent {
 
   componentDidMount() {
     this.props.actions.getMapDetailData()
-    // this.liquid1 = echarts.init(document.querySelector('#liquidFill1'))
-    // this.liquid1.setOption(mapOption(0.5))
   }
 
-  componentDidUpdate() {
-    // this.liquid1.setOption(mapOption(0.5))
-  }
+  componentDidUpdate() {}
 
   componentWillReceiveProps(nextProps) {
     if (this.props.loadingModal !== nextProps.loadingModal) {
       this.setState({ loadingModal: false })
+      this.liquid1.setOption(mapOption(nextProps.securityBrain.data[0].threat_score / 10))
+      this.liquid2.setOption(mapOption(nextProps.securityBrain.data[1].threat_score / 100))
     }
   }
 
@@ -207,11 +205,9 @@ class Home extends IntlComponent {
     }
   }
 
-  echartsFn(obj) {
-    console.info(obj)
-    // echarts内容
+  async echartsFn() {
     this.liquid1 = echarts.init(document.querySelector('#liquidFill1'))
-    this.liquid1.setOption(mapOption(0.4))
+    this.liquid2 = echarts.init(document.querySelector('#liquidFill2'))
   }
 
   render() {
@@ -255,7 +251,7 @@ class Home extends IntlComponent {
         </div>
         <Modal
           wrapClassName="modal"
-          width="70%"
+          width="40%"
           title="安全大脑威胁分析结果"
           visible={visible}
           footer={null}
@@ -266,23 +262,23 @@ class Home extends IntlComponent {
             <span>{`${this.state.ipTitle}: `}</span>
             <span className={style.modalTitleIp}>{this.state.ip}</span>
           </div>
-          <Spin spinning={this.state.loadingModal} indicator={antIcon}>
+          <Spin spinning={this.state.loadingModal} indicator={antIcon} tip="加载中">
             <div className={style.brainModule}>
               <div>
                 <div>
-                  <div>
+                  <div className={style.item}>
                     <span>最后活跃时间: </span>
                     <span>
                       {
                         Object.keys(brain1).length === 0
                           ? '--'
                           : !isNaN(brain1.active_time)
-                            ? (<Tag color="#87d068">{formatTime(brain1.active_time)}</Tag>)
+                            ? (<Tag color="#e4a318">{formatTime(brain1.active_time)}</Tag>)
                             : '--'
                       }
                     </span>
                   </div>
-                  <div>
+                  <div className={style.item}>
                     <span>多引擎威胁分析结果: </span>
                     <span>
                       {
@@ -290,11 +286,11 @@ class Home extends IntlComponent {
                           ? '--'
                           : brain1.engine_result.length === 0
                             ? '--'
-                            : brain1.engine_result.map((item, key) => (<Tag key={key} color="#87d068">{item}</Tag>))
+                            : brain1.engine_result.map((item, key) => (<Tag key={key} color="#e4a318">{item}</Tag>))
                       }
                     </span>
                   </div>
-                  <div>
+                  <div className={style.item}>
                     <span>分析引擎: </span>
                     <span>
                       {
@@ -309,25 +305,27 @@ class Home extends IntlComponent {
                 </div>
               </div>
               <section>
-                <div id="liquidFill1" style={{ width: 300, height: 300 }} ref={this.modalRef} />
+                <div id="liquidFill1" style={{ width: '200%', height: '200%' }} ref={this.modalRef} />
               </section>
             </div>
+            </Spin>
+          <Spin spinning={this.state.loadingModal} indicator={antIcon} tip="加载中">
             <div className={style.brainModule}>
               <div>
                 <div>
-                  <div>
+                  <div className={style.item}>
                     <span>最后活跃时间: </span>
                     <span>
                       {
                         Object.keys(brain2).length === 0
                           ? '--'
                           : !isNaN(brain2.active_time)
-                            ? (<Tag color="#87d068">{formatTime(brain2.active_time)}</Tag>)
+                            ? (<Tag color="#e4a318">{formatTime(brain2.active_time)}</Tag>)
                             : '--'
                       }
                     </span>
                   </div>
-                  <div>
+                  <div className={style.item}>
                     <span>城市: </span>
                     <span>
                       {
@@ -339,7 +337,7 @@ class Home extends IntlComponent {
                       }
                     </span>
                   </div>
-                  <div>
+                  <div className={style.item}>
                     <span>运营商: </span>
                     <span>
                       {
@@ -351,7 +349,7 @@ class Home extends IntlComponent {
                       }
                     </span>
                   </div>
-                  <div>
+                  <div className={style.item}>
                     <span>Tags: </span>
                     <span>
                       {
@@ -359,11 +357,11 @@ class Home extends IntlComponent {
                           ? '--'
                           : brain2.tags.length === 0
                             ? '--'
-                            : brain2.tags.map((item, key) => (<Tag key={key} color="#87d068">{item}</Tag>))
+                            : brain2.tags.map((item, key) => (<Tag key={key} color="#e4a318">{item}</Tag>))
                       }
                     </span>
                   </div>
-                  <div>
+                  <div className={style.item}>
                     <span>分析引擎: </span>
                     <span>
                       {
@@ -377,7 +375,9 @@ class Home extends IntlComponent {
                   </div>
                 </div>
               </div>
-              <div>--水波图2--</div>
+              <section>
+                <div id="liquidFill2" style={{ width: '200%', height: '200%' }} ref={this.modalRef} />
+              </section>
             </div>
           </Spin>
         </Modal>

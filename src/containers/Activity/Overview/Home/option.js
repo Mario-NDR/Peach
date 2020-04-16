@@ -1,19 +1,19 @@
 export default (data) => {
   return {
     title: {
-      top: '45%',
+      top: '40%',
       left: 'center',
       text: '风险程度',
       textStyle: {
         color: '#333',
         fontStyle: 'normal',
         fontWeight: 'normal',
-        fontSize: 18
+        fontSize: 16
       },
       subtext: `(占所有数据的 ${(data * 10000 / 100).toFixed(2)} %)`,
       subtextStyle: {
         color: '#504e4e',
-        fontSize: 14
+        fontSize: 12
       }
     },
     series: [
@@ -34,7 +34,7 @@ export default (data) => {
           }
         ],
         radius: '90%',
-        // shape: 'roundRect', // 圆角正方形
+        shape: 'roundRect', // 圆角正方形
         // shape: 'rect', // 正方形
         // shape: 'triangle', // 正三角形
         // shape: 'diamond', // 菱形
@@ -50,7 +50,8 @@ export default (data) => {
           }
         },
         backgroundStyle: {
-          color: '#e7d152',
+          // color: '#e7d152',
+          color: '#ecebeb',
           borderColor: '#156ACF',
           borderWidth: 2,
           shadowColor: 'rgba(0, 0, 0, 0)',
