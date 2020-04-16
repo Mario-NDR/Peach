@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
-import { Table, Button, Input, Message } from 'antd'
+import { Table, Button, Input, Message, Spin, Icon } from 'antd'
 
 import Bread from 'Components/Bread'
 import Subheader from 'Components/Subheader'
@@ -18,6 +18,7 @@ import columns from './config'
 import * as actions from '../action'
 import style from './style.scss'
 
+const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
 
 class ClientRules extends IntlComponent {
 
@@ -27,7 +28,10 @@ class ClientRules extends IntlComponent {
 
   constructor(props) {
     super(props)
-    this.state = { searchValue: '' }
+    this.state = {
+      searchValue: '',
+      loadingClient: true,
+    }
     this.handleChangeInput = this.handleChangeInput.bind(this)
     this.handleReset = this.handleReset.bind(this)
     this.handleSearchRules = this.handleSearchRules.bind(this)
@@ -35,6 +39,12 @@ class ClientRules extends IntlComponent {
 
   componentDidMount() {
     this.props.actions.getRules({ server: 'client' })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.loadingAll !== nextProps.loadingAll) {
+      this.setState({ loadingClient: false })
+    }
   }
 
   handleChangeInput = (e) => {
@@ -48,6 +58,7 @@ class ClientRules extends IntlComponent {
 
   // 查询
   handleSearchRules = () => {
+    this.setState({ loadingClient: true })
     const { searchValue } = this.state
     if (searchValue.length !== 0) {
       this.props.actions.getRules({
@@ -61,6 +72,7 @@ class ClientRules extends IntlComponent {
 
   // 重置
   handleReset = () => {
+    this.setState({ loadingClient: true })
     const { searchValue } = this.state
     if (searchValue.length !== 0) {
       this.setState({ searchValue: '' })
@@ -70,6 +82,7 @@ class ClientRules extends IntlComponent {
 
   // 修改防御策略
   confirm = async (record) => {
+    this.setState({ loadingClient: true })
     const payload = { id: record.sid, type: record.type === 'drop' ? 'alert' : 'drop' }
     try {
       await axios.post('/api/rules/change', payload)
@@ -86,6 +99,7 @@ class ClientRules extends IntlComponent {
 
   // 删除防御策略
   confirmDel = async (record) => {
+    this.setState({ loadingClient: true })
     const payload = { id: record.sid, type: record.type }
     try {
       await axios.post('/api/rules/del', payload)
@@ -103,6 +117,7 @@ class ClientRules extends IntlComponent {
 
   // 删除策略
   handleDelRules = async () => {
+    this.setState({ loadingClient: true })
     const { status } = await axios.delete('/api/rules/del')
     if (status >= 200 && status < 400) {
       Message.success(this.localeMessage('successDelAllRules'))
@@ -164,22 +179,24 @@ class ClientRules extends IntlComponent {
         </div>
         <ContentBox>
           <div className={style.prizeTable}>
-            <div style={{ marginLeft: 10, marginBottom: 10 }}>
-              {`共 ${rules.length} 条防御策略`}
-            </div>
-            <Table
-              bordered
-              columns={
-                columns(
-                  this.confirm,
-                  this.cancel,
-                  this.confirmDel,
-                  this.cancelDel,
-                )
-              }
-              dataSource={rules}
-              // rowKey={(r) => r.sid}
-            />
+            <Spin spinning={this.state.loadingClient} indicator={antIcon} tip="加载中">
+              <div style={{ marginLeft: 10, marginBottom: 10 }}>
+                {`共 ${rules.length} 条防御策略`}
+              </div>
+              <Table
+                bordered
+                columns={
+                  columns(
+                    this.confirm,
+                    this.cancel,
+                    this.confirmDel,
+                    this.cancelDel,
+                  )
+                }
+                dataSource={rules}
+                rowKey={(r) => r.sid}
+              />
+            </Spin>
           </div>
         </ContentBox>
       </div>
@@ -190,6 +207,7 @@ class ClientRules extends IntlComponent {
 function mapStateToProps(state) {
   return {
     rules: state.rulesReducer.rules,
+    loadingAll: state.rulesReducer.loadingAll,
   }
 }
 

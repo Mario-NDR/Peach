@@ -34,6 +34,7 @@ class Home extends IntlComponent {
       ipTitle: '',
       ip: '',
       loadingModal: true,
+      loadingTable: true,
     }
     this.liquid1 = null
     this.liquid2 = null
@@ -115,9 +116,9 @@ class Home extends IntlComponent {
       render: (text) => {
         if (text === 'allowed') {
           return (
-          <Tag color="volcano">
-            {'仅告警'}
-          </Tag>
+            <Tag color="volcano">
+              {'仅告警'}
+            </Tag>
           )
         }
         return (
@@ -166,9 +167,12 @@ class Home extends IntlComponent {
     this.props.actions.getMapDetailData()
   }
 
-  componentDidUpdate() {}
+  componentDidUpdate() { }
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.loadingTable !== nextProps.loadingTable) {
+      this.setState({ loadingTable: false })
+    }
     if (this.props.loadingModal !== nextProps.loadingModal) {
       this.setState({ loadingModal: false })
       this.liquid1.setOption(mapOption(nextProps.securityBrain.data[0].threat_score / 10))
@@ -238,16 +242,18 @@ class Home extends IntlComponent {
       <ContentBox>
         <Subheader>入侵防御记录</Subheader>
         <div className={style.tableList}>
-          <div style={{ marginBottom: 10, marginLeft: 10 }}>
-            {`共 ${mapDetail.length} 条记录`}
-          </div>
-          <Table
-            bordered
-            columns={this.columns}
-            dataSource={mapDetail}
-            pagination={this.renderPagination()}
-            rowKey={(r) => r.time}
-          />
+          <Spin spinning={this.state.loadingTable} indicator={antIcon} tip="加载中">
+            <div style={{ marginBottom: 10, marginLeft: 10 }}>
+              {`共 ${mapDetail.length} 条记录`}
+            </div>
+            <Table
+              bordered
+              columns={this.columns}
+              dataSource={mapDetail}
+              pagination={this.renderPagination()}
+              rowKey={(r) => r.time}
+            />
+          </Spin>
         </div>
         <Modal
           wrapClassName="modal"
@@ -308,7 +314,7 @@ class Home extends IntlComponent {
                 <div id="liquidFill1" style={{ width: '200%', height: '200%' }} ref={this.modalRef} />
               </section>
             </div>
-            </Spin>
+          </Spin>
           <Spin spinning={this.state.loadingModal} indicator={antIcon} tip="加载中">
             <div className={style.brainModule}>
               <div>
@@ -391,6 +397,7 @@ function mapStateToProps(state) {
     mapDetail: state.mapReducer.mapDetail,
     securityBrain: state.mapReducer.securityBrain,
     loadingModal: state.mapReducer.loadingModal,
+    loadingTable: state.mapReducer.loadingTable,
   }
 }
 

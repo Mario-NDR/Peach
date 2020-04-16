@@ -8,6 +8,7 @@ import Nav from 'Components/Nav'
 import Home from 'Containers/Home'
 import Visualization from 'Containers/Visualization'
 import Activity from 'Containers/Activity'
+import Setting from 'Containers/Setting'
 import Error from 'Containers/Error'
 
 import style from './style.scss'
@@ -53,6 +54,7 @@ class App extends React.PureComponent {
               <Route path="/app/map" component={Home} exact />
               <Route path="/app/activity" component={Activity} />
               <Route path="/app/visualization" component={Visualization} />
+              <Route path="/app/setting" component={Setting} />
               <Route component={Error} />
             </Switch>
           </LayoutContent>

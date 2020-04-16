@@ -2,10 +2,11 @@ const initialState = {
   mapDetail: [],
   securityBrain: {},
   loadingModal: 0,
+  loadingTable: 0,
 }
 
 const reducers = {
-  getMapDetailData: (state, action) => ({ ...state, mapDetail: action.data.data }),
+  getMapDetailData: (state, action) => ({ ...state, mapDetail: action.data.data, loadingTable: Date.now() }),
   postSecurityBrain: (state, action) => ({ ...state, securityBrain: action.data, loadingModal: Date.now() }),
 }
 

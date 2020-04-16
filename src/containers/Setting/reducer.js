@@ -1,12 +1,9 @@
 const initialState = {
-  rules: [],
-  data: '',
-  loadingAll: 0,
+  xxx: {},
 }
 
 const reducers = {
-  getRules: (state, action) => ({ ...state, rules: action.data.rules, loadingAll: Date.now() }),
-  postRules: (state, action) => ({ ...state, data: action.data })
+  getxxx: (state, action) => ({ ...state, xxx: action.data }),
 }
 
 export default function userReducer(state = initialState, action) {

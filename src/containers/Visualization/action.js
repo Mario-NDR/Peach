@@ -8,3 +8,10 @@ export function getPieData(payload = {}) {
     type: 'getPieData',
   }))
 }
+
+export function getVisualDate(payload = {}) {
+  return network.GET('/api/status', payload, (data) => ({
+    data,
+    type: 'getVisualDate',
+  }))
+}

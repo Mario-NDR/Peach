@@ -43,5 +43,15 @@ export default [
       { title: 'allRules', linkTo: '/app/activity/prizeLibrary', permissions: [ 'admin', 'user' ] },
       { title: 'clientRules', linkTo: '/app/activity/prizeRecord', permissions: [ 'admin', 'user' ] },
     ],
-  }
+  },
+  {
+    name: 'systemConfig',
+    title: (
+      <span>
+        <FormattedMessage id="systemConfig" />
+      </span>
+    ),
+    linkTo: '/app/setting',
+    permissions: [ 'admin', 'user' ],
+  },
 ]

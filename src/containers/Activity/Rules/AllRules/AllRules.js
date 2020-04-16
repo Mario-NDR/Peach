@@ -4,7 +4,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  Table, Button, Input, Message, Modal, Radio,
+  Table, Button, Input, Message, Modal, Radio, Spin, Icon,
 } from 'antd'
 
 import { bindActionCreators } from 'redux'
@@ -19,6 +19,8 @@ import columns from './config'
 
 import * as actions from '../action'
 import style from './style.scss'
+
+const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
 
 class AllRules extends IntlComponent {
 
@@ -35,6 +37,7 @@ class AllRules extends IntlComponent {
       visible: false,
       rulesType: 'alert',
       selectRules: 0,
+      loadingAll: true,
     }
     this.handleChangeSearch = this.handleChangeSearch.bind(this)
     this.handleReset = this.handleReset.bind(this)
@@ -45,6 +48,12 @@ class AllRules extends IntlComponent {
 
   componentDidMount() {
     this.props.actions.getRules({ server: 'server' })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.loadingAll !== nextProps.loadingAll) {
+      this.setState({ loadingAll: false })
+    }
   }
 
   handleChangeSearch = (e) => {
@@ -79,6 +88,7 @@ class AllRules extends IntlComponent {
 
   // 查询
   handleSearchRules = () => {
+    this.setState({ loadingAll: true })
     const { searchValue } = this.state
     if (searchValue.length !== 0) {
       this.props.actions.getRules({
@@ -92,6 +102,7 @@ class AllRules extends IntlComponent {
 
   // 重置
   handleReset = () => {
+    this.setState({ loadingAll: true })
     const { searchValue } = this.state
     this.setState({ searchValue: '' })
     if (searchValue.length !== 0) {
@@ -164,7 +175,7 @@ class AllRules extends IntlComponent {
                   type="primary"
                   onClick={this.handleSearchRules}
                 >
-                    查询
+                  查询
                   </Button>
                 <Button
                   style={{ marginLeft: 15 }}
@@ -181,30 +192,32 @@ class AllRules extends IntlComponent {
           </div>
         </ContentBox>
         <ContentBox>
-          <div
-            style={{
-              marginBottom: 10,
-              marginLeft: 10,
-            }}
-          >
-            {
-              `共 ${rules.length} 条规则${
-                selectRules !== 0
-                  ? selectRules === rules.length
-                    ? '，全部选择'
-                    : `，已选择 ${selectRules} 条规则`
-                  : ''
-              }`
-            }
-          </div>
-          <Table
-            bordered
-            columns={columns}
-            dataSource={rules}
-            rowSelection={rowSelection}
-            pagination={false}
-            // rowKey={(r) => r.sid}
-          />
+          <Spin spinning={this.state.loadingAll} indicator={antIcon} tip="加载中">
+            <div
+              style={{
+                marginBottom: 10,
+                marginLeft: 10,
+              }}
+            >
+              {
+                `共 ${rules.length} 条规则${
+                  selectRules !== 0
+                    ? selectRules === rules.length
+                      ? '，全部选择'
+                      : `，已选择 ${selectRules} 条规则`
+                    : ''
+                }`
+              }
+            </div>
+            <Table
+              bordered
+              columns={columns}
+              dataSource={rules}
+              rowSelection={rowSelection}
+              pagination={false}
+              rowKey={(r) => r.sid}
+            />
+          </Spin>
         </ContentBox>
         <Modal
           title={this.localeMessage('modalRulesTitle')}
@@ -227,6 +240,7 @@ class AllRules extends IntlComponent {
 function mapStateToProps(state) {
   return {
     rules: state.rulesReducer.rules,
+    loadingAll: state.rulesReducer.loadingAll,
   }
 }
 
