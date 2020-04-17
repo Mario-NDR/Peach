@@ -251,7 +251,6 @@ class Home extends IntlComponent {
               columns={this.columns}
               dataSource={mapDetail}
               pagination={this.renderPagination()}
-              rowKey={(r) => r.time}
             />
           </Spin>
         </div>

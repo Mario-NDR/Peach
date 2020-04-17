@@ -1,9 +1,17 @@
 import network from 'Utils/network'
 
-// 获取规则
-export function getxxx(payload = {}) {
-  return network.GET('/api/xxx', payload, (data) => ({
+// 日志下载
+export function getDownloadLog(payload = {}) {
+  return network.GET('/api/downloadlog', payload, (data) => ({
     data,
-    type: 'getxxx',
+    type: 'getDownloadLog',
+  }))
+}
+
+// 日志清理
+export function postLog(payload = {}) {
+  return network.POST('/api/db', payload, (data) => ({
+    data,
+    type: 'postLog',
   }))
 }

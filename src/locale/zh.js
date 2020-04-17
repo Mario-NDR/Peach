@@ -24,8 +24,9 @@ export default {
   overview: '入侵防御',
   allRules: '全部规则',
   clientRules: '防御策略',
+  about: '关于我们',
 
-  // login
+  // logi
   login: '进入',
   userName: '用户名',
   passWord: '密码',

@@ -9,6 +9,7 @@ import Home from 'Containers/Home'
 import Visualization from 'Containers/Visualization'
 import Activity from 'Containers/Activity'
 import Setting from 'Containers/Setting'
+import About from 'Containers/About'
 import Error from 'Containers/Error'
 
 import style from './style.scss'
@@ -55,6 +56,7 @@ class App extends React.PureComponent {
               <Route path="/app/activity" component={Activity} />
               <Route path="/app/visualization" component={Visualization} />
               <Route path="/app/setting" component={Setting} />
+              <Route path="/app/about" component={About} />
               <Route component={Error} />
             </Switch>
           </LayoutContent>

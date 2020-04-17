@@ -54,4 +54,14 @@ export default [
     linkTo: '/app/setting',
     permissions: [ 'admin', 'user' ],
   },
+  {
+    name: 'about',
+    title: (
+      <span>
+        <FormattedMessage id="about" />
+      </span>
+    ),
+    linkTo: '/app/about',
+    permissions: [ 'admin', 'user' ],
+  },
 ]
