@@ -3,14 +3,14 @@ export default (data) => {
     title: {
       top: '40%',
       left: 'center',
-      text: '风险程度',
+      text: '威胁指数',
       textStyle: {
         color: '#333',
         fontStyle: 'normal',
         fontWeight: 'normal',
         fontSize: 16
       },
-      subtext: `(占所有数据的 ${(data * 10000 / 100).toFixed(2)} %)`,
+      subtext: ` ${(data * 10000 / 100).toFixed(2)} `,
       subtextStyle: {
         color: '#504e4e',
         fontSize: 12
