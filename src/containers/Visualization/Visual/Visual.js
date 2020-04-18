@@ -93,7 +93,7 @@ class Visual extends IntlComponent {
                 <span style={{ color: '#e8eb62' }}>{sum}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span style={{ marginRight: 5 }}>入侵日志清理时间: </span>
+                <span style={{ marginRight: 5 }}>日志清理时间: </span>
                 {
                   typeof (last_clean) === 'string' ? '没有运行清理过程' : <Tag color="#87d068">{formatTime(last_clean)}</Tag>
                 }
