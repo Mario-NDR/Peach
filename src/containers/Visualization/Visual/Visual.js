@@ -81,7 +81,7 @@ class Visual extends IntlComponent {
           items={[ { content: '数据可视化' }, { content: '图表' } ]}
         />
         <ContentBox>
-          <Subheader>巴拉巴拉1</Subheader>
+          <Subheader>数据可视化</Subheader>
           <div className={style.info}>
             <div className={style.infoVisual}>
               <div>
@@ -93,13 +93,13 @@ class Visual extends IntlComponent {
                 <span style={{ color: '#e8eb62' }}>{sum}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span style={{ marginRight: 5 }}>上次清理时间: </span>
+                <span style={{ marginRight: 5 }}>入侵日志清理时间: </span>
                 {
                   typeof (last_clean) === 'string' ? '没有运行清理过程' : <Tag color="#87d068">{formatTime(last_clean)}</Tag>
                 }
               </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span style={{ marginRight: 5 }}>开机时长: </span>
+                <span style={{ marginRight: 5 }}>此版本已运行: </span>
                 <span>{dateString}</span>
               </div>
             </div>
@@ -128,7 +128,7 @@ class Visual extends IntlComponent {
                   center: [ '35%', '50%' ],
                   title: {
                     show: true,
-                    text: '巴拉巴拉2',
+                    text: '请求统计',
                     textStyle: { color: '#966', fontSize: 18 },
                     left: 'center',
                   },

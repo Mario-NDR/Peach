@@ -284,7 +284,7 @@ class Home extends IntlComponent {
                     </span>
                   </div>
                   <div className={style.item}>
-                    <span>多引擎威胁分析结果: </span>
+                    <span>检出威胁引擎: </span>
                     <span>
                       {
                         Object.keys(brain1).length === 0
@@ -296,7 +296,7 @@ class Home extends IntlComponent {
                     </span>
                   </div>
                   <div className={style.item}>
-                    <span>分析引擎: </span>
+                    <span>引擎: </span>
                     <span>
                       {
                         Object.keys(brain1).length === 0
@@ -355,7 +355,7 @@ class Home extends IntlComponent {
                     </span>
                   </div>
                   <div className={style.item}>
-                    <span>Tags: </span>
+                    <span>标签: </span>
                     <span>
                       {
                         Object.keys(brain2).length === 0
@@ -367,7 +367,7 @@ class Home extends IntlComponent {
                     </span>
                   </div>
                   <div className={style.item}>
-                    <span>分析引擎: </span>
+                    <span>引擎: </span>
                     <span>
                       {
                         Object.keys(brain2).length === 0

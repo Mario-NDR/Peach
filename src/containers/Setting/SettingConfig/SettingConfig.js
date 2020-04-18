@@ -77,14 +77,14 @@ class Visual extends IntlComponent {
         </ContentBox>
         <ContentBox>
           <div>
-            <Button type="primary" onClick={this.handleClearLog}>日志清理</Button>
+            <Button type="primary" onClick={this.handleClearLog}>入侵防御日志清理</Button>
             <Button
               loading={this.state.buttonLoading}
               type="primary"
               style={{ marginLeft: 20 }}
               onClick={this.handleDownloadLog}
             >
-              日志下载
+              系统运行日志下载
             </Button>
             {/* <Button
               style={{ marginLeft: 20 }}
