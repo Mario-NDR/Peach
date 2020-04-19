@@ -31,3 +31,11 @@ export function postSetting(payload = {}) {
     type: 'postSetting',
   }))
 }
+
+// 当前客户端程序版本
+export function getVersion(payload = {}) {
+  return network.GET('/api/update', payload, (data) => ({
+    data,
+    type: 'getVersion',
+  }))
+}

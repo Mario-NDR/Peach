@@ -2,7 +2,7 @@
  * @summary 系统配置 
  */
 import React from 'react'
-import { Button, Message, Form, Input, Divider } from 'antd'
+import { Button, Message, Form, Input, Divider, Select } from 'antd'
 // import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -28,6 +28,8 @@ const formItemLayout = {
   },
 }
 
+const { Option } = Select
+
 class Visual extends IntlComponent {
 
   static propTypes = {}
@@ -40,11 +42,13 @@ class Visual extends IntlComponent {
   }
 
   async componentDidMount() {
+    this.props.actions.getVersion({ operation: 'check' })
     const { form: { setFieldsValue } } = this.props
     const { data } = await axios.get('/api/setting')
     setFieldsValue({
-      heartbeat_time: data.heartbeat_time,
-      max_logfile_num: data.max_logfile_num
+      heartbeat_time: data.heartbeat_time.substring(0, data.heartbeat_time.length - 1),
+      max_logfile_num: data.max_logfile_num,
+      prefix: data.heartbeat_time.charAt(data.heartbeat_time.length - 1)
     })
   }
 
@@ -82,9 +86,18 @@ class Visual extends IntlComponent {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.form.validateFields(async (err, values) => {
+      const payload = {
+        max_logfile_num: values.max_logfile_num,
+        heartbeat_time: `${values.heartbeat_time}${values.prefix}`
+      }
       if (!err) {
+        if (values.max_logfile_num >= 1000) {
+          Message.info('本地缓存日志文件较多，可能会占用额外存储空间')
+        } else if (values.max_logfile_num <= 10) {
+          Message.info('本地保存日志文件数量时间跨度较短')
+        }
         try {
-          const { data } = await axios.post('/api/setting', values)
+          const { data } = await axios.post('/api/setting', payload)
           Message.success(data)
         } catch (error) {
           console.info(error)
@@ -95,7 +108,15 @@ class Visual extends IntlComponent {
   }
 
   render() {
-    const { form: { getFieldDecorator } } = this.props
+    const { form: { getFieldDecorator }, version } = this.props
+
+    const prefixSelector = getFieldDecorator('prefix')(
+      <Select>
+        <Option value="h">时</Option>
+        <Option value="m">分</Option>
+        <Option value="s">秒</Option>
+      </Select>,
+    )
     return (
       <div className={style.setting}>
         <Bread
@@ -103,6 +124,10 @@ class Visual extends IntlComponent {
         />
         <ContentBox>
           <Subheader>配置项</Subheader>
+          <div>
+            当前客户端程序版本：
+            <span style={{ color: '#43ad' }}>{version}</span>
+          </div>
         </ContentBox>
         <ContentBox>
           <div>
@@ -123,17 +148,19 @@ class Visual extends IntlComponent {
                 {getFieldDecorator('heartbeat_time', {
                   rules: [ {
                     required: true,
-                    message: '上传时间不能为空!',
+                    pattern: new RegExp(/^[1-9]\d*$/, 'g'),
+                    message: '输入正确的上传时间!',
                   } ],
                 })(
-                  <Input placeholder="输入日志上传时间" />,
+                  <Input addonAfter={prefixSelector} placeholder="输入日志上传时间" />,
                 )}
               </Form.Item>
               <Form.Item label="缓存日志数">
                 {getFieldDecorator('max_logfile_num', {
                   rules: [ {
                     required: true,
-                    message: '缓存日志数不能为空!',
+                    pattern: new RegExp(/^[1-9]\d*$/, 'g'),
+                    message: '输入正确的缓存日志数!',
                   } ],
                 })(
                   <Input placeholder="输入缓存日志数" />,
@@ -159,7 +186,8 @@ class Visual extends IntlComponent {
 
 function mapStateToProps(state) {
   return {
-    setting: state.settingReducer.setting
+    setting: state.settingReducer.setting,
+    version: state.settingReducer.version
   }
 }
 
