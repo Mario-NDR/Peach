@@ -2,7 +2,7 @@
  * @summary 系统配置 
  */
 import React from 'react'
-import { Button, Message, Form, Input, Divider, Select } from 'antd'
+import { Button, Message, Form, Input, Divider, Select, Icon, Tooltip } from 'antd'
 // import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -30,6 +30,12 @@ const formItemLayout = {
 
 const { Option } = Select
 
+const dbStatusMap = {
+  ready: '清理程序空闲',
+  'waiting process': '等待清理',
+  running: '正在清理',
+}
+
 class Visual extends IntlComponent {
 
   static propTypes = {}
@@ -42,6 +48,7 @@ class Visual extends IntlComponent {
   }
 
   async componentDidMount() {
+    this.props.actions.getDbStatus()
     this.props.actions.getVersion({ operation: 'check' })
     const { form: { setFieldsValue } } = this.props
     const { data } = await axios.get('/api/setting')
@@ -55,8 +62,9 @@ class Visual extends IntlComponent {
   // 日志清理
   handleClearLog = async () => {
     const { status } = await axios.post('/api/db')
+    this.props.actions.getDbStatus()
     if (status >= 200 && status < 400) {
-      Message.success('日志清理完成')
+      Message.success('等待清理')
     } else {
       Message.error('日志清理失败')
     }
@@ -108,7 +116,7 @@ class Visual extends IntlComponent {
   }
 
   render() {
-    const { form: { getFieldDecorator }, version } = this.props
+    const { form: { getFieldDecorator }, version, dbStatus } = this.props
 
     const prefixSelector = getFieldDecorator('prefix')(
       <Select>
@@ -117,6 +125,15 @@ class Visual extends IntlComponent {
         <Option value="s">秒</Option>
       </Select>,
     )
+
+    const instructions = (
+      <Tooltip
+        title="缓存日志数 > 1000，本地缓存日志文件较多，可能会占用额外存储空间。缓存日志数 < 10，本地保存日志文件数量时间跨度较短"
+      >
+        <Icon type="question-circle" style={{ width: 27 }} />
+      </Tooltip>
+    )
+
     return (
       <div className={style.setting}>
         <Bread
@@ -124,12 +141,17 @@ class Visual extends IntlComponent {
         />
         <ContentBox>
           <Subheader>配置项</Subheader>
-          <div>
-            当前客户端程序版本：
-            <span style={{ color: '#43ad' }}>{version}</span>
-          </div>
         </ContentBox>
         <ContentBox>
+          <div>
+            当前客户端程序版本：
+            <span style={{ color: '#43ad' }}>{version === 'no update' ? '预装版本' : version}</span>
+          </div>
+          <div>
+            数据库清理状态：
+            <span style={{ color: '#43ad' }}>{dbStatusMap[dbStatus]}</span>
+          </div>
+          <Divider />
           <div>
             <Button type="primary" onClick={this.handleClearLog}>入侵防御日志清理</Button>
             <Button
@@ -163,7 +185,7 @@ class Visual extends IntlComponent {
                     message: '输入正确的缓存日志数!',
                   } ],
                 })(
-                  <Input placeholder="输入缓存日志数" />,
+                  <Input addonAfter={instructions} placeholder="输入缓存日志数" />,
                 )}
               </Form.Item>
               <Form.Item
@@ -187,7 +209,8 @@ class Visual extends IntlComponent {
 function mapStateToProps(state) {
   return {
     setting: state.settingReducer.setting,
-    version: state.settingReducer.version
+    version: state.settingReducer.version,
+    dbStatus: state.settingReducer.dbStatus,
   }
 }
 

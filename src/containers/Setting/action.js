@@ -39,3 +39,11 @@ export function getVersion(payload = {}) {
     type: 'getVersion',
   }))
 }
+
+// 数据库清理状态
+export function getDbStatus(payload = {}) {
+  return network.GET('/api/cleanstatus', payload, (data) => ({
+    data,
+    type: 'getDbStatus',
+  }))
+}

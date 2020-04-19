@@ -1,11 +1,13 @@
 const initialState = {
   setting: {},
-  version: ''
+  version: '',
+  dbStatus: ''
 }
 
 const reducers = {
   getSetting: (state, action) => ({ ...state, setting: action.data }),
   getVersion: (state, action) => ({ ...state, version: action.data }),
+  getDbStatus: (state, action) => ({ ...state, dbStatus: action.data }),
 }
 
 export default function userReducer(state = initialState, action) {
