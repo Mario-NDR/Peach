@@ -144,12 +144,12 @@ class Visual extends IntlComponent {
           <Divider />
           <div>
             <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-              <Form.Item label="日志上传时间">
+              <Form.Item label="日志上传间隔">
                 {getFieldDecorator('heartbeat_time', {
                   rules: [ {
                     required: true,
                     pattern: new RegExp(/^[1-9]\d*$/, 'g'),
-                    message: '输入正确的上传时间!',
+                    message: '输入正确的上传间隔!',
                   } ],
                 })(
                   <Input addonAfter={prefixSelector} placeholder="输入日志上传时间" />,
