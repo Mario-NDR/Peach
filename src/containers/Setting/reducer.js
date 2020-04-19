@@ -1,9 +1,9 @@
 const initialState = {
-  xxx: {},
+  setting: {},
 }
 
 const reducers = {
-  getxxx: (state, action) => ({ ...state, xxx: action.data }),
+  getSetting: (state, action) => ({ ...state, setting: action.data }),
 }
 
 export default function userReducer(state = initialState, action) {

@@ -15,3 +15,19 @@ export function postLog(payload = {}) {
     type: 'postLog',
   }))
 }
+
+// 获取日志配置
+export function getSetting(payload = {}) {
+  return network.GET('/api/setting', payload, (data) => ({
+    data,
+    type: 'getSetting',
+  }))
+}
+
+// 更新日志配置
+export function postSetting(payload = {}) {
+  return network.POST('/api/setting', payload, (data) => ({
+    data,
+    type: 'postSetting',
+  }))
+}
