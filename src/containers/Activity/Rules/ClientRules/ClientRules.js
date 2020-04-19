@@ -58,9 +58,9 @@ class ClientRules extends IntlComponent {
 
   // 查询
   handleSearchRules = () => {
-    this.setState({ loadingClient: true })
     const { searchValue } = this.state
     if (searchValue.length !== 0) {
+      this.setState({ loadingClient: true })
       this.props.actions.getRules({
         server: 'client',
         search: searchValue

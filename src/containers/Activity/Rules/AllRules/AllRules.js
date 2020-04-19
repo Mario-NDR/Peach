@@ -88,9 +88,9 @@ class AllRules extends IntlComponent {
 
   // 查询
   handleSearchRules = () => {
-    this.setState({ loadingAll: true })
     const { searchValue } = this.state
     if (searchValue.length !== 0) {
+      this.setState({ loadingAll: true })
       this.props.actions.getRules({
         server: 'server',
         search: searchValue
