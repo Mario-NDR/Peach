@@ -4,7 +4,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  Table, Button, Input, Message, Modal, Radio, Spin, Icon,
+  Table, Button, Input, Message, Modal, Radio, Spin, Icon, Divider
 } from 'antd'
 
 import { bindActionCreators } from 'redux'
@@ -190,8 +190,7 @@ class AllRules extends IntlComponent {
               <Button type="primary" onClick={this.handleRulesPost}>规则下发</Button>
             </div>
           </div>
-        </ContentBox>
-        <ContentBox>
+          <Divider />
           <Spin spinning={this.state.loadingAll} indicator={antIcon} tip="加载中">
             <div
               style={{

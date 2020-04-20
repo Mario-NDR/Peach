@@ -3,11 +3,10 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Table, Button, Input, Message, Spin, Icon, Divider } from 'antd'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import axios from 'axios'
-
-import { Table, Button, Input, Message, Spin, Icon } from 'antd'
 
 import Bread from 'Components/Bread'
 import Subheader from 'Components/Subheader'
@@ -133,19 +132,18 @@ class ClientRules extends IntlComponent {
 
     return (
       <div className={style.clientRules}>
-        <div className={style.viewRecord}>
-          <Bread
-            items={[
-              { content: '规则管理' },
-              { content: '防御策略' },
-            ]}
-          />
-          <ContentBox>
-            <Subheader>防御策略</Subheader>
-            <div className={style.search}>
-              <div className={style.leftSearch}>
-                <div>
-                  搜索：
+        <Bread
+          items={[
+            { content: '规则管理' },
+            { content: '防御策略' },
+          ]}
+        />
+        <ContentBox>
+          <Subheader>防御策略</Subheader>
+          <div className={style.search}>
+            <div className={style.leftSearch}>
+              <div>
+                搜索：
                   <Input
                     style={{ width: 250 }}
                     allowClear
@@ -153,31 +151,29 @@ class ClientRules extends IntlComponent {
                     value={searchValue}
                     onChange={this.handleChangeInput}
                   />
-                </div>
-                <div>
-                  <Button
-                    style={{ marginLeft: 15 }}
-                    type="primary"
-                    onClick={this.handleSearchRules}
-                  >
-                    查询
-                  </Button>
-                  <Button
-                    style={{ marginLeft: 15 }}
-                    disabled={searchValue.length === 0}
-                    onClick={this.handleReset}
-                  >
-                    重置
-                  </Button>
-                </div>
               </div>
               <div>
-                <Button type="danger" disabled={rules.length === 0} onClick={this.handleDelRules}>全部删除</Button>
+                <Button
+                  style={{ marginLeft: 15 }}
+                  type="primary"
+                  onClick={this.handleSearchRules}
+                >
+                  查询
+                  </Button>
+                <Button
+                  style={{ marginLeft: 15 }}
+                  disabled={searchValue.length === 0}
+                  onClick={this.handleReset}
+                >
+                  重置
+                  </Button>
               </div>
             </div>
-          </ContentBox>
-        </div>
-        <ContentBox>
+            <div>
+              <Button type="danger" disabled={rules.length === 0} onClick={this.handleDelRules}>全部删除</Button>
+            </div>
+          </div>
+          <Divider />
           <div className={style.prizeTable}>
             <Spin spinning={this.state.loadingClient} indicator={antIcon} tip="加载中">
               <div style={{ marginLeft: 10, marginBottom: 10 }}>

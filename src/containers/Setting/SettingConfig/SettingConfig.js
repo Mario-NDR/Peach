@@ -141,8 +141,7 @@ class Visual extends IntlComponent {
         />
         <ContentBox>
           <Subheader>配置项</Subheader>
-        </ContentBox>
-        <ContentBox>
+          <Divider />
           <div>
             当前客户端程序版本：
             <span style={{ color: '#43ad' }}>{version === 'no update' ? '预装版本' : version}</span>
@@ -151,7 +150,7 @@ class Visual extends IntlComponent {
             数据库清理状态：
             <span style={{ color: '#43ad' }}>{dbStatusMap[dbStatus]}</span>
           </div>
-          <Divider />
+          <Divider dashed />
           <div>
             <Button type="primary" onClick={this.handleClearLog}>入侵防御日志清理</Button>
             <Button
@@ -163,7 +162,7 @@ class Visual extends IntlComponent {
               系统运行日志下载
             </Button>
           </div>
-          <Divider />
+          <Divider dashed />
           <div>
             <Form {...formItemLayout} onSubmit={this.handleSubmit}>
               <Form.Item label="日志上传间隔">
