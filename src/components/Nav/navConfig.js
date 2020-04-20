@@ -7,7 +7,6 @@ export default [
     name: 'situationalAwareness',
     title: (
       <span>
-        {/* <img border="0" src="../../images/map.png" alt="" height="20" style={{ marginRight: 30 }} /> */}
         <img border="0" src={require('../../images/map.png')} alt="" height="20" style={{ marginRight: 30 }} />
         <FormattedMessage id="situationalAwareness" />
       </span>
