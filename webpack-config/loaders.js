@@ -63,7 +63,7 @@ const urlLoader = {
     loader: 'url-loader',
     options: {
       outputPath: 'images/',
-      limit: 5 * 1024,
+      limit: 1 * 1024,
     },
   },
 }
