@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 
@@ -6,7 +7,8 @@ export default [
     name: 'situationalAwareness',
     title: (
       <span>
-        <img border="0" src="../../images/map.png" alt="" height="20" style={{ marginRight: 30 }} />
+        {/* <img border="0" src="../../images/map.png" alt="" height="20" style={{ marginRight: 30 }} /> */}
+        <img border="0" src={require('../../images/map.png')} alt="" height="20" style={{ marginRight: 30 }} />
         <FormattedMessage id="situationalAwareness" />
       </span>
     ),
@@ -17,7 +19,7 @@ export default [
     name: 'visualization',
     title: (
       <span>
-        <img border="0" src="../../images/visual.png" alt="" height="20" style={{ marginRight: 30 }} />
+        <img border="0" src={require('../../images/visual.png')} alt="" height="20" style={{ marginRight: 30 }} />
         <FormattedMessage id="visualization" />
       </span>
     ),
@@ -28,7 +30,7 @@ export default [
     name: 'overview',
     title: (
       <span>
-        <img border="0" src="../../images/intrusion.png" alt="" height="20" style={{ marginRight: 30 }} />
+        <img border="0" src={require('../../images/intrusion.png')} alt="" height="20" style={{ marginRight: 30 }} />
         <FormattedMessage id="overview" />
       </span>
     ),
@@ -39,7 +41,7 @@ export default [
     name: 'attackDetails',
     title: (
       <span>
-        <img border="0" src="../../images/rule.png" alt="" height="20" style={{ marginRight: 30 }} />
+        <img border="0" src={require('../../images/rule.png')} alt="" height="20" style={{ marginRight: 30 }} />
         <FormattedMessage id="attackDetails" />
       </span>
     ),
@@ -52,7 +54,7 @@ export default [
     name: 'systemConfig',
     title: (
       <span>
-        <img border="0" src="../../images/setting.png" alt="" height="20" style={{ marginRight: 30 }} />
+        <img border="0" src={require('../../images/setting.png')} alt="" height="20" style={{ marginRight: 30 }} />
         <FormattedMessage id="systemConfig" />
       </span>
     ),
@@ -63,7 +65,7 @@ export default [
     name: 'about',
     title: (
       <span>
-        <img border="0" src="../../images/about.png" alt="" height="20" style={{ marginRight: 30 }} />
+        <img border="0" src={require('../../images/about.png')} alt="" height="20" style={{ marginRight: 30 }} />
         <FormattedMessage id="about" />
       </span>
     ),
