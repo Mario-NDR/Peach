@@ -64,12 +64,14 @@ class Visual extends IntlComponent {
     let innerPieData = []
     let dateString = ''
     if (Object.keys(pieData).length !== 0) {
-      innerPieData = pieData.data.map((item) => {
-        return { name: item.name, value: item.count }
-      })
       sum = pieData.sum
       last_clean = pieData.last_clean
       total = pieData.total
+    }
+    if (Object.keys(pieData).length !== 0 && pieData.data.length !== 0) {
+      innerPieData = pieData.data.map((item) => {
+        return { name: item.name, value: item.count }
+      })
     }
     if (Object.keys(visualDate).length !== 0) {
       dateString = `${visualDate.days} 天 ${visualDate.hours} 小时 ${visualDate.minutes} 分`
@@ -128,7 +130,7 @@ class Visual extends IntlComponent {
                   center: [ '35%', '50%' ],
                   title: {
                     show: true,
-                    text: '请求统计',
+                    text: pieData.data ? '请求统计(暂无数据)' : '请求统计',
                     textStyle: { color: '#966', fontSize: 18 },
                     left: 'center',
                   },
