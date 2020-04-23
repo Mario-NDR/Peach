@@ -80,7 +80,7 @@ class Visual extends IntlComponent {
     return (
       <div className={style.visual}>
         <Bread
-          items={[ { content: '数据可视化' }, { content: '图表' } ]}
+          items={[ { content: '数据可视化' } ]}
         />
         <ContentBox>
           <Subheader>数据可视化</Subheader>

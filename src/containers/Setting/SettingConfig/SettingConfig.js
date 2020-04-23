@@ -2,7 +2,7 @@
  * @summary 系统配置 
  */
 import React from 'react'
-import { Button, Message, Form, Input, Divider, Select, Icon, Tooltip } from 'antd'
+import { Button, Message, Form, Input, Divider, Select, Icon, Tooltip, Card } from 'antd'
 // import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -115,6 +115,16 @@ class Visual extends IntlComponent {
     })
   }
 
+  handleCancel = async () => {
+    const { form: { setFieldsValue } } = this.props
+    const { data } = await axios.get('/api/setting')
+    setFieldsValue({
+      heartbeat_time: data.heartbeat_time.substring(0, data.heartbeat_time.length - 1),
+      max_logfile_num: data.max_logfile_num,
+      prefix: data.heartbeat_time.charAt(data.heartbeat_time.length - 1)
+    })
+  }
+
   render() {
     const { form: { getFieldDecorator }, version, dbStatus } = this.props
 
@@ -137,68 +147,71 @@ class Visual extends IntlComponent {
     return (
       <div className={style.setting}>
         <Bread
-          items={[ { content: '系统配置' }, { content: '配置项' } ]}
+          items={[ { content: '系统配置' } ]}
         />
         <ContentBox>
-          <Subheader>配置项</Subheader>
+          <Subheader>系统配置</Subheader>
           <Divider />
           <div>
             当前客户端程序版本：
             <span style={{ color: '#43ad' }}>{version === 'no update' ? '预装版本' : version}</span>
           </div>
-          <div>
-            数据库清理状态：
-            <span style={{ color: '#43ad' }}>{dbStatusMap[dbStatus]}</span>
-          </div>
-          <Divider dashed />
-          <div>
+          <Card title="配置项" style={{ margin: '10px 0' }}>
+            <div>
+              <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+                <Form.Item label="日志上传间隔">
+                  {getFieldDecorator('heartbeat_time', {
+                    rules: [ {
+                      required: true,
+                      pattern: new RegExp(/^[1-9]\d*$/, 'g'),
+                      message: '输入正确的上传间隔!',
+                    } ],
+                  })(
+                    <Input addonAfter={prefixSelector} placeholder="输入日志上传时间" />,
+                  )}
+                </Form.Item>
+                <Form.Item label="缓存日志数">
+                  {getFieldDecorator('max_logfile_num', {
+                    rules: [ {
+                      required: true,
+                      pattern: new RegExp(/^[1-9]\d*$/, 'g'),
+                      message: '输入正确的缓存日志数!',
+                    } ],
+                  })(
+                    <Input addonAfter={instructions} placeholder="输入缓存日志数" />,
+                  )}
+                </Form.Item>
+                <Form.Item
+                  wrapperCol={{
+                    xs: { span: 24, offset: 0 },
+                    sm: { span: 16, offset: 8 },
+                  }}
+                >
+                  <Button type="primary" htmlType="submit">
+                    保存
+                  </Button>
+                  <Button style={{ marginLeft: 20 }} type="primary" onClick={this.handleCancel}>
+                    取消
+                  </Button>
+                </Form.Item>
+              </Form>
+            </div>
+          </Card>
+          <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
             <Button type="primary" onClick={this.handleClearLog}>入侵防御日志清理</Button>
-            <Button
-              loading={this.state.buttonLoading}
-              type="primary"
-              style={{ marginLeft: 20 }}
-              onClick={this.handleDownloadLog}
-            >
-              系统运行日志下载
-            </Button>
+            <div style={{ marginLeft: 20 }}>
+              数据库清理状态：
+              <span style={{ color: '#43ad' }}>{dbStatusMap[dbStatus]}</span>
+            </div>
           </div>
-          <Divider dashed />
-          <div>
-            <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-              <Form.Item label="日志上传间隔">
-                {getFieldDecorator('heartbeat_time', {
-                  rules: [ {
-                    required: true,
-                    pattern: new RegExp(/^[1-9]\d*$/, 'g'),
-                    message: '输入正确的上传间隔!',
-                  } ],
-                })(
-                  <Input addonAfter={prefixSelector} placeholder="输入日志上传时间" />,
-                )}
-              </Form.Item>
-              <Form.Item label="缓存日志数">
-                {getFieldDecorator('max_logfile_num', {
-                  rules: [ {
-                    required: true,
-                    pattern: new RegExp(/^[1-9]\d*$/, 'g'),
-                    message: '输入正确的缓存日志数!',
-                  } ],
-                })(
-                  <Input addonAfter={instructions} placeholder="输入缓存日志数" />,
-                )}
-              </Form.Item>
-              <Form.Item
-                wrapperCol={{
-                  xs: { span: 24, offset: 0 },
-                  sm: { span: 16, offset: 8 },
-                }}
-              >
-                <Button type="primary" htmlType="submit">
-                  保存
-                </Button>
-              </Form.Item>
-            </Form>
-          </div>
+          <Button
+            style={{ marginTop: 20 }}
+            loading={this.state.buttonLoading}
+            type="primary"
+            onClick={this.handleDownloadLog}
+          >
+            系统运行日志下载
+          </Button>
         </ContentBox>
       </div>
     )
