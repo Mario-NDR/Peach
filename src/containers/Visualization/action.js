@@ -15,3 +15,10 @@ export function getVisualDate(payload = {}) {
     type: 'getVisualDate',
   }))
 }
+
+export function getWavy(payload = {}) {
+  return network.GET('/api/wavy', payload, (data) => ({
+    data,
+    type: 'getWavy',
+  }))
+}

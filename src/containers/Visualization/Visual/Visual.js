@@ -1,25 +1,27 @@
 /**
- * @summary 规则策略 -- 全部规则
+ * @summary 可视化
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Tag, Icon, Spin } from 'antd'
+import { Tag, Icon, Spin, Divider, DatePicker } from 'antd'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+// import moment from 'moment'
 
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
 import Bread from 'Components/Bread'
 import Subheader from 'Components/Subheader'
-import { Pie } from 'Components/Charts'
-import { formatTime } from 'Utils/time'
+import { Pie, MutiLine } from 'Components/Charts'
+import { formatTime, zoneTransfer } from 'Utils/time'
 import color from 'Utils/color'
 
 import * as actions from '../action'
 import style from './style.scss'
 
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
+const { RangePicker } = DatePicker
 
 class Visual extends IntlComponent {
 
@@ -31,11 +33,13 @@ class Visual extends IntlComponent {
     super(props)
     this.state = {
       loadingPie: true,
+      loadingLine: true,
     }
   }
 
   componentDidMount() {
     this.props.actions.getPieData()
+    this.props.actions.getWavy({ begintime: '2020-04-21T07:40:42.425325+0800', endtime: '2020-04-22T21:42:31.200045+0800' })
     this.props.actions.getVisualDate()
     this.timer = setInterval(() => {
       this.load()
@@ -45,6 +49,9 @@ class Visual extends IntlComponent {
   componentWillReceiveProps(nextProps) {
     if (this.props.loadingPie !== nextProps.loadingPie) {
       this.setState({ loadingPie: false })
+    }
+    if (this.props.loadingLine !== nextProps.loadingLine) {
+      this.setState({ loadingLine: false })
     }
   }
 
@@ -56,13 +63,25 @@ class Visual extends IntlComponent {
     clearInterval(this.timer)
   }
 
+  onChange = (value, dateString) => {
+    console.info(value, dateString)
+  }
+
+  onOk = (value) => {
+    console.info(value)
+  }
+
   render() {
-    const { pieData, visualDate } = this.props
+    const { pieData, visualDate, wavyData } = this.props
     let sum = 0
     let last_clean = ''
     let total = 0
     let innerPieData = []
     let dateString = ''
+    let timeArr = []
+    let seriesName = []
+    let seriesData = []
+    let series = []
     if (Object.keys(pieData).length !== 0) {
       sum = pieData.sum
       last_clean = pieData.last_clean
@@ -75,6 +94,14 @@ class Visual extends IntlComponent {
     }
     if (Object.keys(visualDate).length !== 0) {
       dateString = `${visualDate.days} 天 ${visualDate.hours} 小时 ${visualDate.minutes} 分`
+    }
+    if (Object.keys(wavyData).length !== 0) {
+      timeArr = wavyData.time.map((item) => zoneTransfer(item, 'YYYY-MM-DD HH:mm:ss'))
+      seriesName = Object.keys(wavyData.wavy_date)
+      seriesData = Object.values(wavyData.wavy_date)
+      series = seriesName.map((item, index) => {
+        return { name: item, data: seriesData[index], type: 'line', smooth: true }
+      })
     }
 
     return (
@@ -139,6 +166,20 @@ class Visual extends IntlComponent {
               />
             </Spin>
           </div>
+          <Divider dashed />
+          <RangePicker
+            showTime={{ format: 'HH:mm:ss' }}
+            format="YYYY-MM-DD HH:mm:ss"
+            // placeholder={[ 'Start Time', 'End Time' ]}
+            onChange={this.onChange}
+            onOk={this.onOk}
+          />
+          <Spin spinning={this.state.loadingLine} indicator={antIcon} tip="加载中">
+            <MutiLine
+              xAxisData={timeArr}
+              series={series}
+            />
+          </Spin>
         </ContentBox>
       </div>
     )
@@ -150,6 +191,8 @@ function mapStateToProps(state) {
     pieData: state.visualReducer.pieData,
     visualDate: state.visualReducer.visualDate,
     loadingPie: state.visualReducer.loadingPie,
+    loadingLine: state.visualReducer.loadingLine,
+    wavyData: state.visualReducer.wavyData,
   }
 }
 
