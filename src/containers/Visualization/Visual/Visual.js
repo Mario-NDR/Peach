@@ -7,7 +7,7 @@ import { Tag, Icon, Spin, Divider, DatePicker } from 'antd'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-// import moment from 'moment'
+import moment from 'moment'
 
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
@@ -22,6 +22,9 @@ import style from './style.scss'
 
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
 const { RangePicker } = DatePicker
+
+const defaultStartDate = moment().subtract(7, 'days')
+const defaultEndDate = moment()
 
 class Visual extends IntlComponent {
 
@@ -39,7 +42,10 @@ class Visual extends IntlComponent {
 
   componentDidMount() {
     this.props.actions.getPieData()
-    this.props.actions.getWavy({ begintime: '2020-04-21T07:40:42.425325+0800', endtime: '2020-04-22T21:42:31.200045+0800' })
+    this.props.actions.getWavy({
+      begintime: defaultStartDate.format('YYYY-MM-DDT+0800'),
+      endtime: defaultEndDate.format('YYYY-MM-DDT+0800')
+    })
     this.props.actions.getVisualDate()
     this.timer = setInterval(() => {
       this.load()
@@ -63,12 +69,15 @@ class Visual extends IntlComponent {
     clearInterval(this.timer)
   }
 
-  onChange = (value, dateString) => {
-    console.info(value, dateString)
+  onChange = (value) => {
+    this.props.actions.getWavy({
+      begintime: value[0].format('YYYY-MM-DDT+0800'),
+      endtime: value[1].format('YYYY-MM-DDT+0800'),
+    })
   }
 
-  onOk = (value) => {
-    console.info(value)
+  disabledDate = (current) => {
+    return current && current > moment().endOf('day')
   }
 
   render() {
@@ -100,7 +109,7 @@ class Visual extends IntlComponent {
       seriesName = Object.keys(wavyData.wavy_date)
       seriesData = Object.values(wavyData.wavy_date)
       series = seriesName.map((item, index) => {
-        return { name: item, data: seriesData[index], type: 'line', smooth: true }
+        return { name: item, data: seriesData[index], type: 'line', smooth: true, areaStyle: {} }
       })
     }
 
@@ -111,6 +120,44 @@ class Visual extends IntlComponent {
         />
         <ContentBox>
           <Subheader>数据可视化</Subheader>
+          <div className={style.top}>
+            <div className={style.pieLeft}>
+              <Spin spinning={this.state.loadingPie} indicator={antIcon} tip="加载中">
+                <Pie
+                  data={innerPieData}
+                  width="100%"
+                  height={450}
+                  options={{
+                    radius: [ '40%', '65%' ],
+                    textStyle: { fontSize: 16 },
+                    legend: {
+                      type: 'scroll',
+                      orient: 'vertical',
+                      right: 10,
+                      top: 20,
+                      bottom: 20,
+                      data: innerPieData,
+                      textStyle: { color: '#fff', fontSize: 12 },
+                    },
+                    label: {
+                      normal: { show: false },
+                    },
+                    center: [ '35%', '50%' ],
+                    title: {
+                      show: true,
+                      text: pieData.data ? '请求统计(暂无数据)' : '请求统计',
+                      textStyle: { color: '#966', fontSize: 18 },
+                      left: 'center',
+                    },
+                    color,
+                  }}
+                />
+              </Spin>
+            </div>
+            <div>
+              123123
+            </div>
+          </div>
           <div className={style.info}>
             <div className={style.infoVisual}>
               <div>
@@ -133,47 +180,17 @@ class Visual extends IntlComponent {
               </div>
             </div>
           </div>
-          <div className={style.pieLeft}>
-            <Spin spinning={this.state.loadingPie} indicator={antIcon} tip="加载中">
-              <Pie
-                data={innerPieData}
-                width="100%"
-                height={450}
-                options={{
-                  radius: [ '40%', '65%' ],
-                  textStyle: { fontSize: 16 },
-                  legend: {
-                    type: 'scroll',
-                    orient: 'vertical',
-                    right: 10,
-                    top: 20,
-                    bottom: 20,
-                    data: innerPieData,
-                    textStyle: { color: '#fff', fontSize: 12 },
-                  },
-                  label: {
-                    normal: { show: false },
-                  },
-                  center: [ '35%', '50%' ],
-                  title: {
-                    show: true,
-                    text: pieData.data ? '请求统计(暂无数据)' : '请求统计',
-                    textStyle: { color: '#966', fontSize: 18 },
-                    left: 'center',
-                  },
-                  color,
-                }}
-              />
-            </Spin>
-          </div>
           <Divider dashed />
-          <RangePicker
-            showTime={{ format: 'HH:mm:ss' }}
-            format="YYYY-MM-DD HH:mm:ss"
-            // placeholder={[ 'Start Time', 'End Time' ]}
-            onChange={this.onChange}
-            onOk={this.onOk}
-          />
+          <Subheader>攻击类型统计</Subheader>
+          <div className={style.line}>
+            选择时间：
+            <RangePicker
+              format="YYYY-MM-DD"
+              defaultValue={[ defaultStartDate, defaultEndDate ]}
+              disabledDate={this.disabledDate}
+              onChange={this.onChange}
+            />
+          </div>
           <Spin spinning={this.state.loadingLine} indicator={antIcon} tip="加载中">
             <MutiLine
               xAxisData={timeArr}

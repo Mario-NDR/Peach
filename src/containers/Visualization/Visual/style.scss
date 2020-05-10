@@ -15,7 +15,17 @@
     }
   }
 
-  .pieLeft {
-    width: 50%;
+  .top {
+    display: flex;
+    justify-content: space-between;
+    .pieLeft {
+      width: 50%;
+    }
+  }
+
+  .line {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
   }
 }
