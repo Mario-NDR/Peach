@@ -11,7 +11,6 @@ import moment from 'moment'
 
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
-// import Bread from 'Components/Bread'
 import Subheader from 'Components/Subheader'
 import { Pie, MutiLine } from 'Components/Charts'
 import { formatTime, zoneTransfer } from 'Utils/time'
@@ -115,9 +114,6 @@ class Visual extends IntlComponent {
 
     return (
       <div className={style.visual}>
-        {/* <Bread
-          items={[ { content: '数据可视化' } ]}
-        /> */}
         <ContentBox>
           <Subheader>请求统计</Subheader>
           <div className={style.top}>
