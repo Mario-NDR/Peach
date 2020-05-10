@@ -19,7 +19,7 @@ export default {
 
   // nav
   situationalAwareness: '态势感知',
-  visualization: '可视化',
+  visualization: '数据可视化',
   attackDetails: '规则策略',
   overview: '入侵防御',
   allRules: '全部规则',

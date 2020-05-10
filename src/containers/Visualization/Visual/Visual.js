@@ -44,7 +44,7 @@ class Visual extends IntlComponent {
     this.props.actions.getPieData()
     this.props.actions.getWavy({
       begintime: defaultStartDate.format('YYYY-MM-DDT+0800'),
-      endtime: defaultEndDate.format('YYYY-MM-DDT+0800')
+      endtime: defaultEndDate.format('YYYY-MM-DDT24+0800')
     })
     this.props.actions.getVisualDate()
     this.timer = setInterval(() => {
@@ -72,7 +72,7 @@ class Visual extends IntlComponent {
   onChange = (value) => {
     this.props.actions.getWavy({
       begintime: value[0].format('YYYY-MM-DDT+0800'),
-      endtime: value[1].format('YYYY-MM-DDT+0800'),
+      endtime: value[1].format('YYYY-MM-DDT24+0800'),
     })
   }
 
