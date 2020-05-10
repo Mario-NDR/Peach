@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Tag, Icon, Spin, Divider, DatePicker } from 'antd'
+import { Tag, Icon, Spin, Divider, DatePicker, Card } from 'antd'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -11,7 +11,7 @@ import moment from 'moment'
 
 import { IntlComponent } from 'Components/Common'
 import ContentBox from 'Components/ContentBox'
-import Bread from 'Components/Bread'
+// import Bread from 'Components/Bread'
 import Subheader from 'Components/Subheader'
 import { Pie, MutiLine } from 'Components/Charts'
 import { formatTime, zoneTransfer } from 'Utils/time'
@@ -115,11 +115,11 @@ class Visual extends IntlComponent {
 
     return (
       <div className={style.visual}>
-        <Bread
+        {/* <Bread
           items={[ { content: '数据可视化' } ]}
-        />
+        /> */}
         <ContentBox>
-          <Subheader>数据可视化</Subheader>
+          <Subheader>请求统计</Subheader>
           <div className={style.top}>
             <div className={style.pieLeft}>
               <Spin spinning={this.state.loadingPie} indicator={antIcon} tip="加载中">
@@ -145,7 +145,7 @@ class Visual extends IntlComponent {
                     center: [ '35%', '50%' ],
                     title: {
                       show: true,
-                      text: pieData.data ? '请求统计(暂无数据)' : '请求统计',
+                      // text: '请求统计',
                       textStyle: { color: '#966', fontSize: 18 },
                       left: 'center',
                     },
@@ -155,29 +155,20 @@ class Visual extends IntlComponent {
               </Spin>
             </div>
             <div>
-              123123
-            </div>
-          </div>
-          <div className={style.info}>
-            <div className={style.infoVisual}>
-              <div>
-                <span>累计处理请求: </span>
-                <span style={{ color: '#e8eb62' }}>{total}</span>
-              </div>
-              <div>
-                <span>现存日志数: </span>
-                <span style={{ color: '#e8eb62' }}>{sum}</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span style={{ marginRight: 5 }}>日志清理时间: </span>
+              <Card title="累计处理请求:" type="inner" style={{ width: 300, marginBottom: 10 }}>
+                <span>{`${total} 次`}</span>
+              </Card>
+              <Card title="现存日志数:" type="inner" style={{ width: 300, marginBottom: 10 }}>
+                <span>{`${sum} 条`}</span>
+              </Card>
+              <Card title="日志清理时间:" type="inner" style={{ width: 300, marginBottom: 10 }}>
                 {
-                  typeof (last_clean) === 'string' ? '没有运行清理过程' : <Tag color="#87d068">{formatTime(last_clean)}</Tag>
+                  typeof (last_clean) === 'string' ? '暂无清理时间' : <Tag color="#87d068">{formatTime(last_clean)}</Tag>
                 }
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span style={{ marginRight: 5 }}>此版本已运行: </span>
+              </Card>
+              <Card title="此版本运行时长:" type="inner" style={{ width: 300, marginBottom: 10 }}>
                 <span>{dateString}</span>
-              </div>
+              </Card>
             </div>
           </div>
           <Divider dashed />

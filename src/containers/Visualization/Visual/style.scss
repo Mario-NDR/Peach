@@ -1,23 +1,8 @@
 .visual {
 
-  .info {
-    position: absolute;
-    right: 15px;
-    top: 112px;
-
-    .infoVisual {
-      padding: 10px 30px;
-      width: 350px;
-      background-color: #723bca;
-      color: #fff;
-      font-size: 18px;
-      font-weight: 600;
-    }
-  }
-
   .top {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     .pieLeft {
       width: 50%;
     }
