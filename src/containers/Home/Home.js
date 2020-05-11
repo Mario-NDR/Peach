@@ -41,15 +41,15 @@ class Home extends IntlComponent {
 
   loadData = () => {
     this.props.actions.getMapDetailData({
-      begintime: moment().subtract(1, 'hours').format('YYYY-MM-DDTHH+0800'),
-      endtime: moment().format('YYYY-MM-DDTHH+0800')
+      begintime: defaultStartDate.format('YYYY-MM-DDTHH:mm:ss+0800'),
+      endtime: defaultEndDate.format('YYYY-MM-DDTHH:mm:ss+0800')
     })
   }
 
   onOk = (value) => {
     this.props.actions.getMapDetailData({
-      begintime: value[0].format('YYYY-MM-DDTHH+0800'),
-      endtime: value[1].format('YYYY-MM-DDTHH+0800')
+      begintime: value[0].format('YYYY-MM-DDTHH:mm:ss+0800'),
+      endtime: value[1].format('YYYY-MM-DDTHH:mm:ss+0800')
     })
   }
 
@@ -65,8 +65,8 @@ class Home extends IntlComponent {
         <div className={style.dateSelect}>
           <RangePicker
             style={{ width: 600 }}
-            format="YYYY-MM-DD HH:00:00"
-            showTime={{ format: 'HH时' }}
+            format="YYYY-MM-DD HH:mm:ss"
+            showTime={{ format: 'HH:mm:ss' }}
             defaultValue={[ defaultStartDate, defaultEndDate ]}
             disabledDate={this.disabledDate}
             onOk={this.onOk}
