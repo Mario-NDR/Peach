@@ -107,6 +107,7 @@ class Visual extends IntlComponent {
         try {
           const { data } = await axios.post('/api/setting', payload)
           Message.success(data)
+          this.props.actions.getVersion({ operation: 'check' })
         } catch (error) {
           console.info(error)
           Message.error('保存失败')

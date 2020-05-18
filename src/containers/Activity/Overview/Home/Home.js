@@ -164,6 +164,7 @@ class Home extends IntlComponent {
   ]
 
   componentDidMount() {
+    this.props.actions.clearMapDetailData()
     this.props.actions.getMapDetailData()
   }
 

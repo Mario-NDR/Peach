@@ -8,6 +8,7 @@ const initialState = {
 const reducers = {
   getMapDetailData: (state, action) => ({ ...state, mapDetail: action.data.data, loadingTable: Date.now() }),
   postSecurityBrain: (state, action) => ({ ...state, securityBrain: action.data, loadingModal: Date.now() }),
+  clearMapDetailData: (state) => ({ ...state, mapDetail: [] }),
 }
 
 export default function userReducer(state = initialState, action) {

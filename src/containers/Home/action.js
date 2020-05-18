@@ -15,3 +15,10 @@ export function postSecurityBrain(payload = {}) {
     type: 'postSecurityBrain',
   }))
 }
+
+// 置空入侵防御列表
+export function clearMapDetailData() {
+  return {
+    type: 'clearMapDetailData'
+  }
+}
