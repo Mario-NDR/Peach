@@ -226,9 +226,11 @@ class Home extends IntlComponent {
     const { securityBrain } = this.props
     let brain1 = {}
     let brain2 = {}
+    let count = 0
     if (Object.keys(securityBrain).length !== 0) {
       brain1 = securityBrain.data[0]
       brain2 = securityBrain.data[1]
+      count = securityBrain.count
     }
     const { visible } = this.state
     if (mapDetail.length !== 0) {
@@ -273,6 +275,7 @@ class Home extends IntlComponent {
           <div className={style.modalTitle}>
             <span>{`${this.state.ipTitle}: `}</span>
             <span className={style.modalTitleIp}>{this.state.ip}</span>
+            <Tag color="red">{`共 ${count || 0} 次`}</Tag>
           </div>
           <Spin spinning={this.state.loadingModal} indicator={antIcon} tip="加载中">
             <div className={style.brainModule}>
