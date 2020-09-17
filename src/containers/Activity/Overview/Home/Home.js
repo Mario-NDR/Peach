@@ -3,7 +3,7 @@
  */
 import React from 'react'
 // import PropTypes from 'prop-types'
-import { Table, Tooltip, Tag, Modal, Spin, Icon } from 'antd'
+import { Table, Tag, Modal, Spin, Icon, Popover, Button } from 'antd'
 import echarts from 'echarts'
 import 'echarts-liquidfill'
 import { bindActionCreators } from 'redux'
@@ -102,10 +102,10 @@ class Home extends IntlComponent {
       title: '告警信息',
       key: 'alert_message',
       align: 'center',
-      render: (text) => (
-        <Tooltip title={text} className={style.tableTime}>
-          {ellipsis(text, 40)}
-        </Tooltip>
+      render: (text, record) => (
+        <Popover content={this.content(record)} title="Payload" trigger="click">
+          <Button>{text}</Button>
+        </Popover>
       )
     },
     {
@@ -168,6 +168,10 @@ class Home extends IntlComponent {
       }
     },
   ]
+
+  content = (r) => {
+    return <div>{r.payload}</div>
+  }
 
   componentDidMount() {
     this.props.actions.clearMapDetailData()
@@ -242,7 +246,8 @@ class Home extends IntlComponent {
           client_ip: item.client_ip,
           action: item.action,
           alert_message: item.alert_message,
-          category: item.category
+          category: item.category,
+          payload: item.payload,
         }
       })
     }
