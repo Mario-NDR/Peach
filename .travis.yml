@@ -24,6 +24,6 @@ deploy:
   file: dist.tar.gz
   on:
     repo: Mario-NDR/Peach
-    tag: true
+    tag: false
   tag: latest
 
