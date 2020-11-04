@@ -229,6 +229,7 @@ class AllRules extends IntlComponent {
           <Radio.Group onChange={this.changeRulesType} value={rulesType}>
             <Radio value="alert">告警</Radio>
             <Radio value="drop">拦截</Radio>
+            <Radio value="pass">放行</Radio>
           </Radio.Group>
         </Modal>
       </div>
