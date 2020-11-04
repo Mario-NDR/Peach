@@ -62,7 +62,7 @@ const columns = (confirm, cancel, confirmDel, cancelDel) => [
           cancelText="取消"
         >
           <Tag color={text === 'alert' ? 'volcano' : 'green'}>
-            {text === 'alert' ? '告警' : '拦截'}
+            {text === 'alert' ? '告警' : text === 'pass' ? '放行' : '拦截'}
           </Tag>
         </Popconfirm>
       </div>
