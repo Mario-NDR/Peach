@@ -152,6 +152,12 @@ class Home extends IntlComponent {
               {'恶意代码'}
             </Tag>
           )
+        } else if (text === 'Attempted User Privilege Gain') {
+          return (
+            <Tag color="orange">
+              {'暴力破解'}
+            </Tag>
+          )
         } else if (text === 'A system call was detected') {
           return (
             <Tag color="orange">

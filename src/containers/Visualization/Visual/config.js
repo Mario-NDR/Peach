@@ -52,6 +52,8 @@ const columns = [
           return (<Tag color="red">{text}</Tag>)
         case '网络扫描':
           return (<Tag color="lime">{text}</Tag>)
+        case '暴力破解':
+          return (<Tag color="lime">{text}</Tag>)
         default:
           return (<Tag color="orange">{text}</Tag>)
       }
