@@ -52,10 +52,12 @@ const columns = [
           return (<Tag color="red">{text}</Tag>)
         case '网络扫描':
           return (<Tag color="lime">{text}</Tag>)
-        case '暴力破解':
+        case '权限尝试':
           return (<Tag color="blue">{text}</Tag>)
+        case 'WEB攻击':
+          return (<Tag color="orange">{text}</Tag>)
         default:
-          return (<Tag color="blue">{text}</Tag>)
+          return (<Tag color="orange">{text}</Tag>)
       }
     }
   },

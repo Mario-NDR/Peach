@@ -155,19 +155,19 @@ class Home extends IntlComponent {
         } else if (text === 'Attempted User Privilege Gain') {
           return (
             <Tag color="blue">
-              {'暴力破解'}
+              {'权限尝试'}
             </Tag>
           )
         } else if (text === 'Attempted Administrator Privilege Gain') {
           return (
             <Tag color="blue">
-              {'暴力破解'}
+              {'权限尝试'}
             </Tag>
           )
         } else if (text === 'Web Application Attack') {
           return (
             <Tag color="orange">
-              {'WEB 攻击'}
+              {'WEB攻击'}
             </Tag>
           )
         } else if (text === 'A system call was detected') {
