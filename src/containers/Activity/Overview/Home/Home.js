@@ -152,6 +152,12 @@ class Home extends IntlComponent {
               {'恶意代码'}
             </Tag>
           )
+        } else if (text === 'Web Application Attack') {
+          return (
+            <Tag color="orange">
+              {'WEB 攻击'}
+            </Tag>
+          )
         } else if (text === 'Attempted User Privilege Gain') {
           return (
             <Tag color="blue">
@@ -172,7 +178,7 @@ class Home extends IntlComponent {
           )
         } else {
           return (
-            <Tag color="orange">
+            <Tag color="blue">
               {'其他类型'}
             </Tag>
           )
