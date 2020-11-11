@@ -154,13 +154,13 @@ class Home extends IntlComponent {
           )
         } else if (text === 'Attempted User Privilege Gain') {
           return (
-            <Tag color="orange">
+            <Tag color="blue">
               {'暴力破解'}
             </Tag>
           )
         } else if (text === 'Attempted Administrator Privilege Gain') {
           return (
-            <Tag color="orange">
+            <Tag color="blue">
               {'暴力破解'}
             </Tag>
           )

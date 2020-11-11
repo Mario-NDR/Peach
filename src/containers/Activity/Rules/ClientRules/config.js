@@ -61,7 +61,7 @@ const columns = (confirm, cancel, confirmDel, cancelDel) => [
           okText="确定"
           cancelText="取消"
         >
-          <Tag color={text === 'alert' ? 'volcano' : 'green'}>
+          <Tag color={text === 'alert' ? 'volcano' : text === 'pass' ? 'green': 'blue'}>
             {text === 'alert' ? '告警' : text === 'pass' ? '放行' : '拦截'}
           </Tag>
         </Popconfirm>
@@ -91,7 +91,7 @@ const columns = (confirm, cancel, confirmDel, cancelDel) => [
         case '网络扫描':
           return (<Tag color="lime">{text}</Tag>)
         case '暴力破解':
-          return (<Tag color="lime">{text}</Tag>)
+          return (<Tag color="blue">{text}</Tag>)
         default:
           return (<Tag color="orange">{text}</Tag>)
       }
