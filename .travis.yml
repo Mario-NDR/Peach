@@ -1,0 +1,29 @@
+language: node_js
+node_js:
+- 10.12.0
+cache:
+  directories:
+  - node_modules
+install:
+- npm install
+script:
+- npm run build
+before_deploy:
+- tar -zcvf dist.tar.gz ./dist/*
+notifications:
+  email:
+    recipients:
+    - co0ontty@gmail.com
+    on_success: always
+    on_failure: always
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: BuocLZa2d7iwkjguGD39TxjYy8+SL9dSvx4plrefMU6OTJpd/0Fa5zHUbqXtT3A/EaT9AKCnLRpCcPnWlJthiLduFr5lSd/ccAsdxgbNqEWMvkW+bFmneg2SJKJ82X0fmcBrVDL86Sf5vkdDyGoOSIJa81WjRMxVbuLqPeJUDjCi0mvT3sw7InUEgPkg+hCnr6FDkaIjljWK8CG2YHAZdva3N5AWwnApXVq/cv+vhLz3BiUBeN83dsng3wdqmKK+AkSCI0c3WyacdFrPk9fIAQPohIY9zQd7n/Ssk2U1jHloxHWUSIxUupzr/0si7/soKuBh1/f/AxV+MZbIvfTF8u6DIP465zMPgYpX0b9VPDy6J/QyoxiMKdkP0fWPycn1sbGZ1DLTmagZEaylnviw5vDiFJM2VlejJN5OVeOx0BgFkHoHDxvUnOlngpDZ8+KARcN0gZzd4WamUVPFX2Ir8sj+SENxwmb1s9nOyBfpFuuArRpR6NwxO1MgZX9oQkjmk4y7nTeaizqwfj2wGyxAAdsuu7jKmXJrdrVU8DHyrCOhA+Pf/Ts0sHt+DwzexcyMJLlyW3ye5DjAem90r5SkTryWz1KhPSw7WUofEoTqAYpfiCM+IbEB/gwtn0OU4+xEu+7NLBqVQQ1Sqq3VzMwqErHWSzuAxeGuJifUA4UYFj4=
+  file: dist.tar.gz
+  on:
+    repo: Mario-NDR/Peach
+    tag: false
+  tag: latest
+

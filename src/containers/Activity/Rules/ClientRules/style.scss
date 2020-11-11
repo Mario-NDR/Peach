@@ -1,0 +1,23 @@
+.clientRules {
+  .search {
+    display: flex;
+    justify-content: space-between;
+
+    .leftSearch {
+      display: flex;
+      justify-content: left;
+    }
+  }
+  
+  .operation {
+    border-top: 1px solid rgb(204, 204, 204);
+
+    Button {
+      margin: 10px 15px;
+    }
+  }
+
+  .tableText {
+    color: rgb(0, 0, 51);
+  }
+}

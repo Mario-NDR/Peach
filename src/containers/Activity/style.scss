@@ -1,0 +1,49 @@
+@import 'Styles/vars.scss';
+
+// /////////////////////////////////////////////////////////////////
+:global(.screenWrapper) {
+  height: 100vh;
+  min-height: 600px;
+  padding: 15px;
+  background-image: linear-gradient(-180deg, #031F3E 9%, #7091A9 69%, #9BAABA 99%);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+  color: #eee;
+}
+
+.numberItem {
+  background: #fff;
+  padding: 0 15px;
+
+  h5 {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .numberLine {
+    margin: 3px 0;
+    font-size: 24px;
+    font-weight: 500;
+    color: $primary;
+  }
+
+  section {
+    padding-bottom: 10px;
+    text-align: center;
+  }
+}
+
+.add {
+  color: $success;
+}
+
+.min {
+  color: $error;
+}
+
+.mapWrapper {
+  // background: $dark;
+  background: #fff;
+  margin-top: 15px;
+}

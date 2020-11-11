@@ -1,0 +1,16 @@
+.visual {
+
+  .top {
+    display: flex;
+    justify-content: space-around;
+    .pieLeft {
+      width: 50%;
+    }
+  }
+
+  .line {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,16 @@
+@import 'Styles/vars.scss';
+
+.pageHeader {
+  padding-top: $normal-margin;
+  padding-bottom: $sm-margin;
+
+  p {
+    margin-left: $lg-margin;
+  }
+}
+
+.header {
+  @extend %header-font;
+  margin-left: $lg-margin;
+  margin-bottom: $sm-margin;
+}

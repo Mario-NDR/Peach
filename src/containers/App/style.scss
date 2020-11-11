@@ -1,0 +1,40 @@
+.layoutWrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.layoutHeader {
+  height: 60px;
+  padding: 0;
+}
+
+.body {
+  height: calc(100vh - 60px);
+}
+
+.sider {
+  height: 100% !important;
+  overflow: auto;
+  left: 0;
+  background: #fff;
+
+  :global(.ant-layout-sider-children) {
+    overflow-x: hidden;
+  }
+
+  :global(.ant-layout-sider-trigger) {
+    background: #5a97f4;
+  }
+}
+
+.content {
+  height: 100% !important;
+  padding: 16px;
+
+  .footer {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+  }
+}

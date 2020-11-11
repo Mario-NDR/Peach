@@ -1,0 +1,39 @@
+.tableList {
+  .tableSrc {
+    color: rgb(250, 85, 28);
+  }
+
+  .tableDest {
+    color: rgb(47, 83, 235);
+  }
+
+  .tableTime {
+    color: rgb(0, 0, 51);
+  }
+}
+
+.brainModule {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px dashed #e4a318;
+  border-radius: 6px;
+  background: rgb(250, 248, 248);
+  margin-top: 10px;
+
+  .item {
+    margin: 10px 0 15px 10px;
+  }
+}
+
+.modalTitle {
+  font-size: 16px;
+  // margin-left: 10px;
+  text-align: center;
+  font-weight: 600;
+
+  .modalTitleIp {
+    color: rgb(206, 115, 115);
+    margin-right: 20px;
+  }
+}

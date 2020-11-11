@@ -1,0 +1,11 @@
+.icon {
+  color: #108ee9;
+  cursor: pointer;
+}
+
+.ellipsis {
+  width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

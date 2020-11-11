@@ -1,0 +1,66 @@
+@import './vars.scss';
+
+:global(.flex) {
+  display: flex;
+}
+
+:global(.flexEnd) {
+  display: flex;
+  justify-content: flex-end;
+}
+
+:global(.spaceBetween) {
+  display: flex;
+  justify-content: space-between;
+}
+
+:global(.spaceAround) {
+  display: flex;
+  justify-content: space-around;
+}
+
+// 水平居中
+:global(.vCenter) {
+  display: flex;
+  justify-content: center;
+}
+
+// 垂直居中
+:global(.vCenter) {
+  display: flex;
+  align-items: center;
+}
+
+:global(.mb16) {
+  margin-bottom: 16px;
+}
+
+:global(.mb32) {
+  margin-bottom: 32px;
+}
+
+:global(.mt16) {
+  margin-top: 16px;
+}
+
+:global(.mt32) {
+  margin-top: 32px;
+}
+
+:global(.ml16) {
+  margin-left: 16px;
+}
+
+:global(.mr16) {
+  margin-right: 16px;
+}
+
+////////////////////////////////////////////////////////////
+
+// 三级标题
+:global(.subtitle) {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color: $primary;
+}

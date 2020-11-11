@@ -1,0 +1,55 @@
+/*
+  版本一 两条线 & 四个点
+*/
+// .borderBox {
+//   position: relative;
+//   width: calc(50% - 8px);
+//   height: 100%;
+//   border-top: 2px solid rgba(63, 79, 93, 0.3);
+//   border-bottom: 2px solid rgba(63, 79, 93, 0.3);
+//   overflow: hidden;
+// }
+
+// .dot1,
+// .dot2,
+// .dot3,
+// .dot4 {
+//   position: absolute;
+//   width: 3px;
+//   height: 3px;
+//   background: #3f4f5d;
+//   z-index: 10;
+// }
+
+// .dot1 {
+//   top: 3px;
+//   left: 0;
+// }
+
+// .dot2 {
+//   top: 3px;
+//   right: 0;
+// }
+
+// .dot3 {
+//   bottom: 3px;
+//   left: 0;
+// }
+
+// .dot4 {
+//   bottom: 3px;
+//   right: 0;
+// }
+
+// ///////////////////////////////////////////////////
+
+/*
+  版本二 灰色边框
+*/
+.borderBox {
+  width: calc(50% - 8px);
+  height: 100%;
+  // border: 1px solid rgba(233, 237, 240, 0.7);
+  border: 1px solid rgba(72, 74, 90, 0.3);
+  overflow: hidden;
+}
