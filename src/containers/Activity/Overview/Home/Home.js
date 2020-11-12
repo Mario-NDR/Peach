@@ -170,6 +170,12 @@ class Home extends IntlComponent {
               {'WEB攻击'}
             </Tag>
           )
+        } else if (text === 'Attempted Denial of Service') {
+          return (
+            <Tag color="orange">
+              {'DOS攻击'}
+            </Tag>
+          )
         } else if (text === 'A system call was detected') {
           return (
             <Tag color="orange">
