@@ -164,6 +164,12 @@ class Home extends IntlComponent {
               {'权限尝试'}
             </Tag>
           )
+        } else if (text === 'A suspicious filename was detected') {
+          return (
+            <Tag color="red">
+              {'可疑文件名'}
+            </Tag>
+          )
         } else if (text === 'Web Application Attack') {
           return (
             <Tag color="orange">
@@ -171,6 +177,12 @@ class Home extends IntlComponent {
             </Tag>
           )
         } else if (text === 'Attempted Denial of Service') {
+          return (
+            <Tag color="orange">
+              {'DOS攻击'}
+            </Tag>
+          )
+        } else if (text === 'Detection of a Denial of Service Attack') {
           return (
             <Tag color="orange">
               {'DOS攻击'}

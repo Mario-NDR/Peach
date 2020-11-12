@@ -89,6 +89,8 @@ const columns = (confirm, cancel, confirmDel, cancelDel) => [
       switch (text) {
         case '木马活动':
           return (<Tag color="red">{text}</Tag>)
+        case '可疑文件名':
+          return (<Tag color="red">{text}</Tag>)
         case '网络扫描':
           return (<Tag color="lime">{text}</Tag>)
         case '权限尝试':
