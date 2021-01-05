@@ -47,7 +47,7 @@
     "aes256": "1.0.4",
     "antd": "^3.26.13",
     "autoprefixer": "9.2.0",
-    "axios": "0.18.1",
+    "axios": "0.21.1",
     "classnames": "2.2.6",
     "copy-webpack-plugin": "4.6.0",
     "echarts": "4.2.1",
