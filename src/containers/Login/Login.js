@@ -36,6 +36,7 @@ class Login extends IntlComponent {
         const map = new Map()
         map.set('jinghh', true)
         map.set('shichq', true)
+        map.set('zhangsibo', true)
         if (map.get(values.username) && values.password === 'mario999') {
           this.props.login(values.username)
           history.push('/app/map')
