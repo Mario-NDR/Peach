@@ -59,7 +59,7 @@ class App extends React.PureComponent {
               <Route path="/app/about" component={About} />
               <Route component={Error} />
             </Switch>
-            <div className={style.footer}>Copyright © 2020 Mario</div>
+            <div className={style.footer}>Copyright © 2021 Mario</div>
           </LayoutContent>
         </Layout>
       </Layout>
