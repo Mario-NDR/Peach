@@ -124,7 +124,7 @@ class Visual extends IntlComponent {
                   width="100%"
                   height={450}
                   options={{
-                    radius: [ '40%', '65%' ],
+                    radius: ['40%', '65%'],
                     textStyle: { fontSize: 16 },
                     legend: {
                       type: 'scroll',
@@ -138,7 +138,7 @@ class Visual extends IntlComponent {
                     label: {
                       normal: { show: false },
                     },
-                    center: [ '35%', '50%' ],
+                    center: ['35%', '50%'],
                     title: {
                       show: true,
                       // text: '请求统计',
@@ -154,15 +154,15 @@ class Visual extends IntlComponent {
               <Card title="累计处理请求:" type="inner" style={{ width: 300, marginBottom: 10 }}>
                 <span>{`${total} 次`}</span>
               </Card>
-              <Card title="现存日志数:" type="inner" style={{ width: 300, marginBottom: 10 }}>
+              <Card title="告警数:" type="inner" style={{ width: 300, marginBottom: 10 }}>
                 <span>{`${sum} 条`}</span>
               </Card>
-              <Card title="日志清理时间:" type="inner" style={{ width: 300, marginBottom: 10 }}>
+              <Card title="最新日志:" type="inner" style={{ width: 300, marginBottom: 10 }}>
                 {
                   typeof (last_clean) === 'string' ? '暂无清理时间' : <Tag color="#87d068">{formatTime(last_clean)}</Tag>
                 }
               </Card>
-              <Card title="此版本运行时长:" type="inner" style={{ width: 300, marginBottom: 10 }}>
+              <Card title="累计运行时长:" type="inner" style={{ width: 300, marginBottom: 10 }}>
                 <span>{dateString}</span>
               </Card>
             </div>
@@ -173,7 +173,7 @@ class Visual extends IntlComponent {
             选择时间：
             <RangePicker
               format="YYYY-MM-DD"
-              defaultValue={[ defaultStartDate, defaultEndDate ]}
+              defaultValue={[defaultStartDate, defaultEndDate]}
               disabledDate={this.disabledDate}
               onChange={this.onChange}
             />

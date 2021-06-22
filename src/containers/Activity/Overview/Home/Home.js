@@ -54,7 +54,7 @@ class Home extends IntlComponent {
     },
     {
       dataIndex: 'client_ip',
-      title: '客户端',
+      title: '蜜罐节点',
       key: 'client_ip',
       align: 'center',
       render: (text) => (
