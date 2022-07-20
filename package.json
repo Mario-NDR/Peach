@@ -70,7 +70,7 @@
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
     "serve-favicon": "^2.5.0",
-    "terser": "^4.6.6"
+    "terser": "^4.8.1"
   },
   "resolutions": {
     "uglify-es": "npm:terser"
